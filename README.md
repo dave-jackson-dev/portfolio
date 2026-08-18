@@ -18,6 +18,10 @@ Read the design work:
 - [Architecture specification](docs/architecture/portfolio-architecture-spec.md)
 - [Architecture review](docs/architecture/portfolio-architecture-review.md)
 
+## Runtime topology
+
+![Portfolio runtime topology](docs/architecture/portfolio-runtime-topology.svg)
+
 ## Local development
 
 Prerequisites: Node.js 22 and npm.
