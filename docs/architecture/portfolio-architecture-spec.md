@@ -108,6 +108,12 @@ features/               # Cucumber features + Screenplay step definitions
 | **Leads** | Inbound enquiries, spam scoring, notification dispatch | Sending the email itself (adapter concern) |
 | **Admin** | Authoring UX, editorial workflow state in the browser | Any persisted aggregate (D6) |
 
+> **Interactive-example scope (proposed):** Portfolio may also host signed-in, bounded examples of
+> Career Coach, Site Builder, and Prompt Workbench. This changes Identity from an Admin-only concern
+> to a public-user account boundary, while public portfolio pages remain anonymous. See the
+> [Interactive Examples scope](../planning/interactive-examples-scope.md) for the proposed OIDC,
+> account-deletion, ownership, and BYOK constraints. It must be ratified before Phase 04 begins.
+
 ### The one genuinely hard boundary
 
 Projects, Content, and Skills all want to describe "a thing I built with a technology." The rule:
