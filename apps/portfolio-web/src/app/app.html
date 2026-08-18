@@ -25,6 +25,24 @@
       takes shape.
     </p>
   </section>
+
+  <section class="topology" aria-labelledby="topology-title">
+    <div class="topology-copy">
+      <p class="eyebrow">Target architecture</p>
+      <h2 id="topology-title">Runtime topology</h2>
+      <p>
+        A federated Angular shell and API gateway coordinate independently
+        deployed user interfaces, bounded-context services, and purpose-fit
+        datastores.
+      </p>
+    </div>
+
+    <img
+      class="topology-image"
+      src="/portfolio-runtime-topology.svg"
+      alt="Runtime topology: a browser reaches nginx, which routes to an Angular shell and an API gateway. The shell loads UI remotes, while the gateway connects to Identity, Projects, Content, Profile, Skills, and Leads APIs backed by PostgreSQL, CouchDB and Nouveau, and TypeDB."
+    />
+  </section>
 </main>
 
 <router-outlet></router-outlet>
