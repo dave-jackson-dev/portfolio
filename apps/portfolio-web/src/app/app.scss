@@ -105,3 +105,26 @@ h2 {
   border-radius: 1.5rem;
   padding: clamp(2rem, 5vw, 4rem);
 }
+
+.topology {
+  padding: clamp(5rem, 11vw, 8rem) 0 0;
+}
+
+.topology-copy {
+  max-width: 42rem;
+}
+
+.topology-copy > p:last-child {
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.topology-image {
+  border-radius: 1.5rem;
+  display: block;
+  height: auto;
+  margin-top: 2.5rem;
+  max-width: 100%;
+  width: 742px;
+}

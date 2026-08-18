@@ -1,0 +1,136 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="PDSxTV0mzlhRaSgrNHMD">
+    <mxGraphModel dx="185" dy="135" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-36" connectable="0" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="996" width="720" x="65" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-18" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-1" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#213452;strokeColor=#6D9BC8;fontColor=#FFFFFF;fontStyle=1;" value="Browser" vertex="1">
+          <mxGeometry height="54" width="180" x="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-17" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-20" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-2" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#213452;strokeColor=#6D9BC8;fontColor=#FFFFFF;fontStyle=1;" value="nginx reverse proxy :8080" vertex="1">
+          <mxGeometry height="54" width="260" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-21" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="Ohlu3_wltAArzgrE2Cti-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-22" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="Ohlu3_wltAArzgrE2Cti-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-3" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#154A5A;strokeColor=#35A6AE;fontColor=#FFFFFF;fontStyle=1;" value="api-gateway :3333" vertex="1">
+          <mxGeometry height="54" width="260" y="219" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-19" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-4" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#154A5A;strokeColor=#35A6AE;fontColor=#FFFFFF;fontStyle=1;" value="shell (MF host) :4200" vertex="1">
+          <mxGeometry height="54" width="260" x="400" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-5" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#433263;strokeColor=#A783DF;fontColor=#FFFFFF;fontStyle=1;align=center;verticalAlign=middle;" value="Angular UI remotes&lt;br&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;projects · content · profile&lt;br&gt;skills · leads · admin&lt;br&gt;:4201–:4206&lt;/font&gt;" vertex="1">
+          <mxGeometry height="112" width="380" x="340" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-26" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="Ohlu3_wltAArzgrE2Cti-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="601.05" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-33" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.15;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ohlu3_wltAArzgrE2Cti-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="615.05" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-6" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="identity-api :3002" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="582" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-7" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="projects-api :3001" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="458" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-23" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-24" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-28" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="Ohlu3_wltAArzgrE2Cti-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="841.05" />
+            </Array>
+            <mxPoint x="49.999999999999886" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-8" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="content-api :3004" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-30" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.85;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ohlu3_wltAArzgrE2Cti-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-9" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="profile-api :3000" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-25" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ohlu3_wltAArzgrE2Cti-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-29" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="Ohlu3_wltAArzgrE2Cti-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="961.05" />
+            </Array>
+            <mxPoint x="29.999999999999886" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-10" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="skills-api :3005" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="933" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-27" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="Ohlu3_wltAArzgrE2Cti-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="721.05" />
+            </Array>
+            <mxPoint x="50.000000000000114" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-34" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.85;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ohlu3_wltAArzgrE2Cti-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-11" parent="Ohlu3_wltAArzgrE2Cti-36" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;" value="leads-api :3003" vertex="1">
+          <mxGeometry height="54" width="150" x="210" y="688" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-12" parent="Ohlu3_wltAArzgrE2Cti-36" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;fontStyle=1;" value="PostgreSQL :5432" vertex="1">
+          <mxGeometry height="70" width="200" x="440" y="518" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-15" parent="Ohlu3_wltAArzgrE2Cti-36" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;fontStyle=1;" value="TypeDB :8000" vertex="1">
+          <mxGeometry height="70" width="200" x="440" y="925" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-32" edge="1" parent="Ohlu3_wltAArzgrE2Cti-36" source="Ohlu3_wltAArzgrE2Cti-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.15;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ohlu3_wltAArzgrE2Cti-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="491" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-14" parent="Ohlu3_wltAArzgrE2Cti-36" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fontStyle=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;" value="Nouveau :5987" vertex="1">
+          <mxGeometry height="70" width="200" x="440" y="821" as="geometry" />
+        </mxCell>
+        <mxCell id="Ohlu3_wltAArzgrE2Cti-13" parent="Ohlu3_wltAArzgrE2Cti-36" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fontStyle=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;" value="CouchDB :5984" vertex="1">
+          <mxGeometry height="70" width="200" x="440" y="779" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
