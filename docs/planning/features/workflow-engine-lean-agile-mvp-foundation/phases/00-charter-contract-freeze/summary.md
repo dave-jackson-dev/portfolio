@@ -33,6 +33,8 @@ separately approved command recipe and can run only in a disposable workspace.
   records the accepted consumer-side boundary and its prohibited dependency directions.
 - Provider-owned Workflow Engine v1 command/result schemas and the v2 identity-aware event schema
   are checked in under Singularity `docs/contracts/workflow-engine/v1/`.
+- Portfolio's `npm run test:workflow-contract` validates the sanitized delegated-event and macro
+  fixtures, the initial allowlist, disposable-workspace replay rule, and private-import exclusion.
 
 ## Open decisions
 
@@ -40,6 +42,14 @@ separately approved command recipe and can run only in a disposable workspace.
 2. The concrete encryption provider/configuration and backup/restore runbook for the runtime
    PouchDB store.
 3. The location and executable form of the shared compatibility fixture and test harness.
+
+## Validation status
+
+- `npm run test:workflow-contract` passes.
+- `npm run test:bdd` is currently blocked by the installed Cucumber version, which supports Node
+  22, 24, or 26+ while the active runtime is Node 25.6.0. The scenarios and step definitions are
+  checked in; resolve the runtime/version mismatch before treating BDD execution as Phase 00 exit
+  evidence.
 
 ## Risks and controls
 

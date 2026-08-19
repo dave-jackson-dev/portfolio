@@ -36,6 +36,19 @@ organization scope, actor classification, redaction outcome, and retention class
 exclude credentials, provider keys, cookies/tokens, prompts, private knowledge, agent/skill
 artifacts, raw personal data, and arbitrary event payloads.
 
+### Initial event allowlist and redaction table
+
+| Event type | Recorder fields permitted | Explicitly removed/rejected |
+| --- | --- | --- |
+| `workflow.step.started` / `workflow.step.completed` / `workflow.step.blocked` / `workflow.step.resumed` | workflow, step, correlation, actor classification, timestamp, status, evidence reference | command input, free-text evidence, tokens, request metadata |
+| `workflow.mvp.evidence-recorded` | workflow, hypothesis/experiment reference, evidence hash/reference, timestamp | raw evidence body, uploaded content, prompts, personal data |
+| `workflow.macro.approved` | macro ID/version, approver principal ID, timestamp, evidence-recording references | approval comment body, credentials, arbitrary payload |
+| `workflow.macro.replay-completed` | macro ID/version, disposable-workspace ID, outcome/status, timestamp | workspace contents, command input values, historical events |
+
+Every other event type is rejected by the Portfolio recorder until a contract change adds its
+row. Redaction happens before PouchDB persistence. A rejected event may increment a non-sensitive
+operational counter but must not persist its payload.
+
 ## 4. Lean-Agile MVP extension
 
 The Portfolio-owned extension uses the following states:

@@ -29,14 +29,18 @@ execution history out of this public repository.
       actor, separate source, optional delegation, and explicit projection audience mapping.
 - [x] Define the `MacroRecording` and `WorkflowMacro` schemas, identity/revision semantics,
       redaction fields, retention rules, and public fixture policy.
-- [ ] Define the first event allowlist and field-level payload classification for records eligible
+- [x] Define the first event allowlist and field-level payload classification for records eligible
       to enter the Portfolio recorder.
 - [x] Define the Lean-Agile MVP extension state machine: hypothesis, experiment, evidence,
       outcome, and pivot-or-persevere decision gate.
 - [x] Define encrypted runtime PouchDB storage, runtime-secret injection, backup/restore, and
       container image-content rules.
-- [ ] Author the contract-level Cucumber scenarios for lifecycle, redaction, macro approval,
-      authorization scope, and recovery.
+- [x] Author the initial executable contract-level Cucumber scenarios for macro approval,
+      delegated attribution, disposable replay, and private-import exclusion. The current Node 25
+      runtime is unsupported by the installed Cucumber version, so execution remains an
+      environment follow-up.
+- [x] Add and pass a dependency-free compatibility-fixture validator for the v2 delegated event,
+      approved disposable-workspace macro, allowlist, and private-import exclusion.
 - [x] Agree the two-repository PR sequence, compatibility test location, and integration-test
       owners.
 

@@ -1,0 +1,19 @@
+{
+  "_id": "workflow-macro:macro-site-builder-intake:1",
+  "documentType": "workflow-macro",
+  "schemaVersion": "1.0",
+  "macroId": "macro-site-builder-intake",
+  "version": 1,
+  "organizationId": "org-portfolio-demo",
+  "status": "approved",
+  "approvedBy": "principal-portfolio-demo",
+  "approvedAt": "2026-08-19T12:00:00.000Z",
+  "evidenceRecordingIds": ["macro-recording:workflow-foundation-fixture"],
+  "commands": [
+    {
+      "command": "workflow init",
+      "inputBindings": ["projectName"],
+      "executionTarget": "disposable-workspace"
+    }
+  ]
+}

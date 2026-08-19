@@ -1,0 +1,25 @@
+{
+  "eventId": "6f154798-1bbc-43e9-804c-1169d56a4a9",
+  "type": "workflow.macro.approved",
+  "version": 2,
+  "organizationId": "org-portfolio-demo",
+  "correlationId": "workflow-foundation-fixture",
+  "occurredAt": "2026-08-19T12:00:00.000Z",
+  "source": {
+    "service": "workflow-engine",
+    "serviceAccountId": "sa-workflow-engine"
+  },
+  "actor": {
+    "kind": "service-account",
+    "serviceAccountId": "sa-workflow-engine"
+  },
+  "delegation": {
+    "kind": "on-behalf-of",
+    "principalId": "principal-portfolio-demo"
+  },
+  "payload": {
+    "macroId": "macro-site-builder-intake",
+    "macroVersion": 1,
+    "approvalRecorded": true
+  }
+}
