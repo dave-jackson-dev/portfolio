@@ -85,17 +85,16 @@ export async function replayApprovedMacro(
   client: WorkflowEnginePublicClient,
   macro: ApprovedWorkflowMacro,
   options: { correlationId: string; workspace: { id: string; disposable: boolean }; bindings: Record<string, unknown> },
-): Promise<WorkflowCommandResult[]> {
+): Promise<WorkflowCommandResult> {
   if (macro.status !== 'approved') throw new Error('Only an approved macro may be replayed');
   if (!options.workspace.disposable) throw new Error('Macro replay requires a disposable workspace');
-  const results: WorkflowCommandResult[] = [];
-  for (const step of macro.commands) {
+  const commands = macro.commands.map((step) => {
     if (!replayableCommands.has(step.command)) throw new Error(`Macro command is not replayable: ${step.command}`);
     const bindings = Object.fromEntries(step.inputBindings.map((key) => [key, options.bindings[key]]).filter(([, value]) => value !== undefined));
-    results.push(await client.execute({
-      contractVersion: '1.0', command: step.command, correlationId: options.correlationId, workflowId: options.workspace.id,
-      input: { ...(step.input ?? {}), ...bindings, executionTarget: 'disposable-workspace' },
-    }));
-  }
-  return results;
+    return { command: step.command, input: { ...(step.input ?? {}), ...bindings } };
+  });
+  return client.execute({
+    contractVersion: '1.0', command: 'workflow macro replay', correlationId: options.correlationId, workflowId: options.workspace.id,
+    input: { replay: { workspace: options.workspace, commands } },
+  });
 }

@@ -68,8 +68,9 @@ When('the macro is replayed into a disposable workspace', async function () {
 });
 
 Then('the client receives fresh replay commands and no historical event', async function () {
-  const request = this.replayRequests[0] as { command?: string; workflowId?: string; input?: Record<string, unknown> };
-  if (this.replayRequests.length !== 1 || request.command !== 'workflow init' || request.workflowId !== 'workspace-disposable' || request.input?.projectName !== 'Portfolio demo' || 'eventId' in (request.input ?? {})) throw new Error('Expected a fresh disposable command only');
+  const request = this.replayRequests[0] as { command?: string; workflowId?: string; input?: { replay?: { commands?: Array<{ command?: string; input?: Record<string, unknown> }> } } };
+  const command = request.input?.replay?.commands?.[0];
+  if (this.replayRequests.length !== 1 || request.command !== 'workflow macro replay' || request.workflowId !== 'workspace-disposable' || command?.command !== 'workflow init' || command.input?.projectName !== 'Portfolio demo' || 'eventId' in (command.input ?? {})) throw new Error('Expected a fresh disposable command only');
   await this.macroStore.close();
 });
 

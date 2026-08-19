@@ -1,6 +1,6 @@
 # Phase 03 — Event Ingress and Macro Authoring Checklist
 
-**Status:** In progress
+**Status:** Complete
 
 **Branch:** `phase/workflow-engine-lean-agile-mvp-foundation/03-event-ingress-and-macro-authoring`
 
@@ -10,8 +10,9 @@
 - [x] Prove replay dispatches fresh public commands rather than historical events.
 - [x] Add immutable macro-version lineage and Service Account approval-denial coverage.
 - [x] Align macro schema/fixtures with the authoring projection.
-- [ ] Add a provider-backed replay compatibility test after the public replay command is accepted.
+- [x] Add a provider-backed replay compatibility test through the public `workflow macro replay` command (Singularity PR #1021, merge commit `393ed6e4`).
 
 ## Validation evidence
 
-- Pending: `npm run test:bdd` and `npm run test:workflow-contract`.
+- `npm run test:bdd` — 20 scenarios, 60 steps passed.
+- `npm run test:workflow-contract` — approved macro, delegated event, and redacted recording fixtures passed; 28 contract source files checked.

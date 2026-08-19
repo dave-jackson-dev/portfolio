@@ -11,7 +11,8 @@ export type WorkflowCommand =
   | 'workflow snapshot export'
   | 'workflow audit'
   | 'workflow projection rebuild'
-  | 'workflow extension transition';
+  | 'workflow extension transition'
+  | 'workflow macro replay';
 
 export interface WorkflowCommandRequest {
   contractVersion: typeof WORKFLOW_ENGINE_CONTRACT_VERSION;
