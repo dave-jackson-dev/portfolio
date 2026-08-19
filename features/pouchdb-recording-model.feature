@@ -27,3 +27,8 @@ Feature: PouchDB macro recording model
     Given an empty Portfolio PouchDB recording store
     When an allowlisted event identity is reused with different retained content
     Then the conflicting recording event is rejected without overwrite
+
+  Scenario: A sanitized durable store recovers after close and reopen
+    Given a sanitized durable Portfolio recording directory
+    When an allowlisted event is recorded then the store is reopened
+    Then the reopened durable store contains the same redacted recording

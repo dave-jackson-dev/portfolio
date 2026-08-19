@@ -54,6 +54,12 @@ export interface MacroRecording {
   retention: 'one-week';
 }
 
+export interface PortfolioWorkflowRecordingStoreOptions {
+  name?: string;
+  /** Memory is the default for browser-safe and test use. A prefix selects PouchDB's local Node store for sanitized recovery fixtures only. */
+  prefix?: string;
+}
+
 function safePayload(event: PlatformEventForRecording): Record<string, unknown> {
   const payload = event.payload ?? {};
   const fields: Record<string, string[]> = {
@@ -97,8 +103,11 @@ function canonical(value: unknown): string {
 export class PortfolioWorkflowRecordingStore {
   private readonly db: any;
 
-  constructor(name = `portfolio-workflow-recording-${Date.now()}`) {
-    this.db = new PouchDB(name, { adapter: 'memory' });
+  constructor(options: string | PortfolioWorkflowRecordingStoreOptions = `portfolio-workflow-recording-${Date.now()}`) {
+    const resolved = typeof options === 'string' ? { name: options } : options;
+    this.db = resolved.prefix
+      ? new PouchDB(resolved.name ?? 'portfolio-workflow-recording', { prefix: resolved.prefix })
+      : new PouchDB(resolved.name ?? `portfolio-workflow-recording-${Date.now()}`, { adapter: 'memory' });
   }
 
   async record(event: PlatformEventForRecording): Promise<{ duplicate: boolean; event: RecordedMacroEvent }> {

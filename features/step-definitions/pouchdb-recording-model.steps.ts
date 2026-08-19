@@ -1,4 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 async function recordingModule() {
   const modulePath = '../../libs/portfolio-workflow-recording/src/lib/portfolio-workflow-recording.ts';
@@ -85,4 +88,28 @@ Then('the conflicting recording event is rejected without overwrite', async func
     throw new Error('Expected event collision to preserve the original recording');
   }
   await this.recordingStore.close();
+});
+
+Given('a sanitized durable Portfolio recording directory', async function () {
+  const { PortfolioWorkflowRecordingStore } = await recordingModule();
+  this.durableDirectory = await mkdtemp(join(tmpdir(), 'portfolio-recording-fixture-'));
+  this.durableOptions = { name: 'recording', prefix: `${this.durableDirectory}/` };
+  this.recordingStore = new PortfolioWorkflowRecordingStore(this.durableOptions);
+});
+
+When('an allowlisted event is recorded then the store is reopened', async function () {
+  await this.recordingStore.record(event());
+  await this.recordingStore.close();
+  const { PortfolioWorkflowRecordingStore } = await recordingModule();
+  this.recordingStore = new PortfolioWorkflowRecordingStore(this.durableOptions);
+});
+
+Then('the reopened durable store contains the same redacted recording', async function () {
+  try {
+    const recording = await this.recordingStore.recording('workflow-recording-fixture', 'recording-correlation-fixture');
+    if (recording.events.length !== 1 || 'authorization' in recording.events[0].payload) throw new Error('Expected recovered redacted recording');
+  } finally {
+    await this.recordingStore.close();
+    await rm(this.durableDirectory, { recursive: true, force: true });
+  }
 });
