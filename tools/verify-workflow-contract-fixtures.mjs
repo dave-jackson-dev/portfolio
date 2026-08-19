@@ -33,6 +33,7 @@ function listSourceFiles(directory) {
 export function verifyWorkflowContractFixtures() {
   const event = readJson('delegated-macro-approval.event.json');
   const macro = readJson('approved-workflow-macro.json');
+  const recording = readJson('redacted-macro-recording.json');
 
   if (!allowedEventTypes.has(event.type)) throw new Error(`Unallowlisted event type: ${event.type}`);
   if (event.version !== 2 || event.actor?.kind !== 'service-account') throw new Error('Fixture must use a v2 Service Account actor');
@@ -40,6 +41,9 @@ export function verifyWorkflowContractFixtures() {
   if (!event.source?.service || !event.source.serviceAccountId) throw new Error('Fixture must identify its trusted source');
   if (macro.status !== 'approved' || !macro.approvedBy || !macro.commands?.every((command) => command.executionTarget === 'disposable-workspace')) {
     throw new Error('Macro fixture must be approved and target a disposable workspace');
+  }
+  if (!recording.correlationId || recording.events?.length !== 1 || recording.events[0].redaction !== 'fields-removed' || 'authorization' in recording.events[0].payload) {
+    throw new Error('Recording fixture must retain one correlation-scoped, redacted event');
   }
 
   const forbidden = /(?:@singularity\/|\/home\/dave\/dev\/projects\/singularity|agents\/|skills\/)/;
@@ -49,7 +53,7 @@ export function verifyWorkflowContractFixtures() {
     .filter((file) => forbidden.test(readFileSync(file, 'utf8')));
   if (privateImports.length > 0) throw new Error(`Private Singularity import/content reference: ${privateImports.join(', ')}`);
 
-  return { eventType: event.type, macroId: macro.macroId, sourceFilesChecked: listSourceFiles(join(root, 'apps')).length + listSourceFiles(join(root, 'libs')).length + listSourceFiles(join(root, 'tools')).length - 1 };
+  return { eventType: event.type, macroId: macro.macroId, recordingId: recording._id, sourceFilesChecked: listSourceFiles(join(root, 'apps')).length + listSourceFiles(join(root, 'libs')).length + listSourceFiles(join(root, 'tools')).length - 1 };
 }
 
 if (process.argv[1] && statSync(process.argv[1]).isFile() && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

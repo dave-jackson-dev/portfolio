@@ -4,13 +4,14 @@
   "title": "Portfolio Macro Recording",
   "type": "object",
   "additionalProperties": false,
-  "required": ["_id", "documentType", "schemaVersion", "workflowId", "organizationId", "recordedAt", "events", "retention"],
+  "required": ["_id", "documentType", "schemaVersion", "workflowId", "organizationId", "correlationId", "recordedAt", "events", "retention"],
   "properties": {
     "_id": { "type": "string", "pattern": "^macro-recording:" },
     "documentType": { "const": "macro-recording" },
     "schemaVersion": { "const": "1.0" },
     "workflowId": { "type": "string", "minLength": 1 },
     "organizationId": { "type": "string", "minLength": 1 },
+    "correlationId": { "type": "string", "minLength": 1 },
     "recordedAt": { "type": "string", "format": "date-time" },
     "events": {
       "type": "array",
