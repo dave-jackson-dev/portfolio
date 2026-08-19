@@ -15,4 +15,5 @@ verifies.
 
 ## Next unchecked item
 
-Add conflict and durable-storage recovery evidence.
+Add durable-storage recovery evidence. This remains separate from the Phase 05 encrypted runtime
+store design; Phase 02 must use only sanitized fixtures.

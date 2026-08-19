@@ -10,7 +10,8 @@
 - [x] Add deterministic snapshot export, integrity verification, and restore coverage.
 - [x] Align the Phase 00 JSON schemas and sanitized fixtures to the implemented recording projection.
 - [x] Use deterministic event-ID keys for event lookup and add one-week retention/purge behavior.
-- [ ] Add conflict/retry and recovery fixtures for durable runtime storage.
+- [x] Reject conflicting reuse of an event identity without overwriting the original immutable record.
+- [ ] Add recovery fixtures for durable runtime storage.
 
 ## Validation evidence
 

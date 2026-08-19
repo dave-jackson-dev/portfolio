@@ -69,3 +69,20 @@ Then('retention removes only the expired recording event', async function () {
   }
   await this.recordingStore.close();
 });
+
+When('an allowlisted event identity is reused with different retained content', async function () {
+  await this.recordingStore.record(event());
+  try {
+    await this.recordingStore.record({ ...event(), payload: { stepId: 'evidence', status: 'blocked', evidenceReference: 'evidence:fixture:1' } });
+  } catch (error) {
+    this.recordingError = error;
+  }
+});
+
+Then('the conflicting recording event is rejected without overwrite', async function () {
+  const recording = await this.recordingStore.recording('workflow-recording-fixture', 'recording-correlation-fixture');
+  if (!(this.recordingError instanceof Error) || !this.recordingError.message.includes('collision') || recording.events[0].payload.status !== 'completed') {
+    throw new Error('Expected event collision to preserve the original recording');
+  }
+  await this.recordingStore.close();
+});

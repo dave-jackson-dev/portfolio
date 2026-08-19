@@ -22,3 +22,8 @@ Feature: PouchDB macro recording model
     Given an empty Portfolio PouchDB recording store
     When an expired and a current allowlisted event are recorded
     Then retention removes only the expired recording event
+
+  Scenario: Conflicting reuse of an event identity is rejected
+    Given an empty Portfolio PouchDB recording store
+    When an allowlisted event identity is reused with different retained content
+    Then the conflicting recording event is rejected without overwrite
