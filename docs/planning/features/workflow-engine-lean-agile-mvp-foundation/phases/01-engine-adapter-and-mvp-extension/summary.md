@@ -18,15 +18,21 @@ The adapter emits `workflow extension transition` requests with extension identi
 `feat/workflow-engine-public-extension-transitions` records those requests as immutable audit
 events. It remains unmerged until its normal review and promotion path completes.
 
-## Current constraint
+## Delivery decision
 
-`@singularity/workflow-engine` is package-tested but has not been released to a public registry or
-delivered as a hosted endpoint. The Portfolio production composition root therefore remains
-unbound by design; it must not depend on a developer-local sibling path. Phase 01 can complete the
-real binding after an approved delivery channel is selected.
+Phase 01 delivers the Workflow Engine through its packaged VS Codium extension and local NestJS
+sidecar. Portfolio retains its injected public-contract client so a future adapter can route either
+to that local experience or to an online hosted service through Singularity Runtime Routing.
+
+The current VSIX is intentionally an extension-host client, not a bundled cross-platform sidecar.
+Its `workflowEngine.sidecar.command` setting must name the installed local sidecar executable.
+The Phase 01 package smoke test must verify this configuration and lifecycle explicitly.
+
+The package verification produced `/tmp/workflow-engine-vscodium-0.1.0.vsix` successfully. The
+VSIX contains only extension-host assets; the sidecar is deliberately supplied through the
+configured executable path.
 
 ## Next unchecked item
 
-Choose and implement the production delivery channel: a published package artifact or hosted
-adapter endpoint. Then bind Portfolio's composition root and replace the injected client test
-double with a real compatibility test.
+Package and smoke-test the VSIX against a configured local sidecar, then promote the paired public
+extension-transition provider branch through Singularity `dev`.
