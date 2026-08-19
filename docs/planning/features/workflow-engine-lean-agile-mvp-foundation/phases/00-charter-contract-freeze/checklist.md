@@ -20,8 +20,8 @@ execution history out of this public repository.
       Nest module/factory, CQRS commands and queries, JSON envelopes, and PouchDB-owned state.
 - [x] Record the Portfolio boundary rule: consume commands/queries and versioned envelopes only;
       never import PouchDB repositories or Singularity source paths.
-- [ ] Draft matching Portfolio and Singularity ADRs that name the public contract, its owner, and
-      the excluded proprietary surfaces.
+- [x] Draft matching Portfolio and Singularity ADRs that name the public contract, its owner, and
+      the excluded proprietary surfaces. Approval remains pending the compatibility contract.
 - [ ] Agree the contract versioning policy, compatibility window, command/query JSON envelope,
       stable error codes, and correlation/causation identifiers.
 - [ ] Define the `MacroRecording` and `WorkflowMacro` schemas, identity/revision semantics,

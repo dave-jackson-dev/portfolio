@@ -27,6 +27,8 @@ separately approved command recipe and can run only in a disposable workspace.
   idempotent event handlers for safe changes-feed replay.
 - Portfolio's feature plan prohibits direct cross-service datastore reads and limits event ingress
   to approved, versioned `PlatformEventEnvelope` messages.
+- [Portfolio ADR-001](../../../../architecture/adr-001-workflow-engine-public-consumer-boundary.md)
+  records the consumer-side proposal and its prohibited dependency directions.
 
 ## Open decisions
 
