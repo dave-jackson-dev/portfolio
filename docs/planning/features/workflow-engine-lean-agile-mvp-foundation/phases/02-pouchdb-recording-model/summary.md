@@ -15,4 +15,4 @@ verifies.
 
 ## Next unchecked item
 
-Add index, retention, conflict, and durable-storage recovery evidence.
+Add conflict and durable-storage recovery evidence.

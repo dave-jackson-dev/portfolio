@@ -17,3 +17,8 @@ Feature: PouchDB macro recording model
     Given an empty Portfolio PouchDB recording store
     When an allowlisted workflow event is recorded and snapshotted
     Then the snapshot restores the same logical recording
+
+  Scenario: One-week retention removes expired recordings only
+    Given an empty Portfolio PouchDB recording store
+    When an expired and a current allowlisted event are recorded
+    Then retention removes only the expired recording event

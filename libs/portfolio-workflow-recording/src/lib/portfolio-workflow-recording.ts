@@ -144,6 +144,15 @@ export class PortfolioWorkflowRecordingStore {
     return { schemaVersion: '1.0', integrity, documents };
   }
 
+  async purgeExpired(now = new Date()): Promise<number> {
+    const cutoff = now.getTime() - 7 * 24 * 60 * 60 * 1000;
+    const rows = await this.db.allDocs({ include_docs: true, startkey: 'macro-recording-event:', endkey: 'macro-recording-event:\uffff' });
+    const expired = rows.rows.map((row: any) => row.doc as StoredRecordingEvent)
+      .filter((document) => document.retention === 'one-week' && new Date(document.retainedEvent.occurredAt).getTime() < cutoff);
+    if (expired.length) await this.db.bulkDocs(expired.map((document) => ({ _id: document._id, _rev: (document as any)._rev, _deleted: true })));
+    return expired.length;
+  }
+
   async restoreSnapshot(snapshot: { schemaVersion: '1.0'; integrity: string; documents: StoredRecordingEvent[] }) {
     const actual = createHash('sha256').update(JSON.stringify(snapshot.documents)).digest('hex');
     if (actual !== snapshot.integrity) throw new Error('Snapshot integrity verification failed');

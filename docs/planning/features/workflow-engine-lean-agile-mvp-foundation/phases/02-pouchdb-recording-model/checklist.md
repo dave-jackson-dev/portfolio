@@ -9,7 +9,7 @@
 - [x] Make event delivery idempotent by stable event identity.
 - [x] Add deterministic snapshot export, integrity verification, and restore coverage.
 - [x] Align the Phase 00 JSON schemas and sanitized fixtures to the implemented recording projection.
-- [ ] Add PouchDB indexes and retention/purge behavior.
+- [x] Use deterministic event-ID keys for event lookup and add one-week retention/purge behavior.
 - [ ] Add conflict/retry and recovery fixtures for durable runtime storage.
 
 ## Validation evidence

@@ -55,3 +55,17 @@ Then('the snapshot restores the same logical recording', async function () {
   if (recording.events.length !== 1 || recording.events[0].eventId !== '6f154798-1bbc-43e9-804c-1169d56a4a9') throw new Error('Expected restored recording');
   await restored.close();
 });
+
+When('an expired and a current allowlisted event are recorded', async function () {
+  await this.recordingStore.record({ ...event(), eventId: '6f154798-1bbc-43e9-804c-1169d56a4a1', occurredAt: '2026-08-01T12:00:00.000Z' });
+  await this.recordingStore.record({ ...event(), eventId: '6f154798-1bbc-43e9-804c-1169d56a4a2', occurredAt: '2026-08-19T12:00:00.000Z' });
+  this.purgedCount = await this.recordingStore.purgeExpired(new Date('2026-08-19T12:00:00.000Z'));
+});
+
+Then('retention removes only the expired recording event', async function () {
+  const recording = await this.recordingStore.recording('workflow-recording-fixture', 'recording-correlation-fixture');
+  if (this.purgedCount !== 1 || recording.events.length !== 1 || recording.events[0].eventId !== '6f154798-1bbc-43e9-804c-1169d56a4a2') {
+    throw new Error('Expected one retained current event after retention purge');
+  }
+  await this.recordingStore.close();
+});
