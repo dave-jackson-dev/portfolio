@@ -37,6 +37,8 @@ separately approved command recipe and can run only in a disposable workspace.
   fixtures, the initial allowlist, disposable-workspace replay rule, and private-import exclusion.
 - Singularity's provider-side `createWorkflowEnginePublicAdapter` baseline passes its Node contract
   tests for supported v1 command dispatch and unsupported-version rejection.
+- Portfolio's `createPortfolioWorkflowAdapter` passes a BDD consumer test through an injected v1
+  public client and imports no Singularity source path.
 
 ## Open decisions
 
@@ -61,5 +63,5 @@ separately approved command recipe and can run only in a disposable workspace.
 
 ## Next unchecked item
 
-Implement the Portfolio thin adapter against the public v1 module/factory, then add the
-cross-repository compatibility test that proves no private import is required.
+Package or host the provider module/factory for a real cross-repository integration, then replace
+the injected test double with a compatibility test against that delivered public surface.

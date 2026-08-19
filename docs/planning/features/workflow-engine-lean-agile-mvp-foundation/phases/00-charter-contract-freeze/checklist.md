@@ -42,6 +42,8 @@ execution history out of this public repository.
 - [x] Validate the provider-side public module/factory baseline against the v1 request/result
       contract. The provider test exercises supported command dispatch and contract-version
       rejection.
+- [x] Implement and validate the Portfolio thin adapter against an injected public v1 client. The
+      BDD consumer test proves its request shape without a private Singularity import.
 - [x] Agree the two-repository PR sequence, compatibility test location, and integration-test
       owners.
 
@@ -59,4 +61,5 @@ execution history out of this public repository.
 The phase is complete only when both repositories approve the ADR pair and the Portfolio thin
 adapter's contract test proves that it compiles/runs through the public surface with no private
 imports or proprietary artifacts. The provider module/factory baseline is now available; the
-Portfolio adapter is Phase 01 work.
+Portfolio adapter baseline is now available. Packaging or hosting the provider for a real
+cross-repository runtime integration remains Phase 01 work.
