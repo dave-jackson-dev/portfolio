@@ -4,7 +4,10 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve portfolio-web",
-    "test:bdd": "cucumber-js --require-module ts-node/register --require features/**/*.ts features/**/*.feature"
+    "install:workflow-engine:local": "node tools/install-local-workflow-packages.mjs",
+    "install:workflow-packages:local": "node tools/install-local-workflow-packages.mjs",
+    "test:workflow-contract": "node tools/verify-workflow-contract-fixtures.mjs",
+    "test:bdd": "cucumber-js --config cucumber.config.mjs"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +25,8 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "express": "^4.21.2",
+    "pouchdb": "^9.0.0",
+    "pouchdb-adapter-memory": "^9.0.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "~7.8.0"
   },
@@ -55,6 +60,8 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
+    "@types/pouchdb": "^6.4.2",
+    "@types/pouchdb-adapter-memory": "^6.1.6",
     "@typescript-eslint/utils": "^8.58.0",
     "angular-eslint": "^22.0.0",
     "eslint": "^9.8.0",

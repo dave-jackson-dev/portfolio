@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.davejackson.dev/portfolio-workflow/v1/macro-recording.schema.json",
+  "title": "Portfolio Macro Recording",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["_id", "documentType", "schemaVersion", "workflowId", "organizationId", "correlationId", "recordedAt", "events", "retention"],
+  "properties": {
+    "_id": { "type": "string", "pattern": "^macro-recording:" },
+    "documentType": { "const": "macro-recording" },
+    "schemaVersion": { "const": "1.0" },
+    "workflowId": { "type": "string", "minLength": 1 },
+    "organizationId": { "type": "string", "minLength": 1 },
+    "correlationId": { "type": "string", "minLength": 1 },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["eventId", "type", "version", "occurredAt", "redaction"],
+        "properties": {
+          "eventId": { "type": "string", "format": "uuid" },
+          "type": { "type": "string", "minLength": 1 },
+          "version": { "type": "integer", "minimum": 1 },
+          "occurredAt": { "type": "string", "format": "date-time" },
+          "redaction": { "enum": ["none", "fields-removed", "rejected"] },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "retention": { "enum": ["one-week", "workflow-lifetime", "delete-on-workspace-destroy" ] }
+  }
+}

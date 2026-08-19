@@ -1,0 +1,18 @@
+# Phase 03 — Event Ingress and Macro Authoring Summary
+
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/03-event-ingress-and-macro-authoring/summary.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
+**Status:** Complete
+
+The initial Phase 03 boundary deliberately does not replay event history. It first reduces approved
+events through the Phase 02 recorder, then creates a separate approved macro version with explicit
+input bindings and a disposable-workspace target. Replay calls the public Workflow Engine client
+with new command envelopes only.
+
+## Phase outcome
+
+The generic Workflow Engine provider accepts the same replay contract through `workflow macro
+replay` (Singularity PR #1021, merge commit `393ed6e4`). It requires a matching disposable
+workspace and dispatches only the allowlisted fresh commands supplied by Portfolio.
