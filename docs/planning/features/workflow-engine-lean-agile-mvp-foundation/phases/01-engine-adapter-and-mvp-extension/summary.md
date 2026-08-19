@@ -1,6 +1,6 @@
 # Phase 01 — Engine Adapter and MVP Extension Baseline Summary
 
-**Status:** In progress
+**Status:** Complete
 
 ## Baseline
 
@@ -14,9 +14,9 @@ The initial executable verification passes 9 BDD scenarios / 27 steps and the wo
 fixture verification checks 26 source files.
 
 The adapter emits `workflow extension transition` requests with extension identifier
-`portfolio.lean-agile-mvp` and schema version `1.0.0`. The paired Singularity provider branch
-`feat/workflow-engine-public-extension-transitions` records those requests as immutable audit
-events. It remains unmerged until its normal review and promotion path completes.
+`portfolio.lean-agile-mvp` and schema version `1.0.0`. The paired Singularity provider records
+those requests as immutable audit events and was merged into `dev` through PR #1019 (`dd21bf26`)
+after the required substrate parity gate passed.
 
 ## Delivery decision
 
@@ -32,7 +32,8 @@ The package verification produced `/tmp/workflow-engine-vscodium-0.1.0.vsix` suc
 VSIX contains only extension-host assets; the sidecar is deliberately supplied through the
 configured executable path.
 
-## Next unchecked item
+## Phase outcome
 
-Package and smoke-test the VSIX against a configured local sidecar, then promote the paired public
-extension-transition provider branch through Singularity `dev`.
+The Phase 01 extension baseline, local VS Codium delivery, and engine-side immutable transition
+recording are complete. A future phase may add Runtime Routing’s hosted transport without changing
+this public contract.

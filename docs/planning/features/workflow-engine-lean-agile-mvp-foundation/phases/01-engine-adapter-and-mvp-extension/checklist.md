@@ -1,6 +1,6 @@
 # Phase 01 — Engine Adapter and MVP Extension Baseline Checklist
 
-**Status:** In progress
+**Status:** Complete
 
 **Branch:** `phase/workflow-engine-lean-agile-mvp-foundation/01-engine-adapter-and-mvp-extension`
 
@@ -13,7 +13,7 @@
 - [x] Select VS Codium extension plus local sidecar as the Phase 01 delivery channel; defer hosted routing to Singularity Runtime Routing.
 - [x] Retain the injected public client boundary for any future hosted Runtime Routing adapter; Portfolio does not import a sibling Singularity path.
 - [x] Package and smoke-test the VSIX with a configured local sidecar executable.
-- [ ] Merge the engine-side immutable audit persistence and public transition mapping (`feat/workflow-engine-public-extension-transitions`) into Singularity `dev`.
+- [x] Merge the engine-side immutable audit persistence and public transition mapping into Singularity `dev` (PR #1019, merge commit `dd21bf26`).
 
 ## Validation evidence
 
