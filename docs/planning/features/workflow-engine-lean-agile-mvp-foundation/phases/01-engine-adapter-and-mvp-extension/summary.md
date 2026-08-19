@@ -10,8 +10,13 @@ the public Workflow Engine adapter only to start a workflow. It records explicit
 references and prevents a Service Account from making a human pivot-or-persevere decision.
 A pivot must also return to hypothesis with a newly supplied, non-empty testable hypothesis.
 
-The initial executable verification passes 8 BDD scenarios / 24 steps and the workflow-contract
+The initial executable verification passes 9 BDD scenarios / 27 steps and the workflow-contract
 fixture verification checks 26 source files.
+
+The adapter emits `workflow extension transition` requests with extension identifier
+`portfolio.lean-agile-mvp` and schema version `1.0.0`. The paired Singularity provider branch
+`feat/workflow-engine-public-extension-transitions` records those requests as immutable audit
+events. It remains unmerged until its normal review and promotion path completes.
 
 ## Current constraint
 

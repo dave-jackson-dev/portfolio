@@ -12,9 +12,9 @@
 - [x] Add executable BDD coverage for the happy path, Service Account decision rejection, and revised-pivot hypothesis requirement.
 - [ ] Bind the Portfolio runtime composition root to the delivered package or hosted adapter.
 - [ ] Add a real package/hosted-adapter compatibility test replacing the injected test client.
-- [ ] Add engine-side extension schema persistence and public transition command mapping.
+- [ ] Merge the engine-side immutable audit persistence and public transition mapping (`feat/workflow-engine-public-extension-transitions`) into Singularity `dev`.
 
 ## Validation evidence
 
-- `npm run test:bdd` — 8 scenarios, 24 steps passed.
+- `npm run test:bdd` — 9 scenarios, 27 steps passed.
 - `npm run test:workflow-contract` — approved macro fixture and 26 contract source files checked.

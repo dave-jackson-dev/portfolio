@@ -10,7 +10,8 @@ export type WorkflowCommand =
   | 'workflow handoff'
   | 'workflow snapshot export'
   | 'workflow audit'
-  | 'workflow projection rebuild';
+  | 'workflow projection rebuild'
+  | 'workflow extension transition';
 
 export interface WorkflowCommandRequest {
   contractVersion: typeof WORKFLOW_ENGINE_CONTRACT_VERSION;
@@ -55,6 +56,16 @@ export interface StartLeanAgileMvpWorkflowInput {
   principalId: string;
 }
 
+export interface LeanAgileMvpTransitionRecord {
+  workflowId: string;
+  correlationId: string;
+  from: string;
+  to: string;
+  actor: { kind: 'principal' | 'service-account'; id: string };
+  evidenceReferences: string[];
+  hypothesis?: string;
+}
+
 export function createPortfolioWorkflowAdapter(client: WorkflowEnginePublicClient) {
   return Object.freeze({
     startLeanAgileMvpWorkflow(input: StartLeanAgileMvpWorkflowInput): Promise<WorkflowCommandResult> {
@@ -69,6 +80,25 @@ export function createPortfolioWorkflowAdapter(client: WorkflowEnginePublicClien
           initiativeId: input.initiativeId,
           organizationId: input.organizationId,
           principalId: input.principalId,
+        },
+      });
+    },
+    recordLeanAgileMvpTransition(record: LeanAgileMvpTransitionRecord): Promise<WorkflowCommandResult> {
+      return client.execute({
+        contractVersion: WORKFLOW_ENGINE_CONTRACT_VERSION,
+        command: 'workflow extension transition',
+        correlationId: record.correlationId,
+        workflowId: record.workflowId,
+        input: {
+          transition: {
+            extensionId: 'portfolio.lean-agile-mvp',
+            extensionSchemaVersion: '1.0.0',
+            from: record.from,
+            to: record.to,
+            actor: record.actor,
+            evidenceReferences: record.evidenceReferences,
+            ...(record.hypothesis ? { hypothesis: record.hypothesis } : {}),
+          },
         },
       });
     },

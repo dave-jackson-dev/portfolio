@@ -1,4 +1,4 @@
-import type { StartLeanAgileMvpWorkflowInput, WorkflowCommandResult } from '../../../portfolio-workflow-adapter/src/lib/portfolio-workflow-adapter';
+import type { LeanAgileMvpTransitionRecord, StartLeanAgileMvpWorkflowInput, WorkflowCommandResult } from '../../../portfolio-workflow-adapter/src/lib/portfolio-workflow-adapter';
 
 export type LeanAgileMvpState = 'hypothesis' | 'experiment' | 'evidence' | 'outcome' | 'pivot' | 'persevere';
 
@@ -27,6 +27,7 @@ export interface LeanAgileMvpTransition {
 
 export interface PortfolioWorkflowStarter {
   startLeanAgileMvpWorkflow(input: StartLeanAgileMvpWorkflowInput): Promise<WorkflowCommandResult>;
+  recordLeanAgileMvpTransition(record: LeanAgileMvpTransitionRecord): Promise<WorkflowCommandResult>;
 }
 
 export function createLeanAgileMvpWorkflow(input: StartLeanAgileMvpWorkflowInput & { hypothesis: string }): LeanAgileMvpWorkflow {
@@ -85,5 +86,18 @@ export function createLeanAgileMvpExtension(starter: PortfolioWorkflowStarter) {
       return { result, workflow: createLeanAgileMvpWorkflow(input) };
     },
     transition: transitionLeanAgileMvpWorkflow,
+    async transitionAndRecord(workflow: LeanAgileMvpWorkflow, transition: LeanAgileMvpTransition) {
+      const next = transitionLeanAgileMvpWorkflow(workflow, transition);
+      const result = await starter.recordLeanAgileMvpTransition({
+        workflowId: workflow.workflowId,
+        correlationId: workflow.correlationId,
+        from: workflow.state,
+        to: next.state,
+        actor: transition.actor,
+        evidenceReferences: next.evidenceReferences,
+        ...(next.hypothesis !== workflow.hypothesis ? { hypothesis: next.hypothesis } : {}),
+      });
+      return { result, workflow: result.resultStatus === 'success' ? next : workflow };
+    },
   };
 }

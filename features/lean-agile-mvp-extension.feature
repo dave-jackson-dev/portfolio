@@ -19,3 +19,8 @@ Feature: Lean-Agile MVP workflow extension
     Given a Portfolio Lean-Agile MVP workflow ready for an outcome decision
     When an authorized principal returns a pivot without a revised hypothesis
     Then the MVP transition is rejected because a revised hypothesis is required
+
+  Scenario: A valid transition is recorded through the public Workflow Engine contract
+    Given a Portfolio Lean-Agile MVP extension with an accepting public client
+    When the extension records an experiment transition
+    Then the public client receives the versioned MVP extension transition
