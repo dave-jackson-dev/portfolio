@@ -35,18 +35,20 @@ separately approved command recipe and can run only in a disposable workspace.
   are checked in under Singularity `docs/contracts/workflow-engine/v1/`.
 - Portfolio's `npm run test:workflow-contract` validates the sanitized delegated-event and macro
   fixtures, the initial allowlist, disposable-workspace replay rule, and private-import exclusion.
+- Singularity's provider-side `createWorkflowEnginePublicAdapter` baseline passes its Node contract
+  tests for supported v1 command dispatch and unsupported-version rejection.
 
 ## Open decisions
 
-1. The initial allowlisted event types and the field-level redaction table.
-2. The concrete encryption provider/configuration and backup/restore runbook for the runtime
+1. The concrete encryption provider/configuration and backup/restore runbook for the runtime
    PouchDB store.
-3. The location and executable form of the shared compatibility fixture and test harness.
+2. The location and executable form of the shared compatibility fixture and test harness.
 
 ## Validation status
 
 - `npm run test:workflow-contract` passes.
 - `npm run test:bdd` passes on Node 24.19.0: 4 scenarios and 10 steps pass.
+- `node --test libs/workflow-engine/public/index.spec.mjs` passes in Singularity: 2 tests pass.
 
 ## Risks and controls
 
@@ -59,5 +61,5 @@ separately approved command recipe and can run only in a disposable workspace.
 
 ## Next unchecked item
 
-Define the initial event allowlist and field-level redaction table, then encode it in a sanitized
-compatibility fixture before the Phase 01 adapter begins.
+Implement the Portfolio thin adapter against the public v1 module/factory, then add the
+cross-repository compatibility test that proves no private import is required.
