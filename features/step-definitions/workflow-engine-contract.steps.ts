@@ -1,5 +1,4 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { verifyWorkflowContractFixtures } from '../../tools/verify-workflow-contract-fixtures.mjs';
 
 Given('the delegated macro-approval contract fixture', function () {
   this.contractFixture = 'delegated-macro-approval';
@@ -9,7 +8,9 @@ Given('the approved workflow macro contract fixture', function () {
   this.contractFixture = 'approved-workflow-macro';
 });
 
-When('the workflow contract fixtures are verified', function () {
+When('the workflow contract fixtures are verified', async function () {
+  const validatorModule = '../../tools/verify-workflow-contract-fixtures.mjs';
+  const { verifyWorkflowContractFixtures } = await import(validatorModule);
   this.contractResult = verifyWorkflowContractFixtures();
 });
 

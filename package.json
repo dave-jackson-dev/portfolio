@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx serve portfolio-web",
     "test:workflow-contract": "node tools/verify-workflow-contract-fixtures.mjs",
-    "test:bdd": "cucumber-js --require-module ts-node/register --require features/**/*.ts features/**/*.feature"
+    "test:bdd": "cucumber-js --require-module ts-node/register --require \"features/**/*.ts\" \"features/**/*.feature\""
   },
   "private": true,
   "dependencies": {

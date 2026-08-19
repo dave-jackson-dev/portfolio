@@ -46,10 +46,7 @@ separately approved command recipe and can run only in a disposable workspace.
 ## Validation status
 
 - `npm run test:workflow-contract` passes.
-- `npm run test:bdd` is currently blocked by the installed Cucumber version, which supports Node
-  22, 24, or 26+ while the active runtime is Node 25.6.0. The scenarios and step definitions are
-  checked in; resolve the runtime/version mismatch before treating BDD execution as Phase 00 exit
-  evidence.
+- `npm run test:bdd` passes on Node 24.19.0: 4 scenarios and 10 steps pass.
 
 ## Risks and controls
 

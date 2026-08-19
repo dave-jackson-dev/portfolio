@@ -36,9 +36,7 @@ execution history out of this public repository.
 - [x] Define encrypted runtime PouchDB storage, runtime-secret injection, backup/restore, and
       container image-content rules.
 - [x] Author the initial executable contract-level Cucumber scenarios for macro approval,
-      delegated attribution, disposable replay, and private-import exclusion. The current Node 25
-      runtime is unsupported by the installed Cucumber version, so execution remains an
-      environment follow-up.
+      delegated attribution, disposable replay, and private-import exclusion.
 - [x] Add and pass a dependency-free compatibility-fixture validator for the v2 delegated event,
       approved disposable-workspace macro, allowlist, and private-import exclusion.
 - [x] Agree the two-repository PR sequence, compatibility test location, and integration-test
