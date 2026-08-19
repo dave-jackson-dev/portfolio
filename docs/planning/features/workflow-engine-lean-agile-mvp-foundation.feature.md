@@ -1,6 +1,6 @@
 # Workflow Engine and Lean-Agile MVP Foundation — Feature Plan
 
-**Status:** Phase 00 — Charter and contract freeze — In progress
+**Status:** Phase 00 — Charter and contract freeze — Complete; Phase 01 planned
 **Proposed branch:** `feat/workflow-engine-lean-agile-mvp-foundation`  
 **Primary consumer:** Portfolio  
 **Upstream capability owner:** Singularity Workflow Engine  

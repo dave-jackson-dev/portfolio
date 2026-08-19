@@ -1,6 +1,6 @@
 # Phase 00 — Charter and Contract Freeze Summary
 
-**Status:** In progress
+**Status:** Complete
 
 **Started:** 2026-08-18
 
@@ -37,22 +37,27 @@ separately approved command recipe and can run only in a disposable workspace.
   fixtures, the initial allowlist, disposable-workspace replay rule, and private-import exclusion.
 - Singularity's provider-side `createWorkflowEnginePublicAdapter` baseline passes its Node contract
   tests for supported v1 command dispatch and unsupported-version rejection.
+- `@singularity/workflow-engine` passes a clean external-consumer installation test. Its tarball
+  has only six public runtime files and contains no extension, infrastructure, tests, agents,
+  skills, prompts, or other proprietary content.
 - Portfolio's `createPortfolioWorkflowAdapter` passes a BDD consumer test through an injected v1
   public client and imports no Singularity source path.
 - ADR-088 establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
   same public contract; Portfolio remains independent of editor and sidecar packages.
 
-## Open decisions
+## Deferred implementation decisions
 
-1. The concrete encryption provider/configuration and backup/restore runbook for the runtime
-   PouchDB store.
-2. The location and executable form of the shared compatibility fixture and test harness.
+The concrete encryption provider/configuration, backup/restore runbook, and hosted/package delivery
+mechanism are Phase 05/Phase 01 implementation decisions. They do not alter the Phase 00 public
+boundary or its contract artifacts.
 
 ## Validation status
 
 - `npm run test:workflow-contract` passes.
 - `npm run test:bdd` passes on Node 24.19.0: 4 scenarios and 10 steps pass.
 - `node --test libs/workflow-engine/public/index.spec.mjs` passes in Singularity: 2 tests pass.
+- `npm run test:package-consumer` in `libs/workflow-engine` passes: a clean temporary consumer
+  installs the generated tarball by package name and executes the public v1 contract.
 
 ## Risks and controls
 
@@ -65,5 +70,6 @@ separately approved command recipe and can run only in a disposable workspace.
 
 ## Next unchecked item
 
-Package or host the provider module/factory for a real cross-repository integration, then replace
-the injected test double with a compatibility test against that delivered public surface.
+Start Phase 01 on a new phase branch: consume the delivered `@singularity/workflow-engine` package
+or a hosted adapter from the Portfolio runtime, then replace the injected test double with that
+real integration.

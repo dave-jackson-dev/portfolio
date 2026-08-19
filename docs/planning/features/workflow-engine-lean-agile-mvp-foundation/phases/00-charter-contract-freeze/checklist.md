@@ -2,7 +2,7 @@
 
 **Feature:** [Workflow Engine and Lean-Agile MVP Foundation](../../workflow-engine-lean-agile-mvp-foundation.feature.md)
 
-**Status:** In progress
+**Status:** Complete
 
 **Branch:** `phase/workflow-engine-lean-agile-mvp-foundation/00-charter-contract-freeze`
 
@@ -58,8 +58,8 @@ execution history out of this public repository.
 
 ## Exit gate
 
-The phase is complete only when both repositories approve the ADR pair and the Portfolio thin
-adapter's contract test proves that it compiles/runs through the public surface with no private
-imports or proprietary artifacts. The provider module/factory baseline is now available; the
-Portfolio adapter baseline is now available. Packaging or hosting the provider for a real
-cross-repository runtime integration remains Phase 01 work.
+**Gate passed, 2026-08-19.** Both ADRs are accepted. The provider module/factory baseline is
+packaged as `@singularity/workflow-engine`; its repeatable clean-consumer test verifies the tarball
+contains only the public runtime surface and resolves by package name. Portfolio's thin adapter is
+BDD-tested against the same v1 request shape and has no private Singularity import. Phase 01 owns
+delivery of a real installed package or hosted adapter to the Portfolio runtime.
