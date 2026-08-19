@@ -24,3 +24,18 @@ Feature: Lean-Agile MVP workflow extension
     Given a Portfolio Lean-Agile MVP extension with an accepting public client
     When the extension records an experiment transition
     Then the public client receives the versioned MVP extension transition
+
+  Scenario: A representative initiative perseveres with a decision projection
+    Given a Portfolio Lean-Agile MVP workflow ready for an outcome decision
+    When an authorized principal records a persevere decision
+    Then the MVP projection shows a terminal persevere decision
+
+  Scenario: Invalid evidence references are rejected before an outcome
+    Given a Portfolio Lean-Agile MVP workflow with a testable hypothesis
+    When the experiment records a non-immutable evidence reference
+    Then the MVP transition is rejected because immutable evidence is required
+
+  Scenario: A pivot returns to a revised hypothesis with a decision projection
+    Given a Portfolio Lean-Agile MVP workflow ready for an outcome decision
+    When an authorized principal records a pivot and revised hypothesis
+    Then the MVP projection shows the revised hypothesis and pivot decision
