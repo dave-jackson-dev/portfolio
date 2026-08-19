@@ -42,6 +42,8 @@ production/development tenant configuration remain implementation decisions.
 ### Deferred
 
 - Full Career Coach, Site Builder, or Prompt Workbench product features.
+- Singularity agents, skills, prompts, system instructions, model configurations, private
+  knowledge, and agent execution history.
 - Password-based authentication and local email verification.
 - Organization/team accounts, shared workspaces, billing, subscriptions, and entitlement management.
 - File upload, user-generated public content, custom domains, background processing, and webhook-driven integrations.
@@ -100,6 +102,67 @@ example application. It is not an operations console and must never expose platf
 - Reuse Singularity's event/telemetry infrastructure through a thin adapter and an explicit
   Portfolio-facing read contract; do not let the browser query the event store or observability
   backend directly.
+
+## Workflow Engine and macro recording
+
+The detailed multi-phase delivery plan is
+[Workflow Engine and Lean-Agile MVP Foundation](features/workflow-engine-lean-agile-mvp-foundation.feature.md).
+
+Portfolio uses the Singularity Workflow Engine through a thin adapter. The engine kernel remains
+generic: its lifecycle, transitions, persistence contracts, and replay rules must not import
+Portfolio, Lean-Agile MVP, agents, skills, or other product-specific concerns.
+
+### Lean-Agile MVP extension
+
+Portfolio supplies a Lean-Agile MVP workflow extension to the engine: workflow definitions,
+schemas, validation rules, projections, and presentation labels for the methodology. This is how
+the engine is customized for the methodology without turning the reusable kernel into a
+methodology-specific application.
+
+The extension makes its gates explicit and observable: hypothesis, experiment, evidence, outcome,
+and the resulting pivot/persevere decision. It may use the engine's commands, queries, events,
+snapshots, and projections, but it must not rely on an agent or skill to make an opaque state
+transition.
+
+**Delivery rule:** the Portfolio Lean-Agile MVP extension is the workflow for all subsequent
+Portfolio work. Federated Identity, account deletion, Shell/Dashboard, Site Builder, Career Coach,
+Prompt Workbench, deployment, and documentation are each initiated, gated, evidenced, and handed
+off through versioned extension workflow definitions. No later implementation deliverable starts
+until the extension's baseline lifecycle and evidence rules are running.
+
+### PouchDB macro-recording spike
+
+The spike determines whether a Portfolio workflow recorder can subscribe to allowlisted domain
+events and build a reviewable workflow macro. A domain-event sequence is evidence of what happened;
+it is not, on its own, a safe executable macro. A macro must also record explicit intent,
+parameters, branching/compensation policy, and a human approval before it becomes reusable.
+
+| Concern            | Required design                                                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Event subscription | Consume only versioned `PlatformEventEnvelope` messages through the approved cross-service transport. Do not read another service's database or rely on an in-process EventBus across service boundaries. |
+| Recording          | Persist an idempotent, append-only PouchDB recording keyed by `eventId`, with `organizationId`, `principalId`, `correlationId`, type, version, and redacted payload projection.                           |
+| Macro creation     | Group ordered recordings by correlation and workflow session, then require a user review/approval command to create an immutable, versioned PouchDB macro definition.                                     |
+| Replay             | Replay against a disposable workspace using commands and explicit input bindings—not by re-emitting historical domain events. The original events remain immutable audit evidence.                        |
+| Safety             | Allowlist event types and payload fields; redact secrets, tokens, prompts, provider keys, personal content, and raw telemetry before recording.                                                           |
+
+PouchDB remains the authoritative local store for workflow state, event recordings, macro
+definitions, and audit evidence. Its changes feed drives the Dashboard/Activity Feed projection;
+the browser continues to consume only the authenticated, filtered gateway SSE stream.
+
+### Container and encryption boundary
+
+An image may contain only a versioned, public PouchDB baseline or sanitized macro fixture. It must
+never contain live visitor data, decrypted recordings, provider keys, or encryption material.
+Runtime PouchDB state belongs on an encrypted mounted volume or managed store outside the immutable
+image. Encryption keys are injected at runtime from an approved secret source; putting both a
+database and its key in the same Docker image provides no meaningful protection.
+
+### Proprietary boundary
+
+Portfolio must not contain, package, import, deploy, or expose Singularity's proprietary agents,
+skills, prompts, system instructions, model configurations, private knowledge, or agent execution
+history. The permitted integration surface is limited to public workflow and event contracts plus
+sanitized, Portfolio-owned Lean-Agile MVP definitions and projections.
 
 ## Identity and account lifecycle
 
@@ -180,18 +243,24 @@ platform implementations.
 
 ## Delivery sequence
 
-1. **Federated Identity foundation:** upstream-provider spike, federated-identity mapping,
+1. **Workflow Engine and Lean-Agile MVP foundation:** Portfolio thin adapter, Lean-Agile MVP
+   extension contract, baseline lifecycle/evidence rules, event subscription adapter, redacted
+   PouchDB recording, macro approval, disposable replay, encrypted runtime-store proof, and
+   end-to-end evidence.
+2. **Federated Identity foundation:** upstream-provider spike, federated-identity mapping,
    personal-organization provisioning, session/token validation, authorization middleware,
-   sign-out, and account settings shell.
-2. **Deletion lifecycle:** deletion request, access revocation, grace-period handling, data purge,
-   audit/retention policy, and end-to-end acceptance scenarios.
-3. **Shell and Dashboard foundation:** theme selector, left app-switcher sidebar, authenticated
-   right activity sidebar, per-principal event projection, and gateway SSE subscription.
-4. **Site Builder vertical slice:** one signed-in disposable preview with the same lifecycle and
+   sign-out, and account settings shell—executed through the MVP extension.
+3. **Deletion lifecycle:** deletion request, access revocation, one-week grace-period handling,
+   data purge, audit/retention policy, and end-to-end acceptance scenarios—executed through the
+   MVP extension.
+4. **Shell and Dashboard foundation:** theme selector, left app-switcher sidebar, authenticated
+   right activity sidebar, per-principal event projection, and gateway SSE subscription—executed
+   through the MVP extension.
+5. **Site Builder vertical slice:** one signed-in disposable preview with the same lifecycle and
    ownership guarantees, without server-side AI.
-5. **Career Coach vertical slice:** one signed-in session, one bounded generated action plan,
+6. **Career Coach vertical slice:** one signed-in session, one bounded generated action plan,
    ownership checks, rate limits, and a complete Cucumber/Screenplay journey.
-6. **Prompt Workbench BYOK spike and slice:** OpenAI and Anthropic adapters, no-persistence proof,
+7. **Prompt Workbench BYOK spike and slice:** OpenAI and Anthropic adapters, no-persistence proof,
    redaction tests, usage limits, disclosure UI, and a complete journey using a test provider
    adapter.
 
@@ -218,3 +287,7 @@ are green. Adding an example is not an excuse to defer these controls.
 3. **Resolved:** Site Builder ships before Career Coach after the Shell/Dashboard foundation.
 4. Define the Portfolio-facing thin-adapter contracts for each Singularity capability, including
    the activity-feed projection and SSE contract.
+5. Define the allowed domain-event types and redacted payload fields for the PouchDB
+   macro-recording spike.
+6. Define the encrypted PouchDB runtime-store and key-management approach before any visitor data
+   is persisted in a containerized deployment.
