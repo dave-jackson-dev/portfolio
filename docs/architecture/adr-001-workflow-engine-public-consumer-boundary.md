@@ -55,6 +55,13 @@ flowchart LR
 6. Docker images may contain only public baseline data or sanitized fixtures. Runtime recordings,
    keys, and decrypted stores are injected or mounted outside the image.
 
+### VS Codium reference integration
+
+The Workflow Engine's VS Codium extension and NestJS sidecar are a separate reference consumer of
+this public contract. Portfolio neither imports nor distributes editor/sidecar implementation
+paths. Portfolio receives a public programmatic client or a future hosted adapter with the same
+versioned command/result/event envelopes.
+
 ## Consequences
 
 ### Positive
@@ -84,3 +91,4 @@ flowchart LR
 - [Workflow Engine and Lean-Agile MVP Foundation feature plan](../planning/features/workflow-engine-lean-agile-mvp-foundation.feature.md)
 - [Phase 00 checklist](../planning/features/workflow-engine-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md)
 - [Portfolio architecture specification](portfolio-architecture-spec.md)
+- [Singularity ADR-088 — VS Codium Sidecar Reference Integration](/home/dave/dev/projects/singularity/docs/architecture/adr-088-workflow-engine-vscodium-sidecar-reference-integration.md)

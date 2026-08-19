@@ -39,6 +39,8 @@ separately approved command recipe and can run only in a disposable workspace.
   tests for supported v1 command dispatch and unsupported-version rejection.
 - Portfolio's `createPortfolioWorkflowAdapter` passes a BDD consumer test through an injected v1
   public client and imports no Singularity source path.
+- ADR-088 establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
+  same public contract; Portfolio remains independent of editor and sidecar packages.
 
 ## Open decisions
 
