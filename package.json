@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve portfolio-web",
-    "test:bdd": "cucumber-js --require-module ts-node/register --require features/**/*.ts features/**/*.feature"
+    "test:workflow-contract": "node tools/verify-workflow-contract-fixtures.mjs",
+    "test:bdd": "cucumber-js --require-module ts-node/register --require \"features/**/*.ts\" \"features/**/*.feature\""
   },
   "private": true,
   "dependencies": {

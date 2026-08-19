@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.davejackson.dev/portfolio-workflow/v1/workflow-macro.schema.json",
+  "title": "Portfolio Workflow Macro",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["_id", "documentType", "schemaVersion", "macroId", "version", "organizationId", "status", "approvedBy", "approvedAt", "commands"],
+  "properties": {
+    "_id": { "type": "string", "pattern": "^workflow-macro:" },
+    "documentType": { "const": "workflow-macro" },
+    "schemaVersion": { "const": "1.0" },
+    "macroId": { "type": "string", "minLength": 1 },
+    "version": { "type": "integer", "minimum": 1 },
+    "organizationId": { "type": "string", "minLength": 1 },
+    "status": { "const": "approved" },
+    "approvedBy": { "type": "string", "minLength": 1 },
+    "approvedAt": { "type": "string", "format": "date-time" },
+    "evidenceRecordingIds": { "type": "array", "items": { "type": "string", "pattern": "^macro-recording:" } },
+    "commands": { "type": "array", "minItems": 1, "items": { "type": "object" } }
+  }
+}
