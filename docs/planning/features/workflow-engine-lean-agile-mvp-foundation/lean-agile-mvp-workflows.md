@@ -46,7 +46,7 @@ Portfolio-owned orchestration extension: each workshop run produces a versioned 
 what it consumed, and participates in dependency and change-impact tracking.
 
 ```mermaid
-flowchart LR
+flowchart TD
     W1[1. BMC<br/>Hypothesis Register]
     W2[2. VPC]
     W3[3. User Story Map]
