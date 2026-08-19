@@ -23,6 +23,8 @@ separately approved command recipe and can run only in a disposable workspace.
 - The Singularity Workflow Engine plan states that its standalone application exposes a
   programmatic Nest module/factory and that consumers dispatch CQRS commands and queries rather
   than importing PouchDB repositories.
+- The provider's exported command catalogue was reconciled with all command paths executable by
+  `WorkflowApplicationService`, including initialization, resume, handoff, and snapshot export.
 - The same plan assigns PouchDB authoritative workflow state/audit persistence and requires
   idempotent event handlers for safe changes-feed replay.
 - Portfolio's feature plan prohibits direct cross-service datastore reads and limits event ingress
@@ -34,7 +36,9 @@ separately approved command recipe and can run only in a disposable workspace.
 
 1. The exact package/service name and contract version (`v1`) for the public engine adapter.
 2. The canonical JSON success/error envelope and stable error-code set.
-3. The initial allowlisted event types and the field-level redaction schema.
+3. The initial allowlisted event types and the field-level redaction schema. The existing
+   `PlatformEventEnvelope` v1 has organization scope but no principal scope, so it cannot alone
+   authorize the future per-user Activity Feed.
 4. Encryption mechanism, key-management boundary, and backup/restore operating model for the
    runtime PouchDB store.
 5. Where cross-repository compatibility tests execute and which repository owns their fixtures.
