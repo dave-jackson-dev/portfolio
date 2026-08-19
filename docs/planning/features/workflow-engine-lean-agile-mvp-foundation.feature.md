@@ -1,6 +1,6 @@
 # Workflow Engine and Lean-Agile MVP Foundation — Feature Plan
 
-**Status:** Planned  
+**Status:** Phase 00 — Charter and contract freeze — In progress
 **Proposed branch:** `feat/workflow-engine-lean-agile-mvp-foundation`  
 **Primary consumer:** Portfolio  
 **Upstream capability owner:** Singularity Workflow Engine  
@@ -100,7 +100,8 @@ flowchart LR
 ## Phase 00 work package
 
 Phase 00 is the first executable phase. It creates the decision and test boundaries required before
-implementation branches are cut.
+implementation branches are cut. Its working checklist and decision record are in
+[Phase 00](phases/00-charter-contract-freeze/checklist.md).
 
 ### Checklist
 
