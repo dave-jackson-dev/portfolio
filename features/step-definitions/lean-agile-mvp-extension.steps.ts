@@ -112,3 +112,51 @@ Then('the public client receives the versioned MVP extension transition', functi
     throw new Error('Expected a versioned Lean-Agile MVP public transition request');
   }
 });
+
+When('an authorized principal records a persevere decision', async function () {
+  const { transitionLeanAgileMvpWorkflow } = await extension();
+  this.mvpWorkflow = transitionLeanAgileMvpWorkflow(this.mvpWorkflow, {
+    to: 'persevere', actor: { kind: 'principal', id: 'principal-portfolio-demo' }, recordedAt: '2026-08-19T14:00:00.000Z',
+  });
+});
+
+Then('the MVP projection shows a terminal persevere decision', async function () {
+  const { projectLeanAgileMvpWorkflow, validateLeanAgileMvpWorkflow } = await extension();
+  const projection = projectLeanAgileMvpWorkflow(this.mvpWorkflow);
+  const validation = validateLeanAgileMvpWorkflow(this.mvpWorkflow);
+  if (!validation.valid || !projection.terminal || projection.decision?.outcome !== 'persevere' || projection.decision.principalId !== 'principal-portfolio-demo' || projection.allowedNextStates.length !== 0) {
+    throw new Error('Expected a valid terminal persevere projection');
+  }
+});
+
+When('the experiment records a non-immutable evidence reference', async function () {
+  const { transitionLeanAgileMvpWorkflow } = await extension();
+  this.mvpWorkflow = transitionLeanAgileMvpWorkflow(this.mvpWorkflow, { to: 'experiment', actor: { kind: 'principal', id: 'principal-portfolio-demo' } });
+  try {
+    transitionLeanAgileMvpWorkflow(this.mvpWorkflow, { to: 'evidence', actor: { kind: 'service-account', id: 'sa-workflow-engine' }, evidenceReferences: ['raw evidence body'] });
+  } catch (error) { this.mvpTransitionError = error; }
+});
+
+Then('the MVP transition is rejected because immutable evidence is required', function () {
+  if (!(this.mvpTransitionError instanceof Error) || !this.mvpTransitionError.message.includes('unique immutable evidence')) {
+    throw new Error('Expected invalid evidence reference rejection');
+  }
+});
+
+When('an authorized principal records a pivot and revised hypothesis', async function () {
+  const { transitionLeanAgileMvpWorkflow } = await extension();
+  this.mvpWorkflow = transitionLeanAgileMvpWorkflow(this.mvpWorkflow, {
+    to: 'pivot', actor: { kind: 'principal', id: 'principal-portfolio-demo' }, recordedAt: '2026-08-19T14:10:00.000Z',
+  });
+  this.mvpWorkflow = transitionLeanAgileMvpWorkflow(this.mvpWorkflow, {
+    to: 'hypothesis', actor: { kind: 'principal', id: 'principal-portfolio-demo' }, hypothesis: 'A simplified Site Builder onboarding increases completed drafts.', recordedAt: '2026-08-19T14:11:00.000Z',
+  });
+});
+
+Then('the MVP projection shows the revised hypothesis and pivot decision', async function () {
+  const { projectLeanAgileMvpWorkflow, validateLeanAgileMvpWorkflow } = await extension();
+  const projection = projectLeanAgileMvpWorkflow(this.mvpWorkflow);
+  if (!validateLeanAgileMvpWorkflow(this.mvpWorkflow).valid || projection.state !== 'hypothesis' || projection.hypothesis !== 'A simplified Site Builder onboarding increases completed drafts.' || projection.decision?.outcome !== 'pivot' || projection.allowedNextStates[0] !== 'experiment') {
+    throw new Error('Expected a valid revised-hypothesis pivot projection');
+  }
+});

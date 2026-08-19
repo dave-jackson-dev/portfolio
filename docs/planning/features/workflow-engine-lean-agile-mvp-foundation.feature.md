@@ -1,6 +1,6 @@
 # Workflow Engine and Lean-Agile MVP Foundation — Feature Plan
 
-**Status:** Phase 00 — Charter and contract freeze — Complete; Phase 01 planned
+**Status:** Phases 00–03 complete; Phase 04 in progress
 **Proposed branch:** `feat/workflow-engine-lean-agile-mvp-foundation`  
 **Primary consumer:** Portfolio  
 **Upstream capability owner:** Singularity Workflow Engine  
@@ -152,6 +152,9 @@ implementation branches are cut. Its working checklist and decision record are i
   complete, promote through Portfolio `dev` and then `main` in separate PRs.
 - Any Singularity changes land in its own branch and PR. Cross-repository changes share a contract
   version and integration evidence; neither repository copies commits wholesale from the other.
+- Starting with Phase 05, each phase must record its planning, evidence, review, and handoff under
+  a Lean-Agile MVP workflow ID. Phases 01–04 establish that operational foundation; their
+  sanitized Cucumber fixtures are contract evidence, not substituted runtime history.
 
 ## Feature exit criteria
 

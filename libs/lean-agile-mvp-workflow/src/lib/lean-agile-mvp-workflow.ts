@@ -15,7 +15,7 @@ export interface LeanAgileMvpWorkflow {
   state: LeanAgileMvpState;
   hypothesis: string;
   evidenceReferences: string[];
-  history: Array<{ from: LeanAgileMvpState; to: LeanAgileMvpState; actor: MvpActor; evidenceReferences: string[] }>;
+  history: Array<{ from: LeanAgileMvpState; to: LeanAgileMvpState; actor: MvpActor; evidenceReferences: string[]; recordedAt: string }>;
 }
 
 export interface LeanAgileMvpTransition {
@@ -23,6 +23,55 @@ export interface LeanAgileMvpTransition {
   actor: MvpActor;
   evidenceReferences?: string[];
   hypothesis?: string;
+  recordedAt?: string;
+}
+
+export interface LeanAgileMvpValidation {
+  valid: boolean;
+  errors: string[];
+}
+
+export interface LeanAgileMvpProjection {
+  workflowId: string;
+  initiativeId: string;
+  organizationId: string;
+  state: LeanAgileMvpState;
+  hypothesis: string;
+  evidenceReferences: string[];
+  allowedNextStates: LeanAgileMvpState[];
+  decision: null | { outcome: 'pivot' | 'persevere'; principalId: string; recordedAt: string; evidenceReferences: string[] };
+  terminal: boolean;
+}
+
+const allowedTransitions: Record<LeanAgileMvpState, LeanAgileMvpState[]> = {
+  hypothesis: ['experiment'], experiment: ['evidence'], evidence: ['outcome'], outcome: ['pivot', 'persevere'], pivot: ['hypothesis'], persevere: [],
+};
+
+function validateEvidenceReferences(references: string[]) {
+  return references.length > 0 && references.every((reference) => /^evidence:[^\s]+$/.test(reference)) && new Set(references).size === references.length;
+}
+
+export function validateLeanAgileMvpWorkflow(workflow: LeanAgileMvpWorkflow): LeanAgileMvpValidation {
+  const errors: string[] = [];
+  if (!workflow.hypothesis.trim()) errors.push('A workflow requires a testable hypothesis');
+  if (workflow.history.some((entry) => !allowedTransitions[entry.from].includes(entry.to))) errors.push('Workflow history contains an invalid state transition');
+  if (workflow.history.some((entry) => ['evidence', 'outcome', 'pivot', 'persevere'].includes(entry.to) && !validateEvidenceReferences(entry.evidenceReferences))) {
+    errors.push('Evidence and decisions require unique immutable evidence references');
+  }
+  if (workflow.history.some((entry) => ['pivot', 'persevere'].includes(entry.to) && entry.actor.kind !== 'principal')) {
+    errors.push('Only a human principal may record a pivot-or-persevere decision');
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+export function projectLeanAgileMvpWorkflow(workflow: LeanAgileMvpWorkflow): LeanAgileMvpProjection {
+  const decision = [...workflow.history].reverse().find((entry) => entry.to === 'pivot' || entry.to === 'persevere');
+  return {
+    workflowId: workflow.workflowId, initiativeId: workflow.initiativeId, organizationId: workflow.organizationId,
+    state: workflow.state, hypothesis: workflow.hypothesis, evidenceReferences: [...workflow.evidenceReferences],
+    allowedNextStates: [...allowedTransitions[workflow.state]], terminal: workflow.state === 'persevere',
+    decision: decision ? { outcome: decision.to as 'pivot' | 'persevere', principalId: decision.actor.id, recordedAt: decision.recordedAt, evidenceReferences: [...decision.evidenceReferences] } : null,
+  };
 }
 
 export interface PortfolioWorkflowStarter {
@@ -45,19 +94,11 @@ export function createLeanAgileMvpWorkflow(input: StartLeanAgileMvpWorkflowInput
 }
 
 export function transitionLeanAgileMvpWorkflow(workflow: LeanAgileMvpWorkflow, transition: LeanAgileMvpTransition): LeanAgileMvpWorkflow {
-  const allowed: Record<LeanAgileMvpState, LeanAgileMvpState[]> = {
-    hypothesis: ['experiment'],
-    experiment: ['evidence'],
-    evidence: ['outcome'],
-    outcome: ['pivot', 'persevere'],
-    pivot: ['hypothesis'],
-    persevere: [],
-  };
-  if (!allowed[workflow.state].includes(transition.to)) throw new Error(`Invalid Lean-Agile MVP transition: ${workflow.state} -> ${transition.to}`);
+  if (!allowedTransitions[workflow.state].includes(transition.to)) throw new Error(`Invalid Lean-Agile MVP transition: ${workflow.state} -> ${transition.to}`);
 
   const evidenceReferences = transition.evidenceReferences ?? workflow.evidenceReferences;
-  if (['evidence', 'outcome', 'pivot', 'persevere'].includes(transition.to) && evidenceReferences.length === 0) {
-    throw new Error(`${transition.to} requires at least one immutable evidence reference`);
+  if (['evidence', 'outcome', 'pivot', 'persevere'].includes(transition.to) && !validateEvidenceReferences(evidenceReferences)) {
+    throw new Error(`${transition.to} requires unique immutable evidence references`);
   }
   if (['pivot', 'persevere'].includes(transition.to) && transition.actor.kind !== 'principal') {
     throw new Error('Only an authorized human principal may record a pivot-or-persevere decision');
@@ -74,7 +115,7 @@ export function transitionLeanAgileMvpWorkflow(workflow: LeanAgileMvpWorkflow, t
     state: transition.to,
     hypothesis,
     evidenceReferences,
-    history: [...workflow.history, { from: workflow.state, to: transition.to, actor: transition.actor, evidenceReferences }],
+    history: [...workflow.history, { from: workflow.state, to: transition.to, actor: transition.actor, evidenceReferences, recordedAt: transition.recordedAt ?? new Date().toISOString() }],
   };
 }
 
