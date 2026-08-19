@@ -54,7 +54,7 @@ boundary or its contract artifacts.
 ## Validation status
 
 - `npm run test:workflow-contract` passes.
-- `npm run test:bdd` passes on Node 24.19.0: 4 scenarios and 10 steps pass.
+- `npm run test:bdd` passes on Node 24.19.0: 5 scenarios and 13 steps pass.
 - `node --test libs/workflow-engine/public/index.spec.mjs` passes in Singularity: 2 tests pass.
 - `npm run test:package-consumer` in `libs/workflow-engine` passes: a clean temporary consumer
   installs the generated tarball by package name and executes the public v1 contract.
