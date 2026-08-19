@@ -7,34 +7,34 @@ generic Workflow Engine contract. It requires a testable hypothesis, unique immu
 references, and a human principal for every pivot-or-persevere decision.
 
 ```mermaid
+%%{init: {"state": {"useMaxWidth": true, "padding": 16}} }%%
 stateDiagram-v2
     [*] --> Hypothesis
 
-    Hypothesis --> Experiment: Testable hypothesis
-    Experiment --> Evidence: Record unique evidence:* references
-    Evidence --> Outcome: Review immutable evidence
+    Hypothesis --> Experiment: Accept hypothesis
+    Experiment --> Evidence: Record evidence refs
+    Evidence --> Outcome: Review evidence
 
-    Outcome --> Persevere: Human principal + evidence supports hypothesis
-    Outcome --> Pivot: Human principal + evidence changes/refutes hypothesis
+    Outcome --> Persevere: Principal approves
+    Outcome --> Pivot: Principal redirects
 
-    Pivot --> Hypothesis: Supply revised testable hypothesis
+    Pivot --> Hypothesis: Revise hypothesis
     Persevere --> [*]
 
     note right of Evidence
-        A Service Account may record
-        an approved experiment's evidence.
+        A Service Account may
+        record evidence for an
+        approved experiment.
     end note
 
     note right of Outcome
-        Evidence references must be
-        non-empty, unique, and use
-        the immutable evidence:* form.
+        Evidence refs are non-empty,
+        unique, and immutable.
     end note
 
     note right of Pivot
-        The decision is recorded with
-        principal ID, timestamp, and
-        evidence references.
+        Record principal ID,
+        timestamp, and evidence refs.
     end note
 ```
 
@@ -46,16 +46,17 @@ Portfolio-owned orchestration extension: each workshop run produces a versioned 
 what it consumed, and participates in dependency and change-impact tracking.
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": true, "nodeSpacing": 56, "rankSpacing": 82, "wrappingWidth": 170}} }%%
 flowchart TD
     W1[1. BMC<br/>Hypothesis Register]
     W2[2. VPC]
-    W3[3. User Story Map]
-    W4[4. Domain Storytelling]
+    W3[3. User Story<br/>Map]
+    W4[4. Domain<br/>Storytelling]
     W5[5. Architecture Design<br/>Dependency Map]
     W6[6. Three Amigos<br/>Gherkin Features]
     W7[7. UX Design]
     W8[8. MVP Planning<br/>MVP Cut]
-    W9[9. Sprint 1 Planning]
+    W9[9. Sprint 1<br/>Planning]
 
     W1 --> W2 --> W3 --> W4 --> W5 --> W6 --> W7 --> W8 --> W9
     W1 -. open hypotheses .-> W8
@@ -63,10 +64,10 @@ flowchart TD
     W5 -. dependency feasibility .-> W8
     W5 -. Sprint 1 prerequisites .-> W9
 
-    Finding[Accepted finding or changed evidence]
+    Finding[Accepted finding<br/>or changed evidence]
     Impact[Impact analysis]
-    Reopen[Reopen and revise affected workshop]
-    Revalidate[Revalidate all downstream consumers]
+    Reopen[Reopen and revise<br/>affected workshop]
+    Revalidate[Revalidate all<br/>downstream consumers]
 
     Finding --> Impact --> Reopen --> Revalidate
     Impact -. invalidates .-> W1
