@@ -1,6 +1,6 @@
 # ADR-001 — Workflow Engine Public Consumer Boundary
 
-**Status:** Proposed
+**Status:** Accepted
 
 **Date:** 2026-08-19
 
@@ -25,10 +25,10 @@ expose commands, queries, documented JSON result/error envelopes, and approved v
 envelopes. Portfolio will own a thin adapter and its Lean-Agile MVP extension definitions; it will
 not import Singularity source paths or persistence internals.
 
-The first contract version is not approved until the matching Singularity ADR, JSON Schema
-artifacts, compatibility fixture, and no-private-import test are accepted. Until then this ADR is
-a boundary proposal only—not authorization to publish a package, read another service's PouchDB,
-or build a Portfolio-owned clone of the engine.
+The public-boundary decision is accepted. Runtime delivery remains gated on the matching
+Singularity ADR, JSON Schema artifacts, compatibility fixture, and no-private-import test. This is
+not authorization to read another service's PouchDB or build a Portfolio-owned clone of the
+engine.
 
 ### Allowed dependency directions
 

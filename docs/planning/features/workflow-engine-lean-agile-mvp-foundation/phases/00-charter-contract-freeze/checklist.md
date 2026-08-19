@@ -21,23 +21,23 @@ execution history out of this public repository.
 - [x] Record the Portfolio boundary rule: consume commands/queries and versioned envelopes only;
       never import PouchDB repositories or Singularity source paths.
 - [x] Reconcile the provider's exported command catalogue with its executable command paths.
-- [x] Draft matching Portfolio and Singularity ADRs that name the public contract, its owner, and
-      the excluded proprietary surfaces. Approval remains pending the compatibility contract.
-- [ ] Agree the contract versioning policy, compatibility window, command/query JSON envelope,
+- [x] Approve matching Portfolio and Singularity ADRs that name the public contract, its owner,
+      and the excluded proprietary surfaces. Runtime compatibility evidence remains pending.
+- [x] Agree the contract versioning policy, compatibility window, command/query JSON envelope,
       stable error codes, and correlation/causation identifiers.
-- [ ] Resolve the activity-projection identity gap: `PlatformEventEnvelope` v1 has
-      `organizationId` but no trusted `principalId` contract.
-- [ ] Define the `MacroRecording` and `WorkflowMacro` schemas, identity/revision semantics,
+- [x] Resolve the activity-projection identity gap with `PlatformEventEnvelope` v2: mandatory
+      actor, separate source, optional delegation, and explicit projection audience mapping.
+- [x] Define the `MacroRecording` and `WorkflowMacro` schemas, identity/revision semantics,
       redaction fields, retention rules, and public fixture policy.
 - [ ] Define the first event allowlist and field-level payload classification for records eligible
       to enter the Portfolio recorder.
-- [ ] Define the Lean-Agile MVP extension state machine: hypothesis, experiment, evidence,
+- [x] Define the Lean-Agile MVP extension state machine: hypothesis, experiment, evidence,
       outcome, and pivot-or-persevere decision gate.
-- [ ] Define encrypted runtime PouchDB storage, runtime-secret injection, backup/restore, and
+- [x] Define encrypted runtime PouchDB storage, runtime-secret injection, backup/restore, and
       container image-content rules.
 - [ ] Author the contract-level Cucumber scenarios for lifecycle, redaction, macro approval,
       authorization scope, and recovery.
-- [ ] Agree the two-repository PR sequence, compatibility test location, and integration-test
+- [x] Agree the two-repository PR sequence, compatibility test location, and integration-test
       owners.
 
 ## Contract inventory recorded

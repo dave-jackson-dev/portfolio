@@ -30,18 +30,16 @@ separately approved command recipe and can run only in a disposable workspace.
 - Portfolio's feature plan prohibits direct cross-service datastore reads and limits event ingress
   to approved, versioned `PlatformEventEnvelope` messages.
 - [Portfolio ADR-001](../../../../architecture/adr-001-workflow-engine-public-consumer-boundary.md)
-  records the consumer-side proposal and its prohibited dependency directions.
+  records the accepted consumer-side boundary and its prohibited dependency directions.
+- Provider-owned Workflow Engine v1 command/result schemas and the v2 identity-aware event schema
+  are checked in under Singularity `docs/contracts/workflow-engine/v1/`.
 
 ## Open decisions
 
-1. The exact package/service name and contract version (`v1`) for the public engine adapter.
-2. The canonical JSON success/error envelope and stable error-code set.
-3. The initial allowlisted event types and the field-level redaction schema. The existing
-   `PlatformEventEnvelope` v1 has organization scope but no principal scope, so it cannot alone
-   authorize the future per-user Activity Feed.
-4. Encryption mechanism, key-management boundary, and backup/restore operating model for the
-   runtime PouchDB store.
-5. Where cross-repository compatibility tests execute and which repository owns their fixtures.
+1. The initial allowlisted event types and the field-level redaction table.
+2. The concrete encryption provider/configuration and backup/restore runbook for the runtime
+   PouchDB store.
+3. The location and executable form of the shared compatibility fixture and test harness.
 
 ## Risks and controls
 
@@ -54,6 +52,5 @@ separately approved command recipe and can run only in a disposable workspace.
 
 ## Next unchecked item
 
-Draft the matching Portfolio and Singularity ADRs. They must declare the public boundary,
-ownership, exclusions, and the versioning/compatibility process before the implementation of
-Phase 01 begins.
+Define the initial event allowlist and field-level redaction table, then encode it in a sanitized
+compatibility fixture before the Phase 01 adapter begins.
