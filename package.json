@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx serve portfolio-web",
     "test:workflow-contract": "node tools/verify-workflow-contract-fixtures.mjs",
-    "test:bdd": "cucumber-js --require-module ts-node/register --require \"features/**/*.ts\" \"features/**/*.feature\""
+    "test:bdd": "cucumber-js --config cucumber.config.mjs"
   },
   "private": true,
   "dependencies": {
@@ -58,6 +58,8 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
+    "@types/pouchdb": "^6.4.2",
+    "@types/pouchdb-adapter-memory": "^6.1.6",
     "@typescript-eslint/utils": "^8.58.0",
     "angular-eslint": "^22.0.0",
     "eslint": "^9.8.0",
