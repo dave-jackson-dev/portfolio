@@ -23,7 +23,11 @@ export default [
                 {
                     enforceBuildableLibDependency: true,
                     allow: [
-                        "^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$"
+                        "^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$",
+                        // These inferred source-only libraries are executed directly by the BDD harness;
+                        // their exact type-only dependency paths remain visible until they gain build targets.
+                        "^\\.\\./\\.\\./\\.\\./portfolio-workflow-adapter/src/lib/portfolio-workflow-adapter$",
+                        "^\\.\\./\\.\\./\\.\\./portfolio-workflow-recording/src/lib/portfolio-workflow-recording$"
                     ],
                     depConstraints: [
                         {

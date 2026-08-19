@@ -106,8 +106,9 @@ export function transitionLeanAgileMvpWorkflow(workflow: LeanAgileMvpWorkflow, t
   if (workflow.state === 'pivot' && transition.to === 'hypothesis' && !transition.hypothesis?.trim()) {
     throw new Error('A pivot must supply a revised testable hypothesis');
   }
+  const revisedHypothesis = transition.hypothesis?.trim();
   const hypothesis = workflow.state === 'pivot' && transition.to === 'hypothesis'
-    ? transition.hypothesis!.trim()
+    ? revisedHypothesis ?? workflow.hypothesis
     : workflow.hypothesis;
 
   return {

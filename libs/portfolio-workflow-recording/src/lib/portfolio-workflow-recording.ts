@@ -42,6 +42,12 @@ interface StoredRecordingEvent {
   retention: 'one-week';
 }
 
+type StoredRecordingEventDocument = StoredRecordingEvent & PouchDB.Core.IdMeta & Partial<PouchDB.Core.RevisionIdMeta>;
+
+function isPouchConflict(error: unknown): error is { status: number } {
+  return typeof error === 'object' && error !== null && 'status' in error && (error as { status?: unknown }).status === 409;
+}
+
 export interface MacroRecording {
   _id: string;
   documentType: 'macro-recording';
@@ -101,7 +107,7 @@ function canonical(value: unknown): string {
 }
 
 export class PortfolioWorkflowRecordingStore {
-  private readonly db: any;
+  private readonly db: PouchDB.Database<StoredRecordingEvent>;
 
   constructor(options: string | PortfolioWorkflowRecordingStoreOptions = `portfolio-workflow-recording-${Date.now()}`) {
     const resolved = typeof options === 'string' ? { name: options } : options;
@@ -120,9 +126,9 @@ export class PortfolioWorkflowRecordingStore {
     try {
       await this.db.put(document);
       return { duplicate: false, event: retainedEvent };
-    } catch (error: any) {
-      if (error?.status !== 409) throw error;
-      const existing = await this.db.get(document._id) as StoredRecordingEvent;
+    } catch (error: unknown) {
+      if (!isPouchConflict(error)) throw error;
+      const existing = await this.db.get(document._id);
       if (canonical(existing) !== canonical(document)) {
         throw new Error(`Event ID collision with different retained content: ${event.eventId}`);
       }
@@ -132,23 +138,21 @@ export class PortfolioWorkflowRecordingStore {
 
   async recording(workflowId: string, correlationId: string): Promise<MacroRecording> {
     const rows = await this.db.allDocs({ include_docs: true, startkey: 'macro-recording-event:', endkey: 'macro-recording-event:\uffff' });
-    const events = rows.rows.map((row: any) => row.doc as StoredRecordingEvent)
+    const events = rows.rows.flatMap((row) => row.doc ? [row.doc] : [])
       .filter((document) => document.workflowId === workflowId && document.correlationId === correlationId)
       .sort((left, right) => left.retainedEvent.occurredAt.localeCompare(right.retainedEvent.occurredAt));
-    if (events.length === 0) throw new Error(`No recording exists for ${workflowId}/${correlationId}`);
+    const latest = events[events.length - 1];
+    if (!latest) throw new Error(`No recording exists for ${workflowId}/${correlationId}`);
     return {
       _id: `macro-recording:${workflowId}:${correlationId}`, documentType: 'macro-recording', schemaVersion: MACRO_RECORDING_SCHEMA_VERSION,
-      workflowId, organizationId: events[0].organizationId, correlationId, recordedAt: events.at(-1)!.retainedEvent.occurredAt,
+      workflowId, organizationId: events[0].organizationId, correlationId, recordedAt: latest.retainedEvent.occurredAt,
       events: events.map((document) => document.retainedEvent), retention: 'one-week',
     };
   }
 
   async exportSnapshot(): Promise<{ schemaVersion: '1.0'; integrity: string; documents: StoredRecordingEvent[] }> {
     const rows = await this.db.allDocs({ include_docs: true, startkey: 'macro-recording-event:', endkey: 'macro-recording-event:\uffff' });
-    const documents = rows.rows.map((row: any) => {
-      const { _rev, ...document } = row.doc as StoredRecordingEvent & { _rev: string };
-      return document;
-    });
+    const documents = rows.rows.flatMap((row) => row.doc ? [stripRevision(row.doc)] : []);
     const integrity = createHash('sha256').update(JSON.stringify(documents)).digest('hex');
     return { schemaVersion: '1.0', integrity, documents };
   }
@@ -156,9 +160,9 @@ export class PortfolioWorkflowRecordingStore {
   async purgeExpired(now = new Date()): Promise<number> {
     const cutoff = now.getTime() - 7 * 24 * 60 * 60 * 1000;
     const rows = await this.db.allDocs({ include_docs: true, startkey: 'macro-recording-event:', endkey: 'macro-recording-event:\uffff' });
-    const expired = rows.rows.map((row: any) => row.doc as StoredRecordingEvent)
+    const expired = rows.rows.flatMap((row) => row.doc ? [row.doc] : [])
       .filter((document) => document.retention === 'one-week' && new Date(document.retainedEvent.occurredAt).getTime() < cutoff);
-    if (expired.length) await this.db.bulkDocs(expired.map((document) => ({ _id: document._id, _rev: (document as any)._rev, _deleted: true })));
+    await Promise.all(expired.map((document) => this.db.remove(document)));
     return expired.length;
   }
 
@@ -166,9 +170,15 @@ export class PortfolioWorkflowRecordingStore {
     const actual = createHash('sha256').update(JSON.stringify(snapshot.documents)).digest('hex');
     if (actual !== snapshot.integrity) throw new Error('Snapshot integrity verification failed');
     for (const document of snapshot.documents) {
-      try { await this.db.put(document); } catch (error: any) { if (error?.status !== 409) throw error; }
+      try { await this.db.put(document); } catch (error: unknown) { if (!isPouchConflict(error)) throw error; }
     }
   }
 
   async close() { await this.db.close(); }
+}
+
+function stripRevision(document: StoredRecordingEventDocument): StoredRecordingEvent {
+  const content = { ...document };
+  delete content._rev;
+  return content;
 }

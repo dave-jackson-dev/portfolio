@@ -48,7 +48,7 @@ function validateApproval(input: MacroApprovalInput) {
 }
 
 export class PortfolioWorkflowMacroStore {
-  private readonly db: any;
+  private readonly db: PouchDB.Database<ApprovedWorkflowMacro>;
 
   constructor(name = `portfolio-workflow-macros-${Date.now()}`) {
     this.db = new PouchDB(name, { adapter: 'memory' });
@@ -70,7 +70,7 @@ export class PortfolioWorkflowMacroStore {
 
   async versions(macroId: string): Promise<ApprovedWorkflowMacro[]> {
     const rows = await this.db.allDocs({ include_docs: true, startkey: `workflow-macro:${macroId}:`, endkey: `workflow-macro:${macroId}:\uffff` });
-    return rows.rows.map((row: any) => row.doc as ApprovedWorkflowMacro).sort((left, right) => left.version - right.version);
+    return rows.rows.flatMap((row) => row.doc ? [row.doc] : []).sort((left, right) => left.version - right.version);
   }
 
   async close() { await this.db.close(); }
