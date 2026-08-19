@@ -1,5 +1,10 @@
 # Workflow Engine and Lean-Agile MVP Foundation — Feature Plan
 
+> **Ownership moved:** Reusable Workflow Engine and Lean-Agile MVP implementation, generic
+> Cucumber specifications, unit tests, and the canonical copy of Phases 00–04 now live in
+> [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/tree/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation).
+> Portfolio retains its adapter, consumer contract tests, and integration evidence.
+
 **Status:** Phases 00–04 complete; Phase 05 is next
 **Proposed branch:** `feat/workflow-engine-lean-agile-mvp-foundation`  
 **Primary consumer:** Portfolio  
@@ -8,7 +13,7 @@
 
 ## Purpose
 
-Make the Workflow Engine and Portfolio's Lean-Agile MVP extension the first Portfolio deliverable.
+Make the Workflow Engine and reusable Lean-Agile MVP extension the first Portfolio deliverable.
 Every later Portfolio capability—Federated Identity, deletion lifecycle, Shell/Dashboard, Site
 Builder, Career Coach, Prompt Workbench, deployment, and documentation—must run as a versioned
 workflow through this foundation.
@@ -41,8 +46,8 @@ flowchart LR
     Portfolio[Portfolio workflow adapter]
     Contract[Public workflow + event contracts]
     Engine[Singularity Workflow Engine]
-    Extension[Portfolio Lean-Agile MVP extension]
-    Workshops[Portfolio workshop orchestration extension]
+    Extension[Reusable Lean-Agile MVP extension]
+    Workshops[Reusable workshop orchestration]
     Store[(PouchDB)]
     Events[Allowlisted domain events]
     Feed[Filtered activity projection]
@@ -62,8 +67,8 @@ flowchart LR
 | ----------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------ |
 | Kernel lifecycle, CQRS contracts, state/audit ports, PouchDB primitives | Singularity Workflow Engine                        | Generic and framework/product neutral.                             |
 | Portfolio adapter and presentation projection                           | Portfolio                                          | Calls public engine contracts only.                                |
-| Lean-Agile MVP workflow definitions, schemas, gates, labels             | Portfolio extension                                | An extension module; never kernel behavior.                        |
-| Workshop sequence, artifact graph, dependency and impact rules          | Portfolio workshop orchestration extension         | Child workflows; records artifact versions and feedback loops.     |
+| Lean-Agile MVP workflow definitions, schemas, gates, labels             | `@lean-agile-mvp/workflow`                          | Project-neutral extension module; never kernel behavior.           |
+| Workshop sequence, artifact graph, dependency and impact rules          | `@lean-agile-mvp/workflow`                          | Child workflows; records artifact versions and feedback loops.     |
 | Domain-event ingress                                                    | Portfolio adapter plus approved platform transport | Versioned envelopes, allowlisted types, idempotent consumption.    |
 | Macro recordings and definitions                                        | PouchDB, through Workflow Engine contracts         | Append-only audit evidence and immutable macro versions.           |
 | Agents, skills, prompts, private knowledge                              | Singularity only                                   | Excluded from Portfolio code, images, fixtures, and documentation. |

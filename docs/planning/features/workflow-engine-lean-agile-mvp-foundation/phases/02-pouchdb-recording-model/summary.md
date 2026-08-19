@@ -1,5 +1,9 @@
 # Phase 02 — PouchDB Recording Model Summary
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/02-pouchdb-recording-model/summary.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Status:** Complete
 
 ## First increment

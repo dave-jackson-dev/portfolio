@@ -9,7 +9,7 @@
 ## Context
 
 Portfolio is the first planned external consumer of the Singularity Workflow Engine. It needs the
-engine to execute the Portfolio Lean-Agile MVP extension, record approved macro evidence in
+engine to execute the Lean-Agile MVP extension, record approved macro evidence in
 PouchDB, and later publish a user-scoped activity projection. A source import from Singularity, a
 shared PouchDB database, or a copied implementation would make the public Portfolio repository
 depend on an unversioned private boundary and risk publishing proprietary material.
@@ -20,21 +20,29 @@ state documents, audit implementation, and changes-feed mechanics remain engine 
 
 ## Decision
 
-Portfolio will integrate through a versioned public Workflow Engine contract. The contract will
+Portfolio will integrate through Singularity's independently versioned
+`@singularity/workflow-engine/public` package export. The contract will
 expose commands, queries, documented JSON result/error envelopes, and approved versioned event
-envelopes. Portfolio will own a thin adapter and its Lean-Agile MVP extension definitions; it will
-not import Singularity source paths or persistence internals.
+envelopes. Portfolio owns only its thin, methodology-neutral adapter. The independently versioned
+Lean-Agile MVP package owns its extension definitions and can be consumed by any project; neither
+package imports Singularity source paths or persistence internals.
 
 The public-boundary decision is accepted. Runtime delivery remains gated on the matching
 Singularity ADR, JSON Schema artifacts, compatibility fixture, and no-private-import test. This is
 not authorization to read another service's PouchDB or build a Portfolio-owned clone of the
 engine.
 
+During coordinated local development, `npm run install:workflow-packages:local` packs the sibling
+Workflow Engine and Lean-Agile MVP packages and installs those artifacts under Portfolio's
+`node_modules`. It does not add cross-repository `file:` dependencies to the manifest or lockfile.
+Registry installation remains the release-time distribution mechanism.
+
 ### Allowed dependency directions
 
 ```mermaid
 flowchart LR
-    P[Portfolio adapter + MVP extension] --> C[Versioned public contract]
+    M[Lean-Agile MVP package] --> P[Portfolio adapter]
+    P --> C[Versioned public contract]
     C --> E[Workflow Engine module / service adapter]
     E --> S[(Engine-owned PouchDB)]
     X[Singularity agents, skills, prompts, private knowledge] -. excluded .-> P

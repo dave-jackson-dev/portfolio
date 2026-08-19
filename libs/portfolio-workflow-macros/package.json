@@ -1,5 +1,8 @@
 {
   "name": "@portfolio/workflow-macros",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@singularity/workflow-engine": "^0.1.0"
+  }
 }

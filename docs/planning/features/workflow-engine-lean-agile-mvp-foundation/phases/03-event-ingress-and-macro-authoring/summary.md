@@ -1,5 +1,9 @@
 # Phase 03 — Event Ingress and Macro Authoring Summary
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/03-event-ingress-and-macro-authoring/summary.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Status:** Complete
 
 The initial Phase 03 boundary deliberately does not replay event history. It first reduces approved

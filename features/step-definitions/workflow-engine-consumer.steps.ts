@@ -22,12 +22,15 @@ Given('an injected public Workflow Engine client', async function () {
 });
 
 When('Portfolio starts a Lean-Agile MVP workflow', async function () {
-  await this.portfolioWorkflowAdapter.startLeanAgileMvpWorkflow({
+  await this.portfolioWorkflowAdapter.startWorkflow({
     workflowId: 'workflow-portfolio-fixture',
     correlationId: 'correlation-portfolio-fixture',
-    initiativeId: 'initiative-portfolio-fixture',
-    organizationId: 'org-portfolio-demo',
-    principalId: 'principal-portfolio-demo',
+    metadata: {
+      methodology: 'lean-agile-mvp',
+      initiativeId: 'initiative-portfolio-fixture',
+      organizationId: 'org-portfolio-demo',
+      principalId: 'principal-portfolio-demo',
+    },
   });
 });
 

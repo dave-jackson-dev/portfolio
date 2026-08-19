@@ -46,11 +46,12 @@ export function verifyWorkflowContractFixtures() {
     throw new Error('Recording fixture must retain one correlation-scoped, redacted event');
   }
 
+  const approvedPublicPackage = /@singularity\/workflow-engine\/public(?![\w/-])/g;
   const forbidden = /(?:@singularity\/|\/home\/dave\/dev\/projects\/singularity|agents\/|skills\/)/;
   const privateImports = ['apps', 'libs', 'tools']
     .flatMap((directory) => listSourceFiles(join(root, directory)))
     .filter((file) => file !== fileURLToPath(import.meta.url))
-    .filter((file) => forbidden.test(readFileSync(file, 'utf8')));
+    .filter((file) => forbidden.test(readFileSync(file, 'utf8').replace(approvedPublicPackage, '')));
   if (privateImports.length > 0) throw new Error(`Private Singularity import/content reference: ${privateImports.join(', ')}`);
 
   return { eventType: event.type, macroId: macro.macroId, recordingId: recording._id, sourceFilesChecked: listSourceFiles(join(root, 'apps')).length + listSourceFiles(join(root, 'libs')).length + listSourceFiles(join(root, 'tools')).length - 1 };

@@ -1,5 +1,9 @@
 # Phase 00 — Charter and Contract Freeze Summary
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/summary.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Status:** Complete
 
 **Started:** 2026-08-18
@@ -13,7 +17,8 @@ or importing the Singularity implementation. The existing engine plan identifies
 Nest module/factory and CQRS commands/queries as the intended consumer surface; PouchDB is owned
 behind that boundary. This phase will turn that intent into an approved, versioned contract.
 
-The Lean-Agile MVP workflow is Portfolio-owned extension content. It will describe product
+The Lean-Agile MVP workflow was initially scoped here as Portfolio-owned extension content and was
+subsequently extracted to the project-neutral `@lean-agile-mvp/workflow` package. It describes product
 delivery states and evidence without importing agents, skills, prompts, model settings, private
 knowledge, or execution history. Historical domain events remain audit evidence. A macro is a
 separately approved command recipe and can run only in a disposable workspace.

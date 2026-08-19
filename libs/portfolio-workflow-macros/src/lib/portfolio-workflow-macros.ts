@@ -1,6 +1,6 @@
 import PouchDB from 'pouchdb';
 import memoryAdapter from 'pouchdb-adapter-memory';
-import type { WorkflowCommand, WorkflowCommandResult, WorkflowEnginePublicClient } from '../../../portfolio-workflow-adapter/src/lib/portfolio-workflow-adapter';
+import type { WorkflowCommand, WorkflowCommandResult, WorkflowEnginePublicClient } from '@singularity/workflow-engine/public';
 import type { PlatformEventForRecording, PortfolioWorkflowRecordingStore } from '../../../portfolio-workflow-recording/src/lib/portfolio-workflow-recording';
 
 PouchDB.plugin(memoryAdapter);

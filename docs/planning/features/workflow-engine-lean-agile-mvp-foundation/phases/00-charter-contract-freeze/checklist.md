@@ -1,5 +1,9 @@
 # Phase 00 — Charter and Contract Freeze Checklist
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Feature:** [Workflow Engine and Lean-Agile MVP Foundation](../../workflow-engine-lean-agile-mvp-foundation.feature.md)
 
 **Status:** Complete

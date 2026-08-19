@@ -1,5 +1,9 @@
 # Phase 00 — Agreed Contract Decisions
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/decisions.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Date:** 2026-08-19
 
 ## 1. Identity-aware events
@@ -51,7 +55,7 @@ operational counter but must not persist its payload.
 
 ## 4. Lean-Agile MVP extension
 
-The Portfolio-owned extension uses the following states:
+The project-neutral Lean-Agile MVP extension uses the following states:
 
 ```mermaid
 stateDiagram-v2
@@ -80,7 +84,8 @@ fixtures. Backup/restore uses encrypted artifacts and verifies an integrity mani
 ## 6. Cross-repository integration
 
 Singularity owns public Workflow Engine schemas, compatibility policy, and provider contract tests.
-Portfolio owns its thin adapter, Lean-Agile MVP extension, projection mapping, and consumer tests.
+Portfolio owns its thin adapter and consumer tests. The independently versioned Lean-Agile MVP
+package owns the methodology extension and projection mapping.
 A shared sanitized fixture set proves command/result compatibility, v2 event validation, redaction,
 idempotency, and actor/organization isolation. Contract changes require paired PRs, with the
 provider PR merged first and the consumer PR pinned to the accepted version. The compatibility

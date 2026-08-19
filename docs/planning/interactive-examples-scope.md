@@ -114,7 +114,7 @@ Portfolio, Lean-Agile MVP, agents, skills, or other product-specific concerns.
 
 ### Lean-Agile MVP extension
 
-Portfolio supplies a Lean-Agile MVP workflow extension to the engine: workflow definitions,
+Portfolio consumes the project-neutral Lean-Agile MVP workflow extension: workflow definitions,
 schemas, validation rules, projections, and presentation labels for the methodology. This is how
 the engine is customized for the methodology without turning the reusable kernel into a
 methodology-specific application.
@@ -124,7 +124,7 @@ and the resulting pivot/persevere decision. It may use the engine's commands, qu
 snapshots, and projections, but it must not rely on an agent or skill to make an opaque state
 transition.
 
-**Delivery rule:** the Portfolio Lean-Agile MVP extension is the workflow for all subsequent
+**Delivery rule:** the Lean-Agile MVP extension is the workflow for all subsequent
 Portfolio work. Federated Identity, account deletion, Shell/Dashboard, Site Builder, Career Coach,
 Prompt Workbench, deployment, and documentation are each initiated, gated, evidenced, and handed
 off through versioned extension workflow definitions. No later implementation deliverable starts
@@ -162,7 +162,7 @@ database and its key in the same Docker image provides no meaningful protection.
 Portfolio must not contain, package, import, deploy, or expose Singularity's proprietary agents,
 skills, prompts, system instructions, model configurations, private knowledge, or agent execution
 history. The permitted integration surface is limited to public workflow and event contracts plus
-sanitized, Portfolio-owned Lean-Agile MVP definitions and projections.
+sanitized, project-neutral Lean-Agile MVP definitions and projections.
 
 ## Identity and account lifecycle
 

@@ -1,5 +1,9 @@
 # Phase 01 — Engine Adapter and MVP Extension Baseline Summary
 
+> **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
+> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/01-engine-adapter-and-mvp-extension/summary.md).
+> This Portfolio copy remains as a consumer-side forwarding and integration record.
+
 **Status:** Complete
 
 ## Baseline
@@ -14,7 +18,7 @@ The initial executable verification passes 9 BDD scenarios / 27 steps and the wo
 fixture verification checks 26 source files.
 
 The adapter emits `workflow extension transition` requests with extension identifier
-`portfolio.lean-agile-mvp` and schema version `1.0.0`. The paired Singularity provider records
+`lean-agile-mvp` and schema version `1.0.0`. The paired Singularity provider records
 those requests as immutable audit events and was merged into `dev` through PR #1019 (`dd21bf26`)
 after the required substrate parity gate passed.
 

@@ -2,8 +2,8 @@
 
 **Source:** Phase 04 — Lean-Agile MVP Workflow Completion
 
-The Portfolio-owned Lean-Agile MVP extension is a versioned workflow layered on the public,
-generic Workflow Engine contract. It requires a testable hypothesis, unique immutable evidence
+The project-neutral Lean-Agile MVP extension is a versioned workflow layered on the public,
+generic Workflow Engine contract. Portfolio is one consumer. The extension requires a testable hypothesis, unique immutable evidence
 references, and a human principal for every pivot-or-persevere decision.
 
 ```mermaid
@@ -40,10 +40,10 @@ stateDiagram-v2
 
 ## Workshop orchestration and feedback propagation
 
-The state machine above is the **implemented Phase 04, initiative-level evidence loop**. It is not
-yet a workflow for the Lean-Agile MVP workshop sequence. The latter should be added as a separate,
-Portfolio-owned orchestration extension: each workshop run produces a versioned artifact, declares
-what it consumed, and participates in dependency and change-impact tracking.
+The state machine above is the **implemented Phase 04, initiative-level evidence loop**. Its
+workshops are implemented as project-neutral child-workflow orchestration: each workshop run
+produces a versioned artifact, declares what it consumed, and participates in dependency and
+change-impact tracking.
 
 ```mermaid
 %%{init: {"flowchart": {"htmlLabels": true, "nodeSpacing": 56, "rankSpacing": 82, "wrappingWidth": 170}} }%%
@@ -97,11 +97,11 @@ flowchart TD
 
 ### Recommended workflow boundary
 
-Model workshops as child workflows of an initiative's Lean-Agile MVP workflow, not as additional
-states in the hypothesis state machine. A future `portfolio.lean-agile-mvp-workshops` extension
-should carry `WorkshopRun`, `ArtifactVersion`, `ArtifactDependency`, and `ImpactAssessment`
-records. It should publish the resulting evidence references into the existing Phase 04 workflow,
-where a human principal remains responsible for the pivot-or-persevere decision.
+Workshops are child workflows of an initiative's Lean-Agile MVP workflow, not additional states in
+the hypothesis state machine. The reusable methodology model carries `WorkshopRun`,
+`WorkshopArtifactVersion`, and `WorkshopImpactAssessment` records. Workshop findings can be
+published as evidence references into the existing Phase 04 workflow, where a human principal
+remains responsible for the pivot-or-persevere decision.
 
 ## Invariants
 
@@ -111,18 +111,18 @@ where a human principal remains responsible for the pivot-or-persevere decision.
 - A pivot must return to hypothesis with a revised, non-empty hypothesis.
 - The read-only projection exposes the current state, available next states, evidence references,
   and the most recent decision for later activity-feed consumers.
-- Workshop orchestration is a follow-on extension; it is documented here as the required design,
-  not represented in the Phase 04 implementation yet.
+- Workshop runs execute in order and preserve immutable artifact versions and transitive
+  revalidation requirements in the Lean-Agile MVP projection.
 
 ## Public-contract recording
 
 Each accepted transition is recorded through the versioned public
-`workflow extension transition` command using extension identifier `portfolio.lean-agile-mvp` and
+`workflow extension transition` command using extension identifier `lean-agile-mvp` and
 schema version `1.0.0`. The generic engine persists the transition as immutable audit evidence;
-Portfolio retains ownership of the Lean-Agile MVP rules and projection.
+the Lean-Agile MVP package retains ownership of the methodology rules and projection.
 
 ## References
 
 - [Phase 04 checklist](phases/04-lean-agile-mvp-workflow-completion/checklist.md)
 - [Phase 04 summary](phases/04-lean-agile-mvp-workflow-completion/summary.md)
-- [Lean-Agile MVP workflow implementation](../../../../libs/lean-agile-mvp-workflow/src/lib/lean-agile-mvp-workflow.ts)
+- Lean-Agile MVP workflow implementation: `@lean-agile-mvp/workflow`, owned and packaged by Singularity.
