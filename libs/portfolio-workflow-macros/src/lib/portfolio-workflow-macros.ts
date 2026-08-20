@@ -1,13 +1,12 @@
-import PouchDB from 'pouchdb';
-import memoryAdapter from 'pouchdb-adapter-memory';
+import {
+  REPLAYABLE_WORKFLOW_COMMANDS,
+  WorkflowMacroStore,
+  createWorkflowEventIngress,
+  replayApprovedWorkflowMacro,
+  validateWorkflowMacroApproval,
+} from '@singularity/workflow-engine/public';
 import type { WorkflowCommand, WorkflowCommandResult, WorkflowEnginePublicClient } from '@singularity/workflow-engine/public';
 import type { PlatformEventForRecording, PortfolioWorkflowRecordingStore } from '../../../portfolio-workflow-recording/src/lib/portfolio-workflow-recording';
-
-PouchDB.plugin(memoryAdapter);
-
-const replayableCommands = new Set<WorkflowCommand>([
-  'workflow init', 'workflow step start', 'workflow step complete', 'workflow step block', 'workflow resume', 'workflow handoff',
-]);
 
 export interface MacroCommand {
   command: WorkflowCommand;
@@ -39,62 +38,25 @@ export interface MacroApprovalInput {
   commands: MacroCommand[];
 }
 
-function validateApproval(input: MacroApprovalInput) {
-  if (input.approvedBy.kind !== 'principal' || !input.approvedBy.id) throw new Error('Only a human principal may approve a workflow macro');
-  if (!input.macroId || !input.organizationId || input.evidenceRecordingIds.length === 0) throw new Error('A macro requires identity, organization, and recording evidence');
-  if (input.commands.length === 0 || input.commands.some((command) => command.executionTarget !== 'disposable-workspace' || !replayableCommands.has(command.command))) {
-    throw new Error('A macro may contain only replayable commands targeting a disposable workspace');
-  }
-}
-
-export class PortfolioWorkflowMacroStore {
-  private readonly db: PouchDB.Database<ApprovedWorkflowMacro>;
-
-  constructor(name = `portfolio-workflow-macros-${Date.now()}`) {
-    this.db = new PouchDB(name, { adapter: 'memory' });
-  }
-
+export class PortfolioWorkflowMacroStore extends WorkflowMacroStore {
   async approve(input: MacroApprovalInput): Promise<ApprovedWorkflowMacro> {
-    validateApproval(input);
-    const rows = await this.db.allDocs({ include_docs: true, startkey: `workflow-macro:${input.macroId}:`, endkey: `workflow-macro:${input.macroId}:\uffff` });
-    const version = rows.rows.length + 1;
-    const macro: ApprovedWorkflowMacro = {
-      _id: `workflow-macro:${input.macroId}:${version}`, documentType: 'workflow-macro', schemaVersion: '1.0',
-      macroId: input.macroId, version, organizationId: input.organizationId, status: 'approved',
-      approvedBy: input.approvedBy.id, approvedAt: input.approvedAt, evidenceRecordingIds: [...input.evidenceRecordingIds],
-      commands: input.commands.map((command) => ({ ...command, inputBindings: [...command.inputBindings], input: command.input ? { ...command.input } : undefined })),
-    };
-    await this.db.put(macro);
-    return macro;
+    return super.approve(input) as Promise<ApprovedWorkflowMacro>;
   }
 
   async versions(macroId: string): Promise<ApprovedWorkflowMacro[]> {
-    const rows = await this.db.allDocs({ include_docs: true, startkey: `workflow-macro:${macroId}:`, endkey: `workflow-macro:${macroId}:\uffff` });
-    return rows.rows.flatMap((row) => row.doc ? [row.doc] : []).sort((left, right) => left.version - right.version);
+    return super.versions(macroId) as Promise<ApprovedWorkflowMacro[]>;
   }
-
-  async close() { await this.db.close(); }
 }
 
-/** The event transport invokes this adapter; it persists only through the Phase 02 reduction boundary. */
-export function createPortfolioEventIngress(recordings: PortfolioWorkflowRecordingStore) {
-  return Object.freeze({ ingest: (event: PlatformEventForRecording) => recordings.record(event) });
-}
+export const createPortfolioEventIngress = (recordings: PortfolioWorkflowRecordingStore) =>
+  createWorkflowEventIngress(recordings);
 
 export async function replayApprovedMacro(
   client: WorkflowEnginePublicClient,
   macro: ApprovedWorkflowMacro,
   options: { correlationId: string; workspace: { id: string; disposable: boolean }; bindings: Record<string, unknown> },
 ): Promise<WorkflowCommandResult> {
-  if (macro.status !== 'approved') throw new Error('Only an approved macro may be replayed');
-  if (!options.workspace.disposable) throw new Error('Macro replay requires a disposable workspace');
-  const commands = macro.commands.map((step) => {
-    if (!replayableCommands.has(step.command)) throw new Error(`Macro command is not replayable: ${step.command}`);
-    const bindings = Object.fromEntries(step.inputBindings.map((key) => [key, options.bindings[key]]).filter(([, value]) => value !== undefined));
-    return { command: step.command, input: { ...(step.input ?? {}), ...bindings } };
-  });
-  return client.execute({
-    contractVersion: '1.0', command: 'workflow macro replay', correlationId: options.correlationId, workflowId: options.workspace.id,
-    input: { replay: { workspace: options.workspace, commands } },
-  });
+  return replayApprovedWorkflowMacro(client, macro, options);
 }
+
+export { REPLAYABLE_WORKFLOW_COMMANDS, validateWorkflowMacroApproval };
