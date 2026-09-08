@@ -1,7 +1,13 @@
 # Phase 01 — Engine Adapter and MVP Extension Baseline Checklist
 
+> ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
+> it was rewritten to *LeanAgileOS* by the upstream repoint
+> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> describes was carried out when the upstream was `singularity`. Package names in code
+> (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
+
 > **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
-> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/01-engine-adapter-and-mvp-extension/checklist.md).
+> canonical historical copy of this document now live in [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/01-engine-adapter-and-mvp-extension/checklist.md).
 > This Portfolio copy remains as a consumer-side forwarding and integration record.
 
 **Status:** Complete
@@ -14,10 +20,10 @@
 - [x] Restrict pivot-or-persevere decisions to a human principal.
 - [x] Drive workflow creation through the existing injected public v1 client adapter.
 - [x] Add executable BDD coverage for the happy path, Service Account decision rejection, and revised-pivot hypothesis requirement.
-- [x] Select VS Codium extension plus local sidecar as the Phase 01 delivery channel; defer hosted routing to Singularity Runtime Routing.
-- [x] Retain the injected public client boundary for any future hosted Runtime Routing adapter; Portfolio does not import a sibling Singularity path.
+- [x] Select VS Codium extension plus local sidecar as the Phase 01 delivery channel; defer hosted routing to LeanAgileOS Runtime Routing.
+- [x] Retain the injected public client boundary for any future hosted Runtime Routing adapter; Portfolio does not import a sibling LeanAgileOS path.
 - [x] Package and smoke-test the VSIX with a configured local sidecar executable.
-- [x] Merge the engine-side immutable audit persistence and public transition mapping into Singularity `dev` (PR #1019, merge commit `dd21bf26`).
+- [x] Merge the engine-side immutable audit persistence and public transition mapping into LeanAgileOS `dev` (PR #1019, merge commit `dd21bf26`).
 
 ## Validation evidence
 

@@ -6,6 +6,18 @@
 
 **Deciders:** Dave Jackson
 
+> 🔴 **Counterparty superseded 2026-09-08 by [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md).**
+> **The boundary below stands** — an independently versioned public contract, a thin
+> methodology-neutral adapter, no source imports, no foreign datastore reads, and contract rules 1-6
+> unchanged. **What changed is who provides it: `lean-agile-os`, not `singularity`.**
+>
+> ⚠️ **Read every "Singularity" below as "LeanAgileOS"**, including the *Acceptance evidence*
+> requirement for a reciprocal provider-side ADR, which `lean-agile-os` now owes.
+>
+> ⚠️ **The code has not moved and still imports `@singularity/workflow-engine`.** `lean-agile-os`
+> publishes no equivalent package, so the rename would break the build. ADR-002 §4 lists the six
+> references — including the guard that enforces this very boundary — and the six missing symbols.
+
 ## Context
 
 Portfolio is the first planned external consumer of the Singularity Workflow Engine. It needs the
@@ -99,4 +111,4 @@ versioned command/result/event envelopes.
 - [Workflow Engine and Lean-Agile MVP Foundation feature plan](../planning/features/workflow-engine-lean-agile-mvp-foundation.feature.md)
 - [Phase 00 checklist](../planning/features/workflow-engine-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md)
 - [Portfolio architecture specification](portfolio-architecture-spec.md)
-- [Singularity ADR-088 — VS Codium Sidecar Reference Integration](/home/dave/dev/projects/singularity/docs/architecture/adr-088-workflow-engine-vscodium-sidecar-reference-integration.md)
+- Singularity ADR-088 — VS Codium Sidecar Reference Integration. 🔴 **Not ported to `lean-agile-os`**, and deliberately not redirected: no counterpart decision exists there ([ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md) §5). The absolute filesystem path this line used to carry resolved only in a local `singularity` checkout

@@ -125,4 +125,4 @@ the Lean-Agile MVP package retains ownership of the methodology rules and projec
 
 - [Phase 04 checklist](phases/04-lean-agile-mvp-workflow-completion/checklist.md)
 - [Phase 04 summary](phases/04-lean-agile-mvp-workflow-completion/summary.md)
-- Lean-Agile MVP workflow implementation: `@lean-agile-mvp/workflow`, owned and packaged by Singularity.
+- Lean-Agile MVP workflow implementation: `@lean-agile-mvp/workflow`, owned and packaged by LeanAgileOS.

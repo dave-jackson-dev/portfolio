@@ -13,6 +13,6 @@ Feature: Workflow Engine public contract
     When the workflow contract fixtures are verified
     Then the macro is human-approved and targets a disposable workspace
 
-  Scenario: A Portfolio consumer contains no private Singularity imports
+  Scenario: A Portfolio consumer contains no private upstream-platform imports
     When the workflow contract fixtures are verified
-    Then no private Singularity import or proprietary-content reference is present
+    Then no private upstream-platform import or proprietary-content reference is present

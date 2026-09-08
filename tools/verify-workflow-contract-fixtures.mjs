@@ -46,6 +46,13 @@ export function verifyWorkflowContractFixtures() {
     throw new Error('Recording fixture must retain one correlation-scoped, redacted event');
   }
 
+  // 🔴 These two patterns are the boundary guard, and they still name `singularity` on purpose.
+  // The 2026-09-08 upstream repoint (docs/architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)
+  // moved the prose to `lean-agile-os` and deliberately left the code, because `lean-agile-os`
+  // publishes no equivalent package: none of the six symbols the adapter imports exists there.
+  // When it does, the allowed package and the forbidden path must move TOGETHER — repointing one
+  // without the other either rejects the new package or stops rejecting the old repository.
+  // The Gherkin says "upstream-platform" rather than either name so the scenario stays true meanwhile.
   const approvedPublicPackage = /@singularity\/workflow-engine\/public(?![\w/-])/g;
   const forbidden = /(?:@singularity\/|\/home\/dave\/dev\/projects\/singularity|agents\/|skills\/)/;
   const privateImports = ['apps', 'libs', 'tools']
