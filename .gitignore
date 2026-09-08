@@ -51,3 +51,12 @@ Thumbs.db
 .claude/settings.local.json
 
 .angular
+
+# Lean-Agile MVP project state (ADR-017, ADR-022), mirroring lean-agile-os.
+#
+# 🔴 The split is deliberate and load-bearing. `project.json` IS tracked: being a project is a fact
+# about the repository and should survive a clone. Everything else under `.mvp/` is app state and
+# must NOT be — tracking it would make the state branch-scoped, reintroducing for the state exactly
+# the defect ADR-022 exists to remove for the register.
+.mvp/*
+!.mvp/project.json
