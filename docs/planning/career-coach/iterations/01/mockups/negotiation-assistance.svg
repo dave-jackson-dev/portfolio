@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="20" y="113" font-size="14" fill="#374151">Strategy Plan</text>
+  <text x="20" y="153" font-size="14" fill="#374151">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+  <text x="20" y="233" font-size="14" fill="#374151">Interview Prep</text>
+  <rect x="0" y="250" width="180" height="36" fill="#dbeafe"/>
+  <text x="20" y="273" font-size="14" fill="#1e3a8a">Negotiation</text>
+
+  <text x="210" y="90" font-size="20" font-weight="bold" fill="#111827">Negotiate Offer — APP-3301</text>
+  <text x="210" y="112" font-size="12" fill="#6b7280">Acme Cloud — Senior Backend Engineer</text>
+
+  <rect x="210" y="130" width="120" height="24" rx="12" fill="#dcfce7"/>
+  <text x="222" y="146" font-size="12" fill="#166534">Stage: Offer</text>
+
+  <rect x="210" y="170" width="640" height="1" fill="#e5e7eb"/>
+
+  <text x="210" y="200" font-size="13" fill="#6b7280">Offer</text>
+  <text x="210" y="222" font-size="16" font-weight="bold" fill="#111827">$172,000 base + $10,000 signing bonus</text>
+
+  <text x="210" y="255" font-size="13" fill="#6b7280">Your Strategy Plan target (PLAN-01)</text>
+  <text x="210" y="277" font-size="15" fill="#111827">$150,000 – $180,000</text>
+
+  <rect x="210" y="295" width="640" height="34" rx="4" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="222" y="317" font-size="13" fill="#166534">$172,000 is within your target range</text>
+
+  <text x="210" y="355" font-size="14" font-weight="bold" fill="#111827">Negotiation talking points</text>
+  <rect x="210" y="370" width="640" height="130" rx="4" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="226" y="393" font-size="13" fill="#111827">• Base meets your target — no need to push on salary alone</text>
+  <text x="226" y="418" font-size="13" fill="#111827">• Ask about earlier start-date flexibility</text>
+  <text x="226" y="443" font-size="13" fill="#111827">• Confirm PTO policy details — not explicitly ranked in your Plan</text>
+  <text x="226" y="468" font-size="13" fill="#111827">• Consider countering the signing bonus if relocation applies</text>
+
+  <rect x="210" y="520" width="160" height="38" rx="4" fill="#2563eb"/>
+  <text x="238" y="544" font-size="14" fill="#ffffff">Draft Response</text>
+</svg>

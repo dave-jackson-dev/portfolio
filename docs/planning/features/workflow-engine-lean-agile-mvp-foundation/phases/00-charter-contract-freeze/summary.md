@@ -2,7 +2,7 @@
 
 > ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
 > it was rewritten to *LeanAgileOS* by the upstream repoint
-> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> ([ADR-002](../../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
 > describes was carried out when the upstream was `singularity`. Package names in code
 > (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
 
@@ -40,7 +40,7 @@ separately approved command recipe and can run only in a disposable workspace.
   idempotent event handlers for safe changes-feed replay.
 - Portfolio's feature plan prohibits direct cross-service datastore reads and limits event ingress
   to approved, versioned `PlatformEventEnvelope` messages.
-- [Portfolio ADR-001](../../../../architecture/adr-001-workflow-engine-public-consumer-boundary.md)
+- [Portfolio ADR-001](../../../../../architecture/adr-001-workflow-engine-public-consumer-boundary.md)
   records the accepted consumer-side boundary and its prohibited dependency directions.
 - Provider-owned Workflow Engine v1 command/result schemas and the v2 identity-aware event schema
   are checked in under LeanAgileOS `docs/contracts/workflow-engine/v1/`.
@@ -53,7 +53,7 @@ separately approved command recipe and can run only in a disposable workspace.
   skills, prompts, or other proprietary content.
 - Portfolio's `createPortfolioWorkflowAdapter` passes a BDD consumer test through an injected v1
   public client and imports no LeanAgileOS source path.
-- Singularity ADR-088 (🔴 **not ported to `lean-agile-os`** — [ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md) §5) establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
+- Singularity ADR-088 (🔴 **not ported to `lean-agile-os`** — [ADR-002](../../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md) §5) establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
   same public contract; Portfolio remains independent of editor and sidecar packages.
 
 ## Deferred implementation decisions

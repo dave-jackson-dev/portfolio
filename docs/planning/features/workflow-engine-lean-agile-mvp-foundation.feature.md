@@ -117,7 +117,7 @@ flowchart LR
 
 Phase 00 is the first executable phase. It creates the decision and test boundaries required before
 implementation branches are cut. Its working checklist and decision record are in
-[Phase 00](phases/00-charter-contract-freeze/checklist.md).
+[Phase 00](workflow-engine-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md).
 
 ### Checklist
 
@@ -205,5 +205,5 @@ implementation branches are cut. Its working checklist and decision record are i
 
 - [Interactive Examples scope](../interactive-examples-scope.md)
 - [Portfolio architecture specification](../../architecture/portfolio-architecture-spec.md)
-- [LeanAgileOS resumable workflow plan](/home/dave/dev/projects/lean-agile-os/docs/planning/lean-agile-os/features/resumable-workflow-steps/resumable-workflow-steps-plan.md)
-- [LeanAgileOS Workflow Engine live-pilot decision](/home/dave/dev/projects/lean-agile-os/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/summary.md)
+- `resumable-workflow-steps-plan.md` — the resumable workflow plan. 🔴 **Not ported from `singularity`** ([ADR-002](../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md) §5). It was an absolute filesystem path into a sibling checkout, which resolved for nobody else.
+- `phases/21-live-product-pilot-and-extraction-decision/summary.md` — the Workflow Engine live-pilot decision. 🔴 **Not ported from `singularity`**, same reason.

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="20" y="113" font-size="14" fill="#374151">Strategy Plan</text>
+  <rect x="0" y="130" width="180" height="36" fill="#e5e7eb"/>
+  <text x="20" y="153" font-size="14" fill="#111827" font-weight="bold">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+
+  <text x="205" y="85" font-size="20" font-weight="bold" fill="#111827">Last sourcing pass</text>
+  <text x="205" y="107" font-size="12" fill="#6b7280">Nightly schedule · 13 Aug 2026, 00:00 · completed in 4.1s</text>
+
+  <!-- PARTIAL SUCCESS banner. DS-2: a pass is not all-or-nothing, and the outcome must say so
+       rather than reading as either a clean success or a failure. -->
+  <rect x="205" y="125" width="675" height="56" rx="6" fill="#fffbeb" stroke="#f59e0b"/>
+  <text x="225" y="150" font-size="14" font-weight="bold" fill="#92400e">Completed with 1 board unavailable</text>
+  <text x="225" y="170" font-size="12" fill="#92400e">37 new Positions added · 2 of 3 boards responded · the pass is not marked failed</text>
+
+  <!-- Per-board outcome table -->
+  <text x="205" y="212" font-size="13" font-weight="bold" fill="#111827">Boards</text>
+  <line x1="205" y1="222" x2="880" y2="222" stroke="#e5e7eb"/>
+
+  <rect x="205" y="230" width="675" height="42" fill="#ffffff"/>
+  <circle cx="221" cy="251" r="6" fill="#16a34a"/>
+  <text x="239" y="248" font-size="13" fill="#111827">greenhouse:vercel</text>
+  <text x="239" y="264" font-size="11" fill="#6b7280">83 postings read · 21 new · 62 already known</text>
+  <text x="866" y="256" font-size="12" fill="#166534" text-anchor="end">OK</text>
+  <line x1="205" y1="272" x2="880" y2="272" stroke="#f3f4f6"/>
+
+  <rect x="205" y="272" width="675" height="42" fill="#ffffff"/>
+  <circle cx="221" cy="293" r="6" fill="#16a34a"/>
+  <text x="239" y="290" font-size="13" fill="#111827">lever:spotify</text>
+  <text x="239" y="306" font-size="11" fill="#6b7280">101 postings read · 16 new · 85 already known</text>
+  <text x="866" y="298" font-size="12" fill="#166534" text-anchor="end">OK</text>
+  <line x1="205" y1="314" x2="880" y2="314" stroke="#f3f4f6"/>
+
+  <!-- Board Failure — Feature 2a "a Board Failure is recorded for greenhouse:nonesuch-xyz" -->
+  <rect x="205" y="314" width="675" height="42" fill="#fef2f2"/>
+  <circle cx="221" cy="335" r="6" fill="#dc2626"/>
+  <text x="239" y="332" font-size="13" fill="#111827">greenhouse:nonesuch-xyz</text>
+  <text x="239" y="348" font-size="11" fill="#991b1b">Board not found (HTTP 404) — check the board token, or remove it</text>
+  <text x="866" y="340" font-size="12" fill="#991b1b" text-anchor="end">FAILED</text>
+  <line x1="205" y1="356" x2="880" y2="356" stroke="#f3f4f6"/>
+
+  <!-- Anti-Bot Block — Feature 2b. Same surface, different failure kind. -->
+  <rect x="205" y="356" width="675" height="42" fill="#fef2f2"/>
+  <circle cx="221" cy="377" r="6" fill="#dc2626"/>
+  <text x="239" y="374" font-size="13" fill="#111827">discovery · linkedin.com</text>
+  <text x="239" y="390" font-size="11" fill="#991b1b">Blocked — CAPTCHA presented mid-session</text>
+  <text x="866" y="382" font-size="12" fill="#991b1b" text-anchor="end">BLOCKED</text>
+  <line x1="205" y1="398" x2="880" y2="398" stroke="#e5e7eb"/>
+
+  <rect x="205" y="416" width="176" height="30" rx="4" fill="#ffffff" stroke="#2563eb"/>
+  <text x="293" y="436" font-size="12" fill="#2563eb" text-anchor="middle">View the 37 new Positions</text>
+
+  <!-- Alternative state, inset: refusal at BOOT for a bad board list. Deliberately NOT the same
+       surface as a per-board failure — nothing ran, so there is no pass outcome to report. -->
+  <rect x="205" y="470" width="675" height="110" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-dasharray="4 3"/>
+  <text x="217" y="490" font-size="10" fill="#6b7280" font-style="italic">ALTERNATIVE STATE — misconfigured board list: the pass is REFUSED, nothing runs</text>
+  <rect x="221" y="500" width="643" height="66" rx="6" fill="#fef2f2" stroke="#dc2626"/>
+  <text x="241" y="524" font-size="13" font-weight="bold" fill="#991b1b">Sourcing is misconfigured — no pass was run</text>
+  <text x="241" y="544" font-size="12" fill="#991b1b">CAREER_COACH_SOURCING_BOARDS names unknown provider "workday".</text>
+  <text x="241" y="560" font-size="12" fill="#991b1b">Expected one of: greenhouse, lever. No Positions were created.</text>
+</svg>

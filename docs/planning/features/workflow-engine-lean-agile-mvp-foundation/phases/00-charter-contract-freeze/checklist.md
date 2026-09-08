@@ -2,7 +2,7 @@
 
 > ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
 > it was rewritten to *LeanAgileOS* by the upstream repoint
-> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> ([ADR-002](../../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
 > describes was carried out when the upstream was `singularity`. Package names in code
 > (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
 
@@ -10,7 +10,7 @@
 > canonical historical copy of this document now live in [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md).
 > This Portfolio copy remains as a consumer-side forwarding and integration record.
 
-**Feature:** [Workflow Engine and Lean-Agile MVP Foundation](../../workflow-engine-lean-agile-mvp-foundation.feature.md)
+**Feature:** [Workflow Engine and Lean-Agile MVP Foundation](../../../workflow-engine-lean-agile-mvp-foundation.feature.md)
 
 **Status:** Complete
 
