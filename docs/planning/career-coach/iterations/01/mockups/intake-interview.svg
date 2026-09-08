@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <rect x="0" y="90" width="180" height="36" fill="#dbeafe"/>
+  <text x="20" y="113" font-size="14" fill="#1e3a8a">Strategy Plan</text>
+  <text x="20" y="153" font-size="14" fill="#374151">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+  <text x="20" y="233" font-size="14" fill="#374151">Interview Prep</text>
+  <text x="20" y="273" font-size="14" fill="#374151">Negotiation</text>
+
+  <text x="210" y="90" font-size="20" font-weight="bold" fill="#111827">Intake Interview</text>
+  <text x="210" y="112" font-size="12" fill="#6b7280">Answer these questions to build your Strategy Plan</text>
+
+  <rect x="210" y="140" width="640" height="1" fill="#e5e7eb"/>
+
+  <text x="210" y="175" font-size="13" fill="#374151">Location preference</text>
+  <rect x="210" y="185" width="640" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="207" font-size="13" fill="#111827">Remote only</text>
+
+  <text x="210" y="240" font-size="13" fill="#374151">Target salary range</text>
+  <rect x="210" y="250" width="300" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="272" font-size="13" fill="#111827">$150,000</text>
+  <text x="520" y="272" font-size="13" fill="#6b7280">to</text>
+  <rect x="550" y="250" width="300" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="562" y="272" font-size="13" fill="#111827">$180,000</text>
+
+  <text x="210" y="305" font-size="13" fill="#374151">Company size</text>
+  <rect x="210" y="315" width="640" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="337" font-size="13" fill="#111827">Mid-size to enterprise</text>
+
+  <text x="210" y="370" font-size="13" fill="#374151">Tech stack preference</text>
+  <rect x="210" y="380" width="640" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="402" font-size="13" fill="#111827">Full-Stack TypeScript, Angular, NestJS</text>
+
+  <text x="210" y="435" font-size="13" fill="#374151">Career-coach best-practice questions</text>
+  <rect x="210" y="445" width="640" height="70" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="467" font-size="12" fill="#6b7280">e.g. "What's non-negotiable vs. flexible?"</text>
+
+  <rect x="210" y="535" width="160" height="38" rx="4" fill="#2563eb"/>
+  <text x="240" y="559" font-size="14" fill="#ffffff">Build My Plan</text>
+</svg>

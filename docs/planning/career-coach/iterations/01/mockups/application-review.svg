@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="20" y="113" font-size="14" fill="#374151">Strategy Plan</text>
+  <text x="20" y="153" font-size="14" fill="#374151">Positions</text>
+  <rect x="0" y="170" width="180" height="36" fill="#dbeafe"/>
+  <text x="20" y="193" font-size="14" fill="#1e3a8a">Applications</text>
+  <text x="20" y="233" font-size="14" fill="#374151">Interview Prep</text>
+  <text x="20" y="273" font-size="14" fill="#374151">Negotiation</text>
+
+  <text x="210" y="90" font-size="20" font-weight="bold" fill="#111827">Review Application — APP-3301</text>
+  <text x="210" y="112" font-size="12" fill="#6b7280">For POS-2201 — Senior Backend Engineer, Acme Cloud</text>
+
+  <rect x="210" y="130" width="640" height="1" fill="#e5e7eb"/>
+
+  <rect x="210" y="150" width="120" height="22" rx="11" fill="#fef9c3"/>
+  <text x="222" y="165" font-size="11" fill="#854d0e">Prepared</text>
+
+  <text x="210" y="200" font-size="13" fill="#374151">Full name</text>
+  <rect x="210" y="210" width="640" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="232" font-size="13" fill="#111827">Jordan Blake</text>
+
+  <text x="210" y="265" font-size="13" fill="#374151">Resume</text>
+  <rect x="210" y="275" width="640" height="34" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="297" font-size="13" fill="#111827">jordan-blake-resume.pdf</text>
+
+  <text x="210" y="330" font-size="13" fill="#374151">Cover letter (drafted)</text>
+  <rect x="210" y="340" width="640" height="100" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="222" y="362" font-size="12" fill="#374151">"I'm excited to bring my backend engineering experience</text>
+  <text x="222" y="381" font-size="12" fill="#374151">to Acme Cloud's platform team, particularly around..."</text>
+
+  <rect x="210" y="465" width="640" height="50" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="226" y="495" font-size="12" fill="#1e3a8a">This application will be submitted from your own Acme Cloud account —</text>
+  <text x="226" y="512" font-size="12" fill="#1e3a8a" y2="512">nothing is submitted automatically.</text>
+
+  <rect x="210" y="535" width="180" height="38" rx="4" fill="#2563eb"/>
+  <text x="234" y="559" font-size="14" fill="#ffffff">Submit Application</text>
+  <rect x="400" y="535" width="120" height="38" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="425" y="559" font-size="14" fill="#374151">Edit Fields</text>
+</svg>

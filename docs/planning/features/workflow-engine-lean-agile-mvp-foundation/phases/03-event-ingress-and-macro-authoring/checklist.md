@@ -2,7 +2,7 @@
 
 > ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
 > it was rewritten to *LeanAgileOS* by the upstream repoint
-> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> ([ADR-002](../../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
 > describes was carried out when the upstream was `singularity`. Package names in code
 > (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
 

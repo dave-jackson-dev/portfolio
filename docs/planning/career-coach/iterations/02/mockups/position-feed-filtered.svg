@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="20" y="113" font-size="14" fill="#374151">Strategy Plan</text>
+  <rect x="0" y="130" width="180" height="36" fill="#e5e7eb"/>
+  <text x="20" y="153" font-size="14" fill="#111827" font-weight="bold">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+
+  <!-- Header row: title + manual sourcing trigger (Feature 2a "I CAN trigger a sourcing pass myself") -->
+  <text x="205" y="85" font-size="20" font-weight="bold" fill="#111827">Positions</text>
+  <rect x="700" y="66" width="180" height="30" rx="4" fill="#2563eb"/>
+  <text x="790" y="86" font-size="13" fill="#ffffff" text-anchor="middle">Source New Positions</text>
+
+  <!-- AD-3 filter row -->
+  <rect x="205" y="110" width="330" height="32" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="217" y="131" font-size="13" fill="#111827">engineer</text>
+  <text x="512" y="131" font-size="12" fill="#9ca3af">⌕</text>
+  <rect x="545" y="110" width="150" height="32" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="557" y="131" font-size="13" fill="#111827">All statuses</text>
+  <text x="678" y="131" font-size="10" fill="#6b7280">▼</text>
+  <rect x="705" y="110" width="70" height="32" rx="4" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="740" y="131" font-size="13" fill="#374151" text-anchor="middle">Clear</text>
+
+  <!-- Result count — the feed narrows the VIEW, and says so -->
+  <text x="205" y="163" font-size="12" fill="#6b7280">Showing 12 of 184 sourced Positions · filtered by title "engineer"</text>
+
+  <!-- Position card 1 — Board API provenance, salary UNKNOWN -->
+  <rect x="205" y="175" width="675" height="92" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="221" y="200" font-size="14" font-weight="bold" fill="#111827">gh-8077887 — Senior Backend Engineer, Vercel</text>
+  <text x="221" y="222" font-size="12" fill="#6b7280">Remote</text>
+  <rect x="272" y="210" width="118" height="18" rx="9" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="331" y="223" font-size="10" fill="#92400e" text-anchor="middle">salary not published</text>
+  <rect x="398" y="210" width="76" height="18" rx="9" fill="#e0e7ff" stroke="#6366f1"/>
+  <text x="436" y="223" font-size="10" fill="#3730a3" text-anchor="middle">Board API</text>
+  <rect x="221" y="238" width="66" height="20" rx="10" fill="#dbeafe"/>
+  <text x="254" y="252" font-size="11" fill="#1e40af" text-anchor="middle">Sourced</text>
+  <rect x="778" y="234" width="88" height="28" rx="4" fill="#2563eb"/>
+  <text x="822" y="253" font-size="12" fill="#ffffff" text-anchor="middle">Qualify</text>
+
+  <!-- Position card 2 — DISCOVERED provenance (Feature 2b), qualified -->
+  <rect x="205" y="279" width="675" height="92" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="221" y="304" font-size="14" font-weight="bold" fill="#111827">ss-4401 — Principal Engineer, Helio Robotics</text>
+  <text x="221" y="326" font-size="12" fill="#6b7280">Remote · $185,000</text>
+  <rect x="330" y="314" width="150" height="18" rx="9" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="405" y="327" font-size="10" fill="#166534" text-anchor="middle">Discovered — not a named board</text>
+  <rect x="221" y="342" width="72" height="20" rx="10" fill="#dcfce7"/>
+  <text x="257" y="356" font-size="11" fill="#166534" text-anchor="middle">Qualified</text>
+  <rect x="778" y="338" width="88" height="28" rx="4" fill="#ffffff" stroke="#2563eb"/>
+  <text x="822" y="357" font-size="12" fill="#2563eb" text-anchor="middle">Pursue</text>
+
+  <!-- Position card 3 -->
+  <rect x="205" y="383" width="675" height="92" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="221" y="408" font-size="14" font-weight="bold" fill="#111827">gh-9001 — Platform Engineer, Vercel</text>
+  <text x="221" y="430" font-size="12" fill="#6b7280">Remote</text>
+  <rect x="272" y="418" width="118" height="18" rx="9" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="331" y="431" font-size="10" fill="#92400e" text-anchor="middle">salary not published</text>
+  <rect x="398" y="418" width="76" height="18" rx="9" fill="#e0e7ff" stroke="#6366f1"/>
+  <text x="436" y="431" font-size="10" fill="#3730a3" text-anchor="middle">Board API</text>
+  <rect x="221" y="446" width="66" height="20" rx="10" fill="#dbeafe"/>
+  <text x="254" y="460" font-size="11" fill="#1e40af" text-anchor="middle">Sourced</text>
+  <rect x="778" y="442" width="88" height="28" rx="4" fill="#2563eb"/>
+  <text x="822" y="461" font-size="12" fill="#ffffff" text-anchor="middle">Qualify</text>
+
+  <!-- Alternative state, inset: filter matched nothing. Deliberately NOT the same copy as an
+       empty feed — telling someone "nothing sourced yet" when a filter is active sends them to
+       re-run a sourcing pass they do not need. -->
+  <rect x="205" y="492" width="675" height="88" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-dasharray="4 3"/>
+  <text x="217" y="512" font-size="10" fill="#6b7280" font-style="italic">ALTERNATIVE STATE — filter matches nothing (not the same as an empty feed)</text>
+  <text x="221" y="540" font-size="13" fill="#374151">No Positions match this filter.</text>
+  <rect x="221" y="550" width="96" height="24" rx="4" fill="#ffffff" stroke="#2563eb"/>
+  <text x="269" y="566" font-size="12" fill="#2563eb" text-anchor="middle">Clear filters</text>
+</svg>

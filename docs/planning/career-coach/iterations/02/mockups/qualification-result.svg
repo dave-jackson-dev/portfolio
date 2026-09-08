@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="20" y="113" font-size="14" fill="#374151">Strategy Plan</text>
+  <rect x="0" y="130" width="180" height="36" fill="#e5e7eb"/>
+  <text x="20" y="153" font-size="14" fill="#111827" font-weight="bold">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+
+  <text x="205" y="82" font-size="12" fill="#2563eb">&#8592; Back to Positions</text>
+  <text x="205" y="112" font-size="20" font-weight="bold" fill="#111827">gh-9001 — Platform Engineer, Vercel</text>
+  <text x="205" y="134" font-size="12" fill="#6b7280">Remote</text>
+
+  <rect x="205" y="150" width="80" height="24" rx="12" fill="#dcfce7"/>
+  <text x="245" y="167" font-size="12" fill="#166534" text-anchor="middle">Qualified</text>
+
+  <!-- DS-3: absent data is NOT a failed requirement. The result has to show WHICH requirements
+       were actually evaluated, or "Qualified" overstates what was checked. -->
+  <text x="205" y="208" font-size="14" font-weight="bold" fill="#111827">Checked against PLAN-01</text>
+  <line x1="205" y1="218" x2="880" y2="218" stroke="#e5e7eb"/>
+
+  <rect x="205" y="226" width="675" height="46" fill="#ffffff"/>
+  <text x="221" y="248" font-size="16" fill="#16a34a">&#10003;</text>
+  <text x="245" y="248" font-size="13" fill="#111827">Remote only</text>
+  <text x="245" y="264" font-size="11" fill="#6b7280">Position is Remote</text>
+  <text x="866" y="252" font-size="12" fill="#166534" text-anchor="end">Met</text>
+  <line x1="205" y1="272" x2="880" y2="272" stroke="#f3f4f6"/>
+
+  <!-- The state this workshop exists to make visible -->
+  <rect x="205" y="272" width="675" height="52" fill="#fffbeb"/>
+  <text x="221" y="296" font-size="16" fill="#d97706">&#8213;</text>
+  <text x="245" y="296" font-size="13" fill="#111827">Salary at least $150,000</text>
+  <text x="245" y="313" font-size="11" fill="#92400e">Not evaluated — this board does not publish salary. Not counted against the Position.</text>
+  <text x="866" y="300" font-size="12" fill="#92400e" text-anchor="end">Not evaluated</text>
+  <line x1="205" y1="324" x2="880" y2="324" stroke="#f3f4f6"/>
+
+  <rect x="205" y="324" width="675" height="46" fill="#ffffff"/>
+  <text x="221" y="346" font-size="16" fill="#16a34a">&#10003;</text>
+  <text x="245" y="346" font-size="13" fill="#111827">Full-Stack TypeScript / Angular / NestJS</text>
+  <text x="245" y="362" font-size="11" fill="#6b7280">Matched on the job title</text>
+  <text x="866" y="350" font-size="12" fill="#166534" text-anchor="end">Met</text>
+  <line x1="205" y1="370" x2="880" y2="370" stroke="#e5e7eb"/>
+
+  <!-- The honest summary line: says what was NOT checked, so "Qualified" is not over-read -->
+  <rect x="205" y="386" width="675" height="44" rx="6" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="221" y="404" font-size="12" fill="#374151">Qualified on 2 of 3 requirements. 1 could not be evaluated.</text>
+  <text x="221" y="422" font-size="11" fill="#6b7280">A requirement with no data to judge is not treated as failed — it is reported as unchecked.</text>
+
+  <rect x="205" y="446" width="120" height="32" rx="4" fill="#2563eb"/>
+  <text x="265" y="467" font-size="12" fill="#ffffff" text-anchor="middle">Pursue</text>
+  <rect x="337" y="446" width="150" height="32" rx="4" fill="#ffffff" stroke="#dc2626"/>
+  <text x="412" y="467" font-size="12" fill="#dc2626" text-anchor="middle">Reject &amp; refine requirements</text>
+
+  <!-- Provenance + salary source, so the "not evaluated" line is explainable rather than mysterious -->
+  <rect x="205" y="500" width="675" height="80" rx="6" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="221" y="522" font-size="12" font-weight="bold" fill="#374151">Where this came from</text>
+  <text x="221" y="542" font-size="11" fill="#6b7280">Board API · greenhouse:vercel · read 13 Aug 2026, 00:00</text>
+  <text x="221" y="560" font-size="11" fill="#6b7280">Salary was not published by the board. Original posting:</text>
+  <text x="221" y="574" font-size="11" fill="#2563eb">vercel.com/careers/9001</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff" stroke="#cccccc"/>
+  <rect x="0" y="0" width="900" height="50" fill="#1f2937"/>
+  <text x="20" y="31" fill="#ffffff" font-size="18" font-weight="bold">Career Coach</text>
+
+  <rect x="0" y="50" width="180" height="550" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <rect x="0" y="90" width="180" height="36" fill="#dbeafe"/>
+  <text x="20" y="113" font-size="14" fill="#1e3a8a">Strategy Plan</text>
+  <text x="20" y="153" font-size="14" fill="#374151">Positions</text>
+  <text x="20" y="193" font-size="14" fill="#374151">Applications</text>
+  <text x="20" y="233" font-size="14" fill="#374151">Interview Prep</text>
+  <text x="20" y="273" font-size="14" fill="#374151">Negotiation</text>
+
+  <text x="210" y="90" font-size="20" font-weight="bold" fill="#111827">Strategy Plan — PLAN-01</text>
+  <rect x="210" y="140" width="640" height="1" fill="#e5e7eb"/>
+
+  <text x="210" y="175" font-size="13" fill="#6b7280">Location preference</text>
+  <text x="210" y="197" font-size="15" fill="#111827">Remote only</text>
+
+  <text x="210" y="235" font-size="13" fill="#6b7280">Target salary range</text>
+  <text x="210" y="257" font-size="15" fill="#111827">$150,000 – $180,000</text>
+
+  <text x="210" y="295" font-size="13" fill="#6b7280">Company size</text>
+  <text x="210" y="317" font-size="15" fill="#111827">Mid-size to enterprise</text>
+
+  <text x="210" y="355" font-size="13" fill="#6b7280">Tech stack preference</text>
+  <text x="210" y="377" font-size="15" fill="#111827">Full-Stack TypeScript, Angular, NestJS</text>
+
+  <rect x="210" y="410" width="180" height="38" rx="4" fill="#ffffff" stroke="#2563eb"/>
+  <text x="238" y="434" font-size="14" fill="#2563eb">Revise Plan</text>
+
+  <rect x="210" y="470" width="640" height="80" rx="4" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="226" y="493" font-size="13" font-weight="bold" fill="#166534">Recent revision</text>
+  <text x="226" y="514" font-size="13" fill="#166534">Target salary range narrowed to $140,000 – $165,000 after</text>
+  <text x="226" y="533" font-size="13" fill="#166534">reviewing feedback on Position POS-2203.</text>
+</svg>
