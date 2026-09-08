@@ -2,7 +2,20 @@
 
 **Status:** Draft — design session output, not yet ratified
 **Date:** 2026-08-18
-**Models after:** `singularity` (second workspace root)
+**Models after:** `lean-agile-os` (second workspace root)
+
+> 🔴 **Upstream repointed 2026-09-08 — see [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md).**
+> Every reference in this document that said *Singularity* now says **LeanAgileOS**, which is the
+> successor platform; `singularity` is maintenance-only.
+>
+> ⚠️ **Four references deliberately still say Singularity, and each says why.** They are the npm
+> scope `@singularity/*` that exists in code (§11), and three artifacts that were never ported —
+> **Phase 21**, the reciprocal extraction ADR, and `platform-vision.md`. A marked gap is auditable;
+> a redirected one is indistinguishable from a decision that was actually taken.
+>
+> ⚠️ **The two cross-repository ADR citations were resolved by subject, not by number.** The
+> repositories number independently and the same number means different decisions — ADR-002 §2 has
+> the mapping.
 
 ---
 
@@ -12,7 +25,7 @@ Rebuild the Portfolio Nx workspace as a **federated Angular front end** and a se
 microservices** behind an **API Gateway**, fronted by an **nginx reverse proxy**, orchestrated with
 **Docker Compose**, over **polyglot persistence** (PostgreSQL / CouchDB+Nouveau / TypeDB).
 
-Architecture, tagging, layering, and governance follow Singularity's established patterns so that
+Architecture, tagging, layering, and governance follow LeanAgileOS's established patterns so that
 lessons already paid for there are not re-learned here.
 
 ---
@@ -23,15 +36,15 @@ lessons already paid for there are not re-learned here.
 |---|---|---|
 | D1 | Seven bounded contexts: Identity, Projects, Content, Profile, Skills, Leads, Admin | Founder selection. Testimonials explicitly excluded from v1. |
 | D2 | Polyglot persistence, mapped per context (§5) | Each store is chosen for a capability the others do the badly, not for variety. |
-| D3 | Shell converts to **webpack Module Federation**; SSR is dropped | Matches Singularity. SSR + MF do not compose cleanly. See R1. |
+| D3 | Shell converts to **webpack Module Federation**; SSR is dropped | Matches LeanAgileOS. SSR + MF do not compose cleanly. See R1. |
 | D4 | Full governance port: CLAUDE.md, ADRs, phase/checklist/summary + branch discipline, Cucumber/Screenplay gate, Session Start/Stop | Founder selection. |
 | D5 | Production target undecided; design for Compose, keep the exit open | Constrains us to no Compose-only primitives at the app layer (§9). |
 | D6 | **Admin/CMS is a UI remote with no microservice or datastore of its own** | It is an authoring surface. It composes each context's existing write API through the gateway. Giving it its own service would create a second write path to every aggregate. |
 | D7 | **Module Federation is retained for demonstration value, not runtime efficiency** (resolves OQ5) | The portfolio's job is to evidence capability with MFEs. Cost-efficiency arguments against MF are therefore *out of scope* — but see the amended R1: the fallback is a different MF implementation, never "drop MF". |
 | D8 | **The repository is public on GitHub. The source is a portfolio artefact in its own right.** | Changes the audience: reviewers read the repo, not just the site. Drives §10 (public-repo posture) and raises README, ADRs, commit hygiene, CI visibility, and security posture from housekeeping to deliverables. |
-| D9 | **A third Nx monorepo `projects/platform` is the intended home for shared code** (OIDC, Workflow Engine, common domain/ui/infrastructure libs), published as artifacts and consumed by Singularity and Portfolio | Founder direction, 2026-08-18. **Accepted as direction, gated on evidence — see §11.** Not scheduled before Portfolio Phase 03. |
+| D9 | **A third Nx monorepo `projects/platform` is the intended home for shared code** (OIDC, Workflow Engine, common domain/ui/infrastructure libs), published as artifacts and consumed by LeanAgileOS and Portfolio | Founder direction, 2026-08-18. **Accepted as direction, gated on evidence — see §11.** Not scheduled before Portfolio Phase 03. |
 | ~~D10~~ | ~~Portfolio is the replacement for `davejackson.dev`; V1 amended.~~ | **Withdrawn 2026-08-18, same session, superseded by D11.** Retained as a record because it briefly reorganised this spec. |
-| **D11** | **Portfolio is a separate product at `portfolio.davejackson.dev`, linked from `davejackson.dev`.** `davejackson.dev` stays in Singularity and is simplified by shedding its Portfolio/Case-Study duplication. | Founder proposal, 2026-08-18. **Recommended — see §12.** Strictly better than D10: no production cutover, no wholesale artifact migration, and V1 needs no amendment because it never bound a third product. |
+| **D11** | **Portfolio is a separate product at `portfolio.davejackson.dev`, linked from `davejackson.dev`.** `davejackson.dev` stays in LeanAgileOS and is simplified by shedding its Portfolio/Case-Study duplication. | Founder proposal, 2026-08-18. **Recommended — see §12.** Strictly better than D10: no production cutover, no wholesale artifact migration, and V1 needs no amendment because it never bound a third product. |
 
 ---
 
@@ -123,7 +136,7 @@ Projects, Content, and Skills all want to describe "a thing I built with a techn
 - **Content** owns the *prose*, referencing project IDs.
 
 Cross-context references are **IDs as primitive strings**, never imported entity types. This is
-Singularity's ADR-032 Decision 4 rule and it is what keeps `type:domain` libs dependency-free.
+LeanAgileOS's [ADR-001](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/architecture/adr-001-platform-boundaries-and-package-conventions.md) Decision 4 rule and it is what keeps `type:domain` libs dependency-free. (Cited as LeanAgileOS ADR-032 until 2026-09-08; resolved by subject, not by number — see [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md) §2.)
 
 ---
 
@@ -132,12 +145,12 @@ Singularity's ADR-032 Decision 4 rule and it is what keeps `type:domain` libs de
 | Store | Contexts | Why this store |
 |---|---|---|
 | **PostgreSQL** | Identity, Projects, Profile, Leads | Transactional, relational, constraint-enforceable. Uniqueness and referential integrity live in the **schema**, not in application check-then-insert. |
-| **CouchDB + Nouveau** | Content | Full-text relevance ranking over article chunks, and a document model that suits versioned prose. Mirrors Singularity's content grounding store. |
+| **CouchDB + Nouveau** | Content | Full-text relevance ranking over article chunks, and a document model that suits versioned prose. Mirrors LeanAgileOS's content grounding store. |
 | **TypeDB** | Skills | The capability graph is the only thing here that is genuinely a *graph query* problem ("which projects evidence skills adjacent to X"). |
 
-🔴 **Constraint, borrowed from Singularity's db-admin lessons:** any invariant an application layer
+🔴 **Constraint, borrowed from LeanAgileOS's db-admin lessons:** any invariant an application layer
 claims ("email is unique", "slug is unique per context") must have a **schema-level constraint** to
-match. A concurrent-registration duplicate got through in Singularity precisely because it only
+match. A concurrent-registration duplicate got through in LeanAgileOS precisely because it only
 existed as an application check.
 
 **One database per service.** No service reads another service's tables. Where a read needs data
@@ -204,7 +217,7 @@ deliberately dumb — no auth logic, no rewriting business paths.
 | Nouveau | 5987 | 127.0.0.1:5987 |
 | TypeDB | 8000 | 127.0.0.1:8000 |
 
-All datastore host ports bind to `127.0.0.1` only — Singularity's standing rule.
+All datastore host ports bind to `127.0.0.1` only — LeanAgileOS's standing rule.
 
 ---
 
@@ -266,7 +279,7 @@ Controller → CommandBus.execute(new PublishProjectCommand(...))
                        → ProjectPublishedHandler   (e.g. reindex in Content search)
 ```
 
-**Golden-thread rule, adopted from Singularity:** every new `*.command.ts` / `*.query.ts` needs a
+**Golden-thread rule, adopted from LeanAgileOS:** every new `*.command.ts` / `*.query.ts` needs a
 Screenplay Task or Question that dispatches it, or an explicit waiver with owner and expiry. This
 is what keeps the spec-to-code chain from silently rotting.
 
@@ -282,7 +295,7 @@ Production target is undecided, so the design must not become Compose-shaped:
 - **nginx config is a mounted artifact**, replaceable by an ingress controller or a CDN edge.
 - **Datastore access is behind Domain ports**, so a managed Postgres/Couch swap is an adapter change.
 
-Compose file split, mirroring Singularity: `docker-compose.platform.yaml` owns `platform-network`
+Compose file split, mirroring LeanAgileOS: `docker-compose.platform.yaml` owns `platform-network`
 and comes up first; per-context stacks bridge in as `external: true`.
 
 ---
@@ -291,7 +304,7 @@ and comes up first; per-context stacks bridge in as `external: true`.
 
 | # | Risk | Action |
 |---|---|---|
-| **R1** 🔴 | **Angular 22 + webpack Module Federation may not be viable.** Singularity runs `@nx/angular:webpack-browser` on **Angular 21 / Nx 22**. Portfolio is **Angular 22 / Nx 23**, where the webpack browser builder is deprecated/removed in favour of `@angular/build`. Copying the pattern verbatim may simply not build. | **Spike 0 — do this before anything else.** Stand up a throwaway host + one remote on the actual installed versions. Fallback ladder, in order: (1) `@nx/angular:webpack-browser`, (2) `@module-federation/enhanced` runtime federation on `@angular/build`, (3) native federation (`@angular-architects/native-federation`). **Per D7, "drop MF for lazy routes" is not on the ladder** — only the implementation is negotiable, not the pattern. Amend D3 with whichever rung holds. |
+| **R1** 🔴 | **Angular 22 + webpack Module Federation may not be viable.** LeanAgileOS runs `@nx/angular:webpack-browser` on **Angular 21 / Nx 22**. Portfolio is **Angular 22 / Nx 23**, where the webpack browser builder is deprecated/removed in favour of `@angular/build`. Copying the pattern verbatim may simply not build. | **Spike 0 — do this before anything else.** Stand up a throwaway host + one remote on the actual installed versions. Fallback ladder, in order: (1) `@nx/angular:webpack-browser`, (2) `@module-federation/enhanced` runtime federation on `@angular/build`, (3) native federation (`@angular-architects/native-federation`). **Per D7, "drop MF for lazy routes" is not on the ladder** — only the implementation is negotiable, not the pattern. Amend D3 with whichever rung holds. |
 | R2 | Three datastores is a large operational surface for a portfolio | Sequence them: Postgres first (four contexts), CouchDB second, TypeDB last. Skills can ship on Postgres and migrate if TypeDB proves not worth it. |
 | R3 | Gateway read-composition becomes a distributed monolith | Compose only at read time; never let the gateway orchestrate multi-service writes. Cross-context writes go through domain events. |
 | R4 | `@nx/module-federation` is not currently a dependency | Added in Phase 01, with `package-lock.json` in the same commit. |
@@ -322,7 +335,7 @@ automated scrapers find it in minutes.
 
 ### Branch protection — now actually available
 
-Singularity's `CLAUDE.md` records that branch protection was unavailable there (private repo, Free
+LeanAgileOS's `CLAUDE.md` records that branch protection was unavailable there (private repo, Free
 plan). **That constraint does not apply here.** Public repos get rulesets on the Free plan, so the
 branch discipline ported in D4 gets real technical enforcement rather than convention alone:
 require PR, require CI green, no direct pushes to `main`.
@@ -381,14 +394,14 @@ realising it was the point.
 
 **Proposal.** A third Nx monorepo at `projects/platform` hosting the OIDC implementation, the
 Workflow Engine, and common `domain`/`ui`/`infrastructure` libs, published as artifacts and consumed
-by both Singularity and Portfolio.
+by both LeanAgileOS and Portfolio.
 
 **Assessment.** The direction is sound and the destination is almost certainly right. The *timing*
-is the problem, and Singularity's own completed work says so.
+is the problem, and LeanAgileOS's own completed work says so.
 
 ### The governing precedent
 
-Singularity's **Phase 21 — Live Product Pilot and Extraction Decision** is complete and ruled:
+Singularity's **Phase 21 — Live Product Pilot and Extraction Decision** (a Singularity phase, 🔴 **not ported to lean-agile-os** — see [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md) §5) is complete and ruled:
 
 > Extraction decision: **defer**. The kernel boundary remains intentionally inside this repository
 > until a real second consumer demonstrates that package publication or repository extraction solves
@@ -406,8 +419,8 @@ precondition on a *plan* rather than on *evidence*, which is the one thing Phase
 
 | Candidate | Second-consumer evidence today | Verdict |
 |---|---|---|
-| **Common libs** (`kernel`, `events`, `persistence`, `runtime`) | Strongest. Already shaped as packages — `@singularity/*`, own `package.json`, own build targets, all `"private": true`. Portfolio's every context will need these primitives. | **First to extract**, once Portfolio Phase 03 actually imports them. |
-| **OIDC / IAM** | Contingent on **OQ1** (build vs wrap) and blocked by **R9** below. Also note Singularity's `iam` is a deployable *service*, not a library — sharing a running IdP is a tenancy/deployment question, not a package question. | **Second**, after OQ1 and R9 resolve. |
+| **Common libs** (`kernel`, `events`, `persistence`, `runtime`) | Strongest. Already shaped as packages — `@singularity/*` (🔴 the real npm scope in code, deliberately **not** renamed — [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md) §4), own `package.json`, own build targets, all `"private": true`. Portfolio's every context will need these primitives. | **First to extract**, once Portfolio Phase 03 actually imports them. |
+| **OIDC / IAM** | Contingent on **OQ1** (build vs wrap) and blocked by **R9** below. Also note LeanAgileOS's `iam` is a deployable *service*, not a library — sharing a running IdP is a tenancy/deployment question, not a package question. | **Second**, after OQ1 and R9 resolve. |
 | **Workflow Engine** | **Weakest — none.** No context in §4 is resumable-workflow-shaped. Extracting it would give it a second *repository* but still no second *consumer*, leaving Phase 21's precondition unmet in substance while appearing satisfied. | **Do not extract yet.** Extract when a real workflow need appears, here or elsewhere. |
 
 > The ordering is deliberately the inverse of intuition: the Workflow Engine is the most recently
@@ -416,14 +429,14 @@ precondition on a *plan* rather than on *evidence*, which is the one thing Phase
 ### Recommended sequencing
 
 1. **Portfolio Phases 00–03 first.** Build the Projects vertical slice with local libs. Duplication
-   with Singularity is *acceptable and informative* at this stage — it reveals which abstractions
+   with LeanAgileOS is *acceptable and informative* at this stage — it reveals which abstractions
    are genuinely shared versus merely similar.
-2. **Extract on the second real need, not the first.** When Portfolio reaches for a Singularity
+2. **Extract on the second real need, not the first.** When Portfolio reaches for a LeanAgileOS
    primitive a second time, that is the evidence Phase 21 asked for. Extract *that* lib, alone.
 3. **Prefer a workspace/git dependency before a published artifact.** Publishing adds versioning,
    release cadence, and registry auth. Consume `projects/platform` directly first; publish only when
    versions genuinely need to diverge between the two consumers.
-4. **Record the reciprocal decision in Singularity** as an ADR that closes out Phase 21's deferred
+4. **Record the reciprocal decision in Singularity** (🔴 the counterparty is now `lean-agile-os`; this ruling was taken with Singularity and is not re-taken by the 2026-09-08 repoint) as an ADR that closes out Phase 21's deferred
    items. Extraction cannot be decided unilaterally from the Portfolio side.
 
 ### Risks specific to D9
@@ -443,7 +456,7 @@ precondition on a *plan* rather than on *evidence*, which is the one thing Phase
 
 | | `davejackson.dev` | `portfolio.davejackson.dev` |
 |---|---|---|
-| Repo | `singularity` | `portfolio` (public) |
+| Repo | `lean-agile-os` | `portfolio` (public) |
 | Purpose | Writing and presence | Engineering demonstration |
 | Owns | **Articles** | **Projects, Case Studies, Profile, Skills, Leads** |
 | Architecture | Simple, fast, static-leaning | Deliberately elaborate — MFE + microservices |
@@ -500,7 +513,7 @@ Start at (a). It is reversible; (c) is not.
 
 ### What D11 leaves untouched
 
-V1, V7, V10, Cluster A, and `active-projects.md` all stand as written. The only Singularity-side
+V1, V7, V10, Cluster A, and `active-projects.md` all stand as written. The only LeanAgileOS-side
 changes are (1) noting the third product exists and (2) re-cutting the davejackson rebuild's scope
 to shed Portfolio/Case-Study. Both are additive. **This is the single biggest advantage of D11 over
 D10** — it invalidates nothing.
@@ -512,7 +525,7 @@ D10** — it invalidates nothing.
 **D10 does not start a new project. It relocates and re-architects one that is already 8 workshops
 deep.**
 
-### What already exists in Singularity
+### What already exists in LeanAgileOS
 
 `docs/planning/active-projects.md` lists **davejackson.dev Rebuild** as an active project:
 
@@ -541,14 +554,14 @@ any code, or the duplication becomes real rather than notional.
 
 🔴 **Do not restart the workshop sequence in Portfolio.** Re-running W1–W4 and W6–W8 would discard
 founder-validated work and produce a second, competing set of artifacts — the exact four-way
-tracking-doc disagreement Singularity's ADR-074 was written to end. **Migrate, then re-run Workshop 5
+tracking-doc disagreement LeanAgileOS's [ADR-030](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/architecture/adr-030-global-documents-are-authored-on-dev.md) was written to end. (Cited as LeanAgileOS ADR-074 until 2026-09-08 — see [ADR-002](adr-002-lean-agile-os-is-the-upstream-platform.md) §2.) **Migrate, then re-run Workshop 5
 alone** against the target architecture.
 
 ### Downstream rulings this invalidates
 
 | Ruling | Status under D10 |
 |---|---|
-| **V1** — two products, CMS the only seam, no shell/MF/SSO for the personal site | **Amended by D10.** Needs an explicit amendment in `platform-vision.md`; leaving it unamended means the next Singularity session reads a superseded ruling as current. |
+| **V1** — two products, CMS the only seam, no shell/MF/SSO for the personal site | **Amended by D10.** Needs an explicit amendment in `platform-vision.md`; leaving it unamended means the next Singularity session (`platform-vision.md` is a Singularity document, **not ported**) reads a superseded ruling as current. |
 | **V7** — from-scratch `apps/davejackson`, single cutover | **Superseded.** The rebuild happens in Portfolio. Decide explicitly whether `apps/davejackson` is cancelled or never created. |
 | **V10** — Content Studio v1 = Notebooks + Media Library | **Needs revisiting.** V10's scope was justified by `apps/davejackson`'s CMS authoring needs (DJ-022–025). If Portfolio owns its own Content context (§5), Content Studio loses the consumer that justified that scope. |
 | **Cluster A** — personal site and CMS | Its central row is now wrong. |
@@ -559,7 +572,7 @@ alone** against the target architecture.
 V1 made the platform CMS the *only* sanctioned seam between the two products. §5 of this spec gives
 Portfolio its **own** Content context on its own CouchDB. Both cannot be true. Either:
 
-- **(a)** Portfolio's Content context consumes Singularity's Content Studio over HTTP — preserving
+- **(a)** Portfolio's Content context consumes LeanAgileOS's Content Studio over HTTP — preserving
   V1's seam, keeping V10 justified, but coupling the public portfolio to the SaaS platform at
   runtime; or
 - **(b)** Portfolio owns its content outright — fully standalone, but orphaning Content Studio's
@@ -582,7 +595,7 @@ can serve `davejackson.dev` at least as well as today, including the AI chat.
 | Phase | Deliverable |
 |---|---|
 | **00** | **Spike 0** — verify Module Federation on Angular 22 / Nx 23 against the R1 ladder. Amend D3 with the result. |
-| **00b** | **Re-cut Workshop 8's scope with Singularity** (§12): Portfolio/Case-Study stories move here, Article stories stay. Migrate the moved stories' Gherkin, UX mockups, and Domain Storytelling output, then re-run Workshop 5 alone against this architecture. |
+| **00b** | **Re-cut Workshop 8's scope with LeanAgileOS** (§12): Portfolio/Case-Study stories move here, Article stories stay. Migrate the moved stories' Gherkin, UX mockups, and Domain Storytelling output, then re-run Workshop 5 alone against this architecture. |
 | 01 | Governance port: CLAUDE.md, ADR-001..00N, real depConstraints in `eslint.config.mjs`, branch discipline. **Plus D8 baseline: `.gitignore` + `.env.example`, secret scanning + push protection, branch ruleset, LICENSE, real README, green CI.** |
 | 02 | Platform skeleton: shell + api-gateway migration, nginx, `platform-network` Compose, health endpoints end-to-end |
 | 03 | **Vertical slice — Projects context.** All four libs, CQRS, Postgres, `projects-ui` remote, Cucumber scenario. This proves the whole stack on one context. |
@@ -596,7 +609,7 @@ can serve `davejackson.dev` at least as well as today, including the AI chat.
 
 > **D9 insertion point:** the `projects/platform` extraction is *not* a phase of this plan. It
 > triggers off evidence during Phases 03–08 (§11 sequencing step 2), and lands as a joint
-> Portfolio + Singularity ADR pair when it does.
+> Portfolio + LeanAgileOS ADR pair when it does.
 
 ---
 
@@ -604,7 +617,7 @@ can serve `davejackson.dev` at least as well as today, including the AI chat.
 
 | # | Question | Blocks |
 |---|---|---|
-| OQ1 | Does Identity build its own OIDC provider (Singularity's `iam` did) or wrap an external IdP? Building one is weeks of work — though under D7/D8 "it demonstrates OIDC implementation" is now a legitimate argument *for* building it. | Phase 04 |
+| OQ1 | Does Identity build its own OIDC provider (LeanAgileOS's `iam` did) or wrap an external IdP? Building one is weeks of work — though under D7/D8 "it demonstrates OIDC implementation" is now a legitimate argument *for* building it. | Phase 04 |
 | OQ2 | Is the public site behind auth at all, or is Identity purely for admin authoring? If the latter, the auth edge shrinks dramatically. | Phase 02 gateway design |
 | OQ3 | Does Content need authoring *in* Admin, or is markdown-in-git with an ingest step sufficient? **Now entangled with OQ10.** | Phase 05 / 09 scope |
 | ~~OQ4~~ | ~~Is there existing content to migrate, and in what format?~~ | **Resolved.** Yes — but under D11 only the Portfolio/Case-Study slice; articles stay in `apps/blog`. |
@@ -621,7 +634,7 @@ can serve `davejackson.dev` at least as well as today, including the AI chat.
 
 ## 15. Next session
 
-1. **Ratify or amend D11**, then agree the Workshop 8 scope re-cut with Singularity — which of the
+1. **Ratify or amend D11**, then agree the Workshop 8 scope re-cut with LeanAgileOS — which of the
    28 stories move here. Nothing else is safe to build until that line is drawn.
 2. Resolve **OQ10** — it may delete a whole context and a datastore from this spec.
 3. Resolve **OQ12**, and pick a cross-site seam option from §12 (recommend **(a) hyperlinks**).

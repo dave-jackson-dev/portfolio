@@ -1,7 +1,13 @@
 # Phase 00 — Charter and Contract Freeze Checklist
 
+> ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
+> it was rewritten to *LeanAgileOS* by the upstream repoint
+> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> describes was carried out when the upstream was `singularity`. Package names in code
+> (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
+
 > **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
-> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md).
+> canonical historical copy of this document now live in [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/checklist.md).
 > This Portfolio copy remains as a consumer-side forwarding and integration record.
 
 **Feature:** [Workflow Engine and Lean-Agile MVP Foundation](../../workflow-engine-lean-agile-mvp-foundation.feature.md)
@@ -14,7 +20,7 @@
 
 Freeze the public boundary Portfolio will consume before any runtime adapter, PouchDB store, or
 Lean-Agile MVP workflow is implemented. The boundary must give Portfolio a genuine second-consumer
-integration while keeping Singularity's proprietary agents, skills, prompts, private knowledge, and
+integration while keeping LeanAgileOS's proprietary agents, skills, prompts, private knowledge, and
 execution history out of this public repository.
 
 ## Work items
@@ -23,9 +29,9 @@ execution history out of this public repository.
 - [x] Inventory the existing Workflow Engine plan's supported consumer boundary: programmatic
       Nest module/factory, CQRS commands and queries, JSON envelopes, and PouchDB-owned state.
 - [x] Record the Portfolio boundary rule: consume commands/queries and versioned envelopes only;
-      never import PouchDB repositories or Singularity source paths.
+      never import PouchDB repositories or LeanAgileOS source paths.
 - [x] Reconcile the provider's exported command catalogue with its executable command paths.
-- [x] Approve matching Portfolio and Singularity ADRs that name the public contract, its owner,
+- [x] Approve matching Portfolio and LeanAgileOS ADRs that name the public contract, its owner,
       and the excluded proprietary surfaces. Runtime compatibility evidence remains pending.
 - [x] Agree the contract versioning policy, compatibility window, command/query JSON envelope,
       stable error codes, and correlation/causation identifiers.
@@ -47,7 +53,7 @@ execution history out of this public repository.
       contract. The provider test exercises supported command dispatch and contract-version
       rejection.
 - [x] Implement and validate the Portfolio thin adapter against an injected public v1 client. The
-      BDD consumer test proves its request shape without a private Singularity import.
+      BDD consumer test proves its request shape without a private LeanAgileOS import.
 - [x] Agree the two-repository PR sequence, compatibility test location, and integration-test
       owners.
 
@@ -58,12 +64,12 @@ execution history out of this public repository.
 | Workflow lifecycle | Versioned commands, queries, documented JSON result envelopes, and a published module/factory or service adapter | Internal application handlers, domain objects, or source-path imports |
 | Persistence | Contract-provided snapshots/audit/projection results | PouchDB repositories, database paths, raw revisions, or direct stores owned by another service |
 | Event ingress | Approved, versioned `PlatformEventEnvelope` messages via an adapter | Database reads, unallowlisted payloads, or browser-supplied principal/organization scope |
-| Lean-Agile MVP | Portfolio-owned extension definitions and evidence rules | Singularity agents, skills, prompts, private knowledge, model configuration, or execution history |
+| Lean-Agile MVP | Portfolio-owned extension definitions and evidence rules | LeanAgileOS agents, skills, prompts, private knowledge, model configuration, or execution history |
 
 ## Exit gate
 
 **Gate passed, 2026-08-19.** Both ADRs are accepted. The provider module/factory baseline is
 packaged as `@singularity/workflow-engine`; its repeatable clean-consumer test verifies the tarball
 contains only the public runtime surface and resolves by package name. Portfolio's thin adapter is
-BDD-tested against the same v1 request shape and has no private Singularity import. Phase 01 owns
+BDD-tested against the same v1 request shape and has no private LeanAgileOS import. Phase 01 owns
 delivery of a real installed package or hosted adapter to the Portfolio runtime.

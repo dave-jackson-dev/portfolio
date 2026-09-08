@@ -20,7 +20,7 @@ after D11 has moved articles out of Portfolio. Resolve that scope before scaffol
 1. **Ratify D11.** Keep Portfolio as a separately deployed product at
    `portfolio.davejackson.dev`, linked prominently from `davejackson.dev`.
 2. **Do not create a Portfolio Content context for v1.** Case-study prose belongs to Projects;
-   long-form articles remain in Singularity. Start with reciprocal hyperlinks between sites. This
+   long-form articles remain in LeanAgileOS. Start with reciprocal hyperlinks between sites. This
    removes CouchDB/Nouveau, one API, one UI remote, and unnecessary cross-site runtime coupling.
 3. **Deploy Portfolio publicly.** A public repository demonstrates source code; a live deployment
    demonstrates operability, UX, security posture, and real MFE integration. Resolve OQ6 as yes.

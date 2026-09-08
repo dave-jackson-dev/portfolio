@@ -2,13 +2,13 @@
 
 > **Ownership moved:** Reusable Workflow Engine and Lean-Agile MVP implementation, generic
 > Cucumber specifications, unit tests, and the canonical copy of Phases 00–04 now live in
-> [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/tree/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation).
+> [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/tree/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation).
 > Portfolio retains its adapter, consumer contract tests, and integration evidence.
 
 **Status:** Phases 00–04 complete; Phase 05 is next
 **Proposed branch:** `feat/workflow-engine-lean-agile-mvp-foundation`  
 **Primary consumer:** Portfolio  
-**Upstream capability owner:** Singularity Workflow Engine  
+**Upstream capability owner:** LeanAgileOS Workflow Engine  
 **Depends on:** [Interactive Examples scope](../interactive-examples-scope.md)
 
 ## Purpose
@@ -19,14 +19,14 @@ Builder, Career Coach, Prompt Workbench, deployment, and documentation—must ru
 workflow through this foundation.
 
 Portfolio is a real second consumer of the Workflow Engine. That is evidence for a public adapter
-or extraction decision; it is not permission to copy private Singularity code into the public
+or extraction decision; it is not permission to copy private LeanAgileOS code into the public
 Portfolio repository.
 
 ## Outcome
 
 The completed foundation provides:
 
-- a thin, documented Portfolio-to-Workflow-Engine adapter with no imports from private Singularity
+- a thin, documented Portfolio-to-Workflow-Engine adapter with no imports from private LeanAgileOS
   paths;
 - a Lean-Agile MVP extension with explicit hypothesis, experiment, evidence, outcome, and
   pivot/persevere transitions;
@@ -45,7 +45,7 @@ The completed foundation provides:
 flowchart LR
     Portfolio[Portfolio workflow adapter]
     Contract[Public workflow + event contracts]
-    Engine[Singularity Workflow Engine]
+    Engine[LeanAgileOS Workflow Engine]
     Extension[Reusable Lean-Agile MVP extension]
     Workshops[Reusable workshop orchestration]
     Store[(PouchDB)]
@@ -65,18 +65,18 @@ flowchart LR
 
 | Concern                                                                 | Owner                                              | Rule                                                               |
 | ----------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------ |
-| Kernel lifecycle, CQRS contracts, state/audit ports, PouchDB primitives | Singularity Workflow Engine                        | Generic and framework/product neutral.                             |
+| Kernel lifecycle, CQRS contracts, state/audit ports, PouchDB primitives | LeanAgileOS Workflow Engine                        | Generic and framework/product neutral.                             |
 | Portfolio adapter and presentation projection                           | Portfolio                                          | Calls public engine contracts only.                                |
 | Lean-Agile MVP workflow definitions, schemas, gates, labels             | `@lean-agile-mvp/workflow`                          | Project-neutral extension module; never kernel behavior.           |
 | Workshop sequence, artifact graph, dependency and impact rules          | `@lean-agile-mvp/workflow`                          | Child workflows; records artifact versions and feedback loops.     |
 | Domain-event ingress                                                    | Portfolio adapter plus approved platform transport | Versioned envelopes, allowlisted types, idempotent consumption.    |
 | Macro recordings and definitions                                        | PouchDB, through Workflow Engine contracts         | Append-only audit evidence and immutable macro versions.           |
-| Agents, skills, prompts, private knowledge                              | Singularity only                                   | Excluded from Portfolio code, images, fixtures, and documentation. |
+| Agents, skills, prompts, private knowledge                              | LeanAgileOS only                                   | Excluded from Portfolio code, images, fixtures, and documentation. |
 
 ## Non-negotiable constraints
 
 1. **No proprietary-content transfer.** Portfolio must not copy, publish, package, mount, or
-   execute Singularity agents, skills, prompts, system instructions, model configuration, private
+   execute LeanAgileOS agents, skills, prompts, system instructions, model configuration, private
    knowledge, or agent execution history.
 2. **PouchDB only for this workflow record.** Do not add SQLite as a second macro-recording store.
    The existing Workflow Engine PouchDB model is the authoritative local record.
@@ -100,7 +100,7 @@ flowchart LR
 
 | #   | Phase                                     | Deliverable                                                                                                                          | Depends on | Exit gate                                                                                             |
 | --- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------- |
-| 00  | Charter and contract freeze               | ADR set, public-contract inventory, data classification, approved event allowlist, and two-repository integration plan               | None       | No private Singularity imports/content can cross the proposed boundary.                               |
+| 00  | Charter and contract freeze               | ADR set, public-contract inventory, data classification, approved event allowlist, and two-repository integration plan               | None       | No private LeanAgileOS imports/content can cross the proposed boundary.                               |
 | 01  | Engine adapter and MVP extension baseline | Minimal Portfolio adapter plus Lean-Agile MVP workflow definition, schema, CQRS entry points, and phase evidence envelope            | 00         | A Portfolio workflow can start, transition, block, resume, and hand off through public contracts.     |
 | 02  | PouchDB recording model                   | Versioned recording/macro documents, indexes, idempotency rules, redaction policy, snapshots, and recovery fixtures                  | 01         | Duplicate event delivery produces one logical recording; restore/replay evidence is green.            |
 | 03  | Event ingress and macro authoring         | Approved-event subscriber, correlation/session grouping, human macro approval, immutable macro versions, and command replay contract | 02         | A seeded event sequence becomes a reviewed macro; replay never emits historical events.               |
@@ -111,7 +111,7 @@ flowchart LR
 | 08  | Secure runtime and container proof        | Encrypted PouchDB runtime-store design, secret injection, public baseline fixture, backup/restore, and image-content audit           | 02–07      | Image inspection proves no live data/key; runtime recovery works from an approved encrypted store.    |
 | 09  | Activity projection contract              | Per-principal/per-organization projection, retention window, gateway SSE contract, authorization tests, and replay checkpointing     | 02–07      | One principal receives only their filtered activity, including after reconnect/replay.                |
 | 10  | Representative foundation pilot           | Three-session Portfolio workflow pilot using a synthetic/disposable principal and workspace; diagnostics and recovery report         | 01–09      | Deterministic resume, audit, macro replay, projection repair, redaction, and workshop feedback shown. |
-| 11  | Second-consumer extraction decision       | Joint Portfolio/Singularity evidence review, adapter/extraction decision, migration plan or explicit deferral                        | 10         | Decision records whether Portfolio justifies a package/public adapter; no extraction is assumed.      |
+| 11  | Second-consumer extraction decision       | Joint Portfolio/LeanAgileOS evidence review, adapter/extraction decision, migration plan or explicit deferral                        | 10         | Decision records whether Portfolio justifies a package/public adapter; no extraction is assumed.      |
 
 ## Phase 00 work package
 
@@ -121,7 +121,7 @@ implementation branches are cut. Its working checklist and decision record are i
 
 ### Checklist
 
-- [ ] Create a joint Portfolio/Singularity ADR pair defining the public Workflow Engine contract.
+- [ ] Create a joint Portfolio/LeanAgileOS ADR pair defining the public Workflow Engine contract.
 - [ ] Confirm the exact public adapter surface: commands, queries, JSON envelopes, event envelope,
       error codes, and versioning policy.
 - [ ] Define `MacroRecording` and `WorkflowMacro` document schemas, stable identities, revision
@@ -156,7 +156,7 @@ implementation branches are cut. Its working checklist and decision record are i
 | Feedback-propagation assembly       | Invalidation, reopening, supersession, and downstream revalidation               | 07              |
 | HTTP/SSE assembly                   | Authorization scope, filtered projection, reconnect/replay                      | 09–10           |
 | Container smoke test                | Public image contents, injected secret path, runtime PouchDB recovery           | 08, 10          |
-| Contract tests                      | No private imports; compatible public contract across Portfolio and Singularity | 00–11           |
+| Contract tests                      | No private imports; compatible public contract across Portfolio and LeanAgileOS | 00–11           |
 
 ## Branch and documentation discipline
 
@@ -168,7 +168,7 @@ implementation branches are cut. Its working checklist and decision record are i
   item.
 - Phase implementation commits land through a PR into the feature branch. When the full feature is
   complete, promote through Portfolio `dev` and then `main` in separate PRs.
-- Any Singularity changes land in its own branch and PR. Cross-repository changes share a contract
+- Any LeanAgileOS changes land in its own branch and PR. Cross-repository changes share a contract
   version and integration evidence; neither repository copies commits wholesale from the other.
 - Starting with Phase 05, each phase must record its planning, evidence, review, and handoff under
   a Lean-Agile MVP workflow ID. The workshop extension becomes the additional planning and
@@ -189,13 +189,13 @@ implementation branches are cut. Its working checklist and decision record are i
   future Shell SSE consumer.
 - Container artifacts contain no live visitor data, decrypted PouchDB state, provider keys, or
   proprietary agents/skills/prompts.
-- The representative pilot supplies evidence for the joint Portfolio/Singularity extraction
+- The representative pilot supplies evidence for the joint Portfolio/LeanAgileOS extraction
   decision.
 
 ## Explicitly out of scope
 
 - Building a new generic workflow engine in Portfolio.
-- Copying or publishing the existing Singularity engine, agents, skills, prompts, or private
+- Copying or publishing the existing LeanAgileOS engine, agents, skills, prompts, or private
   knowledge.
 - A production Portfolio Shell, Federated Identity, Site Builder, Career Coach, or Prompt
   Workbench implementation; these are consumers of this foundation, not deliverables of it.
@@ -205,5 +205,5 @@ implementation branches are cut. Its working checklist and decision record are i
 
 - [Interactive Examples scope](../interactive-examples-scope.md)
 - [Portfolio architecture specification](../../architecture/portfolio-architecture-spec.md)
-- [Singularity resumable workflow plan](/home/dave/dev/projects/singularity/docs/planning/singularity/features/resumable-workflow-steps/resumable-workflow-steps-plan.md)
-- [Singularity Workflow Engine live-pilot decision](/home/dave/dev/projects/singularity/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/summary.md)
+- [LeanAgileOS resumable workflow plan](/home/dave/dev/projects/lean-agile-os/docs/planning/lean-agile-os/features/resumable-workflow-steps/resumable-workflow-steps-plan.md)
+- [LeanAgileOS Workflow Engine live-pilot decision](/home/dave/dev/projects/lean-agile-os/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/summary.md)

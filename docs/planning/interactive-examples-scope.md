@@ -13,7 +13,7 @@ security, and platform engineering decisions.
 
 ## Tenancy model
 
-Singularity's platform IAM model already provisions a **personal Organization** for every
+LeanAgileOS's platform IAM model already provisions a **personal Organization** for every
 authenticated Principal and assigns that `organizationId` back to the Principal. An Individual is
 therefore an Organization of One; a future team is an Organization with additional members.
 
@@ -21,7 +21,7 @@ Provided Portfolio adopts this IAM boundary, every interactive-example record, A
 quota, and deletion workflow is scoped by `organizationId`. Portfolio must not introduce a second,
 parallel tenant identifier or map a visitor to an invented Portfolio-only organization.
 
-**Proposed direction:** add **Federated Identity** to Singularity IAM. IAM remains the issuer
+**Proposed direction:** add **Federated Identity** to LeanAgileOS IAM. IAM remains the issuer
 trusted by Portfolio and other products, while its Federated Identity capability delegates initial
 authentication to approved upstream OIDC providers. The initial provider set and
 production/development tenant configuration remain implementation decisions.
@@ -32,7 +32,7 @@ production/development tenant configuration remain implementation decisions.
 
 | Capability                | V1 scope                                                                                                                                                                         | Explicit boundary                                                                                                 |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Federated sign-up/sign-in | Portfolio redirects to Singularity IAM, which brokers approved upstream OIDC providers using Authorization Code + PKCE.                                                          | Portfolio does not own passwords, email delivery, federation credentials, or verification workflows.              |
+| Federated sign-up/sign-in | Portfolio redirects to LeanAgileOS IAM, which brokers approved upstream OIDC providers using Authorization Code + PKCE.                                                          | Portfolio does not own passwords, email delivery, federation credentials, or verification workflows.              |
 | Account profile           | Portfolio uses the IAM Principal and its auto-provisioned personal Organization as the account and ownership boundary. A verified email is profile data, never the identity key. | No provider-specific account assumptions, Portfolio-only tenant IDs, or email-only account linking.               |
 | Career Coach example      | A signed-in visitor can complete one focused coaching session and see a generated, editable action plan.                                                                         | No CV/file upload, job-board integration, background jobs, or persistent coaching history in V1.                  |
 | Site Builder example      | A signed-in visitor can create and preview one disposable one-page site from structured inputs. It does not use server-side AI.                                                  | No custom domains, publication, asset uploads, collaborative editing, long-lived hosted sites, or server-side AI. |
@@ -42,7 +42,7 @@ production/development tenant configuration remain implementation decisions.
 ### Deferred
 
 - Full Career Coach, Site Builder, or Prompt Workbench product features.
-- Singularity agents, skills, prompts, system instructions, model configurations, private
+- LeanAgileOS agents, skills, prompts, system instructions, model configurations, private
   knowledge, and agent execution history.
 - Password-based authentication and local email verification.
 - Organization/team accounts, shared workspaces, billing, subscriptions, and entitlement management.
@@ -55,7 +55,7 @@ production/development tenant configuration remain implementation decisions.
 ```mermaid
 flowchart LR
     Visitor[Visitor] --> Public[Public portfolio]
-    Public --> IAM[Singularity Federated Identity]
+    Public --> IAM[LeanAgileOS Federated Identity]
     IAM --> Provider[Approved upstream OIDC provider]
     IAM --> Account[Principal + personal Organization]
     Account --> Coach[Career Coach example]
@@ -99,7 +99,7 @@ example application. It is not an operations console and must never expose platf
   session ends, and the server filters every event before it enters the connection.
 - Retain a small, documented per-user window suitable for demonstration. The dashboard is not a
   general telemetry archive.
-- Reuse Singularity's event/telemetry infrastructure through a thin adapter and an explicit
+- Reuse LeanAgileOS's event/telemetry infrastructure through a thin adapter and an explicit
   Portfolio-facing read contract; do not let the browser query the event store or observability
   backend directly.
 
@@ -108,7 +108,7 @@ example application. It is not an operations console and must never expose platf
 The detailed multi-phase delivery plan is
 [Workflow Engine and Lean-Agile MVP Foundation](features/workflow-engine-lean-agile-mvp-foundation.feature.md).
 
-Portfolio uses the Singularity Workflow Engine through a thin adapter. The engine kernel remains
+Portfolio uses the LeanAgileOS Workflow Engine through a thin adapter. The engine kernel remains
 generic: its lifecycle, transitions, persistence contracts, and replay rules must not import
 Portfolio, Lean-Agile MVP, agents, skills, or other product-specific concerns.
 
@@ -159,7 +159,7 @@ database and its key in the same Docker image provides no meaningful protection.
 
 ### Proprietary boundary
 
-Portfolio must not contain, package, import, deploy, or expose Singularity's proprietary agents,
+Portfolio must not contain, package, import, deploy, or expose LeanAgileOS's proprietary agents,
 skills, prompts, system instructions, model configurations, private knowledge, or agent execution
 history. The permitted integration surface is limited to public workflow and event contracts plus
 sanitized, project-neutral Lean-Agile MVP definitions and projections.
@@ -168,7 +168,7 @@ sanitized, project-neutral Lean-Agile MVP definitions and projections.
 
 ### Federated authentication
 
-- Portfolio uses OIDC Authorization Code flow with PKCE against Singularity IAM. IAM brokers the
+- Portfolio uses OIDC Authorization Code flow with PKCE against LeanAgileOS IAM. IAM brokers the
   approved upstream OIDC providers and issues the tokens trusted by Portfolio services.
 - Resolve the authenticated Principal and `organizationId` from the validated token; do not key
   accounts by email.
@@ -238,7 +238,7 @@ server-enforced ownership checks on every read and mutation.
 The Portfolio gateway remains a read-composition root for public pages. It must not orchestrate
 cross-context example writes. Each example owns its transaction; integration effects require the
 integration-event/outbox decision already identified in the architecture review. Running examples
-and the Dashboard use thin adapters to Singularity capabilities rather than copied product or
+and the Dashboard use thin adapters to LeanAgileOS capabilities rather than copied product or
 platform implementations.
 
 ## Delivery sequence
@@ -285,7 +285,7 @@ are green. Adding an example is not an excuse to defer these controls.
 1. Define the Google and Microsoft upstream OIDC production/development tenant strategy.
 2. Set the defensible data-retention policy after the one-week deletion grace period ends.
 3. **Resolved:** Site Builder ships before Career Coach after the Shell/Dashboard foundation.
-4. Define the Portfolio-facing thin-adapter contracts for each Singularity capability, including
+4. Define the Portfolio-facing thin-adapter contracts for each LeanAgileOS capability, including
    the activity-feed projection and SSE contract.
 5. Define the allowed domain-event types and redacted payload fields for the PouchDB
    macro-recording spike.

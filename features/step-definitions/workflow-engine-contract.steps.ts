@@ -22,6 +22,6 @@ Then('the macro is human-approved and targets a disposable workspace', function 
   if (this.contractResult?.macroId !== 'macro-site-builder-intake') throw new Error('Expected approved disposable-workspace macro');
 });
 
-Then('no private Singularity import or proprietary-content reference is present', function () {
+Then('no private upstream-platform import or proprietary-content reference is present', function () {
   if (typeof this.contractResult?.sourceFilesChecked !== 'number') throw new Error('Expected private-import verification result');
 });

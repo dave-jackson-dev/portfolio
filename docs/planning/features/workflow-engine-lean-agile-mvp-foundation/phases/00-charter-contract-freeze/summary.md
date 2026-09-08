@@ -1,7 +1,13 @@
 # Phase 00 — Charter and Contract Freeze Summary
 
+> ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
+> it was rewritten to *LeanAgileOS* by the upstream repoint
+> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> describes was carried out when the upstream was `singularity`. Package names in code
+> (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
+
 > **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
-> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/summary.md).
+> canonical historical copy of this document now live in [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/summary.md).
 > This Portfolio copy remains as a consumer-side forwarding and integration record.
 
 **Status:** Complete
@@ -13,7 +19,7 @@
 ## Decision record
 
 Portfolio is a second consumer of the Workflow Engine through a public boundary, not by copying
-or importing the Singularity implementation. The existing engine plan identifies a programmatic
+or importing the LeanAgileOS implementation. The existing engine plan identifies a programmatic
 Nest module/factory and CQRS commands/queries as the intended consumer surface; PouchDB is owned
 behind that boundary. This phase will turn that intent into an approved, versioned contract.
 
@@ -25,7 +31,7 @@ separately approved command recipe and can run only in a disposable workspace.
 
 ## Evidence gathered
 
-- The Singularity Workflow Engine plan states that its standalone application exposes a
+- The LeanAgileOS Workflow Engine plan states that its standalone application exposes a
   programmatic Nest module/factory and that consumers dispatch CQRS commands and queries rather
   than importing PouchDB repositories.
 - The provider's exported command catalogue was reconciled with all command paths executable by
@@ -37,17 +43,17 @@ separately approved command recipe and can run only in a disposable workspace.
 - [Portfolio ADR-001](../../../../architecture/adr-001-workflow-engine-public-consumer-boundary.md)
   records the accepted consumer-side boundary and its prohibited dependency directions.
 - Provider-owned Workflow Engine v1 command/result schemas and the v2 identity-aware event schema
-  are checked in under Singularity `docs/contracts/workflow-engine/v1/`.
+  are checked in under LeanAgileOS `docs/contracts/workflow-engine/v1/`.
 - Portfolio's `npm run test:workflow-contract` validates the sanitized delegated-event and macro
   fixtures, the initial allowlist, disposable-workspace replay rule, and private-import exclusion.
-- Singularity's provider-side `createWorkflowEnginePublicAdapter` baseline passes its Node contract
+- LeanAgileOS's provider-side `createWorkflowEnginePublicAdapter` baseline passes its Node contract
   tests for supported v1 command dispatch and unsupported-version rejection.
 - `@singularity/workflow-engine` passes a clean external-consumer installation test. Its tarball
   has only six public runtime files and contains no extension, infrastructure, tests, agents,
   skills, prompts, or other proprietary content.
 - Portfolio's `createPortfolioWorkflowAdapter` passes a BDD consumer test through an injected v1
-  public client and imports no Singularity source path.
-- ADR-088 establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
+  public client and imports no LeanAgileOS source path.
+- Singularity ADR-088 (🔴 **not ported to `lean-agile-os`** — [ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md) §5) establishes VS Codium plus a NestJS sidecar as a separate reference integration over the
   same public contract; Portfolio remains independent of editor and sidecar packages.
 
 ## Deferred implementation decisions
@@ -60,7 +66,7 @@ boundary or its contract artifacts.
 
 - `npm run test:workflow-contract` passes.
 - `npm run test:bdd` passes on Node 24.19.0: 5 scenarios and 13 steps pass.
-- `node --test libs/workflow-engine/public/index.spec.mjs` passes in Singularity: 2 tests pass.
+- `node --test libs/workflow-engine/public/index.spec.mjs` passes in LeanAgileOS: 2 tests pass.
 - `npm run test:package-consumer` in `libs/workflow-engine` passes: a clean temporary consumer
   installs the generated tarball by package name and executes the public v1 contract.
 

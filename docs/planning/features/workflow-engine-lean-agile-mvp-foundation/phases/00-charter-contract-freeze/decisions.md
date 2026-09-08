@@ -1,7 +1,13 @@
 # Phase 00 — Agreed Contract Decisions
 
+> ⚠️ **Repointed 2026-09-08.** This is a **completed phase record**. Every *Singularity* reference in
+> it was rewritten to *LeanAgileOS* by the upstream repoint
+> ([ADR-002](../../../../architecture/adr-002-lean-agile-os-is-the-upstream-platform.md)); the work it
+> describes was carried out when the upstream was `singularity`. Package names in code
+> (`@singularity/*`) were deliberately **not** renamed — ADR-002 §4.
+
 > **Ownership moved:** The reusable Lean-Agile MVP package, generic specifications, and the
-> canonical historical copy of this document now live in [Singularity Phase 21](https://github.com/dave-jackson-dev/singularity/blob/dev/docs/planning/singularity/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/decisions.md).
+> canonical historical copy of this document now live in [LeanAgileOS Phase 21](https://github.com/dave-jackson-dev/lean-agile-os/blob/dev/docs/planning/lean-agile-os/features/resumable-workflow-steps/phases/21-live-product-pilot-and-extraction-decision/evidence/portfolio-lean-agile-mvp-foundation/phases/00-charter-contract-freeze/decisions.md).
 > This Portfolio copy remains as a consumer-side forwarding and integration record.
 
 **Date:** 2026-08-19
@@ -83,7 +89,7 @@ fixtures. Backup/restore uses encrypted artifacts and verifies an integrity mani
 
 ## 6. Cross-repository integration
 
-Singularity owns public Workflow Engine schemas, compatibility policy, and provider contract tests.
+LeanAgileOS owns public Workflow Engine schemas, compatibility policy, and provider contract tests.
 Portfolio owns its thin adapter and consumer tests. The independently versioned Lean-Agile MVP
 package owns the methodology extension and projection mapping.
 A shared sanitized fixture set proves command/result compatibility, v2 event validation, redaction,
